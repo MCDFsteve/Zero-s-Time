@@ -1,0 +1,34 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 119, in script
+    show zicheng_pose1 mouth5 eyes4 other1 other2 at hito
+  File "renpy/common/00layeredimage.rpy", line 768, in _choose_attributes
+    raise Exception("The attributes for {} conflict: {}".format(tag, " ".join(both)))
+Exception: The attributes for zicheng_pose1 conflict: eyes4 other1 other2
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 119, in script
+    show zicheng_pose1 mouth5 eyes4 other1 other2 at hito
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1408, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1371, in show_imspec
+    renpy.config.show(name,
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 683, in show
+    name, what = _find_image(layer, key, name, what)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 499, in _find_image
+    new_what = renpy.game.context().images.apply_attributes(layer, key, name)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 983, in apply_attributes
+    return self.choose_image(nametag, required, optional, name)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 1003, in choose_image
+    newattrs = ca(tag, ca_required, ca_optional)
+  File "renpy/common/00layeredimage.rpy", line 768, in _choose_attributes
+    raise Exception("The attributes for {} conflict: {}".format(tag, " ".join(both)))
+Exception: The attributes for zicheng_pose1 conflict: eyes4 other1 other2
+
+Windows-10-10.0.22621 AMD64
+Ren'Py 8.0.3.22090809
+彼零之时 alpha.0.33
+Thu Feb  9 19:05:00 2023

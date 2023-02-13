@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/screens.rpy", line 118: keyword argument 'at' appears more than once in a text statement.
+    at watch_time
+      ^
+
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Sun Feb  5 13:05:59 2023
