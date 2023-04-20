@@ -662,4 +662,431 @@ init -1:
                 "zicheng1_wunai"
             attribute mouth5:
                 "zicheng1_xianqi"
-        
+#叶梓澄
+init -1 python:
+    def zicheng2_nanguo_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="zicheng":
+            return ("zicheng2_shuohua_nanguo", .1)#播放口型动画1
+        else:
+            return ("zicheng2_bizui_nanguo", .1)
+    def zicheng2_wukou_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="zicheng":
+            return ("zicheng2_shuohua_wukou", .1)#播放口型动画1
+        else:
+            return ("zicheng2_bizui_wukou", .1)
+    def zicheng2_xianqi_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="zicheng":
+            return ("zicheng2_shuohua_xianqi", .1)#播放口型动画1
+        else:
+            return ("zicheng2_bizui_xianqi", .1)
+init -1:
+#定义口型动画1
+    image zicheng2_shuohua_nanguo:
+        "images/hito/zicheng/cengdie/zishi2/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-zhangkai.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-nanguo.webp"
+        0.1
+        repeat
+    image zicheng2_shuohua_wukou:
+        "images/hito/zicheng/cengdie/zishi2/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-zhangkai.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-wukou.webp"
+        0.1
+        repeat
+    image zicheng2_shuohua_xianqi:
+        "images/hito/zicheng/cengdie/zishi2/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-zhangkai.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng/cengdie/zishi2/zui-nanguo.webp"
+        0.1
+        repeat
+    image zicheng2_bizui_nanguo:
+        "images/hito/zicheng/cengdie/zishi2/zui-nanguo.webp"
+        0.2
+        repeat
+    image zicheng2_bizui_wukou:
+        "images/hito/zicheng/cengdie/zishi2/zui-wukou.webp"
+        0.2
+        repeat
+    image zicheng2_bizui_xianqi:
+        "images/hito/zicheng/cengdie/zishi2/zui-xianqi.webp"
+        0.2
+        repeat
+    
+    image zicheng2_nanguo = DynamicDisplayable(zicheng2_nanguo_)
+    image zicheng2_wukou = DynamicDisplayable(zicheng2_wukou_)
+    image zicheng2_xianqi = DynamicDisplayable(zicheng2_xianqi_)
+#yan睛正常
+    image zicheng2_yan_zhengchang_bi:
+        "images/hito/zicheng/cengdie/zishi2/yan-biyan.webp"
+    image zicheng2_yan_zhengchang_zhengkai:
+        "images/hito/zicheng/cengdie/zishi2/yan-zhengkai.webp"
+    image zicheng2_yan_zhengchang_banzhang:
+        "images/hito/zicheng/cengdie/zishi2/yan-banzhang.webp"
+    image zicheng2_zhengchang:
+        "zicheng2_yan_zhengchang_zhengkai"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "zicheng2_yan_zhengchang_banzhang"
+        0.1
+        "zicheng2_yan_zhengchang_bi"
+        0.2
+        "zicheng2_yan_zhengchang_banzhang"
+        0.1
+        repeat
+#yan睛正常
+#yan睛黑化
+    image zicheng2_yan_wushen:
+        "images/hito/zicheng/cengdie/zishi2/yan-zhengkai-wushen.webp"
+    image zicheng2_han:
+        "images/hito/zicheng/cengdie/zishi2/lingjian-liuhan.webp"
+    image zicheng2_heihua:
+        "images/hito/zicheng/cengdie/zishi2/lingjian-heihua.webp"
+    image zicheng2_wushen:
+        "zicheng2_yan_wushen"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "zicheng2_yan_zhengchang_banzhang"
+        0.1
+        "zicheng2_yan_zhengchang_bi"
+        0.2
+        "zicheng2_yan_zhengchang_banzhang"
+        0.1
+        repeat
+#yan睛黑化
+    layeredimage zicheng_pose2:
+        always:
+            "images/hito/zicheng/cengdie/zishi2/zhuqugan.webp"
+        group pose:
+            attribute pose1 default:
+                "zicheng2_pose_def"
+                
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "zicheng2_zhengchang"
+            attribute eyes2:
+                "zicheng2_wushen"
+        group other1:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute other1:
+                "zicheng2_han"
+        group other2:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute other2:
+                "zicheng2_heihua"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "zicheng2_nanguo"
+            attribute mouth2 default:
+                "zicheng2_wukou"
+            attribute mouth3:
+                "zicheng2_xianqi"
+#林洛
+init -1 python:
+    def linluo_wukou_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="linluo":
+            return ("linluo_shuohua_wukou", .1)#播放口型动画1
+        else:
+            return ("linluo_bizui_wukou", .1)
+    def linluo_liezui_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="linluo":
+            return ("linluo_shuohua_liezui", .1)#播放口型动画1
+        else:
+            return ("linluo_bizui_liezui", .1)
+init -1:
+#定义口型动画1
+    image linluo_shuohua_wukou:
+        "images/hito/linluo/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/linluo/cengdie/zui_zhangkai.webp"
+        0.1
+        "images/hito/linluo/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/linluo/cengdie/zui_bi.webp"
+        0.1
+        repeat
+    image linluo_shuohua_liezui:
+        "images/hito/linluo/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/linluo/cengdie/zui_zhangkai.webp"
+        0.1
+        "images/hito/linluo/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/linluo/cengdie/zui_bi.webp"
+        0.1
+        repeat
+    image linluo_bizui_wukou:
+        "images/hito/linluo/cengdie/zui_bi.webp"
+        0.2
+        repeat
+    image linluo_bizui_liezui:
+        "images/hito/linluo/cengdie/zui_liezui.webp"
+        0.2
+        repeat
+    image linluo_wukou = DynamicDisplayable(linluo_wukou_)
+    image linluo_liezui = DynamicDisplayable(linluo_liezui_)
+#yan睛正常
+    image linluo_bi:
+        "images/hito/linluo/cengdie/yan_bi.webp"
+    image linluo_zhang:
+        "images/hito/linluo/cengdie/yan_zhengkai.webp"
+    image linluo_banzhang:
+        "images/hito/linluo/cengdie/yan_banzhang.webp"
+
+    image linluo_moren:
+        "linluo_zhang"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "linluo_banzhang"
+        0.1
+        "linluo_bi"
+        0.2
+        "linluo_banzhang"
+        0.1
+        repeat
+#yan睛正常
+#yan睛正常
+    image linluo_dengyan:
+        "images/hito/linluo/cengdie/yan_dengyan.webp"
+    image linluo_dayan:
+        "linluo_dengyan"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "linluo_banzhang"
+        0.1
+        "linluo_bi"
+        0.2
+        "linluo_banzhang"
+        0.1
+        repeat
+#yan睛正常
+    image linluo_yinan:
+        "images/hito/linluo/cengdie/lingjian_yinan.webp"
+    image linluo_liuhan:
+        "images/hito/linluo/cengdie/lingjian_liuhan.webp"
+    image linluo_pose_def:
+        "images/hito/linluo/cengdie/zhuqugan.webp"
+    image linluo_pose2_def:
+        "images/hito/linluo/cengdie/zhuqugan2.webp"
+    layeredimage linluo_pose:
+
+        group pose:
+            attribute pose1 default:
+                "linluo_pose_def"
+            attribute pose2:
+                "linluo_pose2_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "linluo_moren"
+            attribute eyes2:
+                "linluo_dayan"
+        group other1:
+            attribute other1:
+                "linluo_yinan"
+        group other2:
+            attribute other2:
+                "linluo_liuhan"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "linluo_liezui"
+            attribute mouth2 default:
+                "linluo_wukou"
+#林洛老
+init -1 python:
+    def linluo_old_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="linluo_old":
+            return ("linluo_old_shuohua", .1)#播放口型动画1
+        else:
+            return ("linluo_old_bizui", .1)
+init -1:
+#定义口型动画1
+    image linluo_old_shuohua:
+        "images/hito/linluo_old/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/linluo_old/cengdie/zui_zhangkai.webp"
+        0.1
+        "images/hito/linluo_old/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/linluo_old/cengdie/zui_bi.webp"
+        0.1
+        repeat
+    image linluo_old_bizui:
+        "images/hito/linluo_old/cengdie/zui_bi.webp"
+        0.2
+        repeat
+    image linluo_old = DynamicDisplayable(linluo_old_)
+#yan睛正常
+    image linluo_old_bi:
+        "images/hito/linluo_old/cengdie/yan_bi.webp"
+    image linluo_old_zhang:
+        "images/hito/linluo_old/cengdie/yan_zhangkai.webp"
+    image linluo_old_banzhang:
+        "images/hito/linluo_old/cengdie/yan_banzhang.webp"
+
+    image linluo_old_yan:
+        "linluo_old_zhang"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "linluo_old_banzhang"
+        0.1
+        "linluo_old_bi"
+        0.2
+        "linluo_old_banzhang"
+        0.1
+        repeat
+#yan睛正常
+    image linluo_old_hat:
+        "images/hito/linluo_old/cengdie/lingjian_hat.webp"
+    image linluo_old_pose_def:
+        "images/hito/linluo_old/cengdie/zhuqugan.webp"
+    layeredimage linluo_old_pose:
+
+        group pose:
+            attribute pose1 default:
+                "linluo_old_pose_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "linluo_old_yan"
+        group other1:
+            attribute other1:
+                "linluo_old_hat"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1 default:
+                "linluo_old"
+#女老师
+init -1 python:
+    def sensei1_zui_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="sensei":
+            return ("sensei1_zui_shuohua", .1)#播放口型动画1
+        else:
+            return ("sensei1_zui_bizui", .1)
+init -1:
+#定义口型动画1
+    image sensei1_zui_shuohua:
+        "images/hito/sensei1/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/sensei1/cengdie/zui_zhangkai.webp"
+        0.1
+        "images/hito/sensei1/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/sensei1/cengdie/zui_bi.webp"
+        0.1
+        repeat
+    image sensei1_zui_bizui:
+        "images/hito/sensei1/cengdie/zui_bi.webp"
+        0.2
+        repeat
+    image sensei1_zui = DynamicDisplayable(sensei1_zui_)
+#yan睛正常
+    image sensei1_yan_bi:
+        "images/hito/sensei1/cengdie/yan_bi.webp"
+    image sensei1_yan_zhang:
+        "images/hito/sensei1/cengdie/yan_zhangkai.webp"
+    image sensei1_yan_banzhang:
+        "images/hito/sensei1/cengdie/yan_banzhang.webp"
+
+    image sensei1_yan:
+        "sensei1_yan_zhang"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "sensei1_yan_banzhang"
+        0.1
+        "sensei1_yan_bi"
+        0.2
+        "sensei1_yan_banzhang"
+        0.1
+        repeat
+    image sensei1_yan2:
+        "sensei1_yan_banzhang"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "sensei1_yan_banzhang"
+        0.1
+        "sensei1_yan_bi"
+        0.2
+        "sensei1_yan_banzhang"
+        0.1
+        repeat
+#yan睛正常
+    image sensei1_pose_def:
+        "images/hito/sensei1/cengdie/zhuqugan.webp"
+    layeredimage sensei1_pose:
+
+        group pose:
+            attribute pose1 default:
+                "sensei1_pose_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "sensei1_yan"
+            attribute eyes2 :
+                "sensei1_yan2"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1 default:
+                "sensei1_zui"

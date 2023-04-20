@@ -2,9 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 118: keyword argument 'at' appears more than once in a text statement.
-    at watch_time
-      ^
+File "game/options.rpy", line 304: The always statement can only have one displayable, two found.
+    attribute title default:
+                    ^
+
+File "game/options.rpy", line 308: The always statement can only have one displayable, two found.
+    attribute title default:
+                    ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sun Feb  5 13:05:59 2023
+Thu Apr 20 17:30:49 2023

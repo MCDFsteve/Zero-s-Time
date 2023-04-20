@@ -1,14 +1,17 @@
-﻿################################################################################
+################################################################################
 ## 初始化
 ################################################################################
 
 init offset = -1
 
-
 ################################################################################
 ## 样式
 ################################################################################
-
+transform main_menu_show_btn(wait=0):
+    xoffset 100
+    alpha 0.0
+    pause(wait)
+    easein 0.5 xoffset 0 alpha 1
 style default:
     properties gui.text_properties()
     language gui.language
@@ -54,7 +57,7 @@ style scrollbar:
     ysize gui.scrollbar_size
     base_bar Frame("gui/scrollbar/horizontal_[prefix_]bar.webp", gui.scrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/scrollbar/horizontal_[prefix_]thumb.webp", gui.scrollbar_borders, tile=gui.scrollbar_tile)
-
+    thumb_offset 15
 style vscrollbar:
     xsize gui.scrollbar_size
     base_bar Frame("gui/scrollbar/vertical_[prefix_]bar.webp", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
@@ -62,9 +65,10 @@ style vscrollbar:
 
 style slider:
     ysize gui.slider_size
-    base_bar Frame("gui/slider/horizontal_[prefix_]bar.webp", gui.slider_borders, tile=gui.slider_tile)
+    right_bar Frame("gui/slider/horizontal_[prefix_]bar.webp", gui.slider_borders, tile=gui.slider_tile)
+    left_bar Frame("gui/slider/horizontal_hover_bar.webp", gui.slider_borders, tile=gui.slider_tile)
     thumb "gui/slider/horizontal_[prefix_]thumb.webp"
-
+    thumb_offset 20
 style vslider:
     xsize gui.slider_size
     base_bar Frame("gui/slider/vertical_[prefix_]bar.webp", gui.vslider_borders, tile=gui.slider_tile)
@@ -93,24 +97,37 @@ style frame:
 ## https://www.renpy.cn/doc/screen_special.html#say
 #手表
 transform watch_center:
-         xcenter 0.1
+         xcenter 0.1+0.82
          ycenter 0.1
 transform year:
-         xcenter 0.1
+         xcenter 0.1+0.82
          ycenter 0.05
 transform _time:
-         xcenter 0.1
+         xcenter 0.1+0.82
          ycenter 0.1
          alpha 1.0
          linear 1.0 alpha 0.5
          linear 1.0 alpha 1.0
          repeat
 transform week:
-         xcenter 0.1
+         xcenter 0.1+0.82
          ycenter 0.15
+transform year2:
+         xcenter 0.28
+         ycenter 0.23
+transform _time2:
+         xcenter 0.28
+         ycenter 0.5
+         alpha 1.0
+         linear 1.0 alpha 0.5
+         linear 1.0 alpha 1.0
+         repeat
+transform week2:
+         xcenter 0.282
+         ycenter 0.77
 screen watch:
-    add "gui/watch.webp":
-       at watch_center
+    imagebutton idle "gui/watch.webp" hover "gui/watch_on.webp" at watch_center hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+      action ShowMenu("watch_ui")
     text "[years]" size 30 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
        at year
     text "{b}[times]{/b}" size 65 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
@@ -119,6 +136,62 @@ screen watch:
        at week
     add "gui/watch_light.webp":
        at watch_center
+screen watch_loop1:
+    imagebutton idle "gui/watch.webp" hover "gui/watch_on.webp" at watch_center hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+      action Jump("loop1_true")
+    text "[years]" size 30 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at year
+    text "{b}[times]{/b}" size 65 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at _time
+    text "{b}[weeks]{/b}" size 45 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at week
+    add "gui/watch_light.webp":
+       at watch_center
+screen watch_loop2:
+    imagebutton idle "gui/watch.webp" hover "gui/watch_on.webp" at watch_center hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+      action Jump("loop2_true")
+    text "[years]" size 30 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at year
+    text "{b}[times]{/b}" size 65 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at _time
+    text "{b}[weeks]{/b}" size 45 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at week
+    add "gui/watch_light.webp":
+       at watch_center
+screen watch_ui:
+    add "gui/background.webp"
+    add "gui/watch_bg2.webp"
+    add "gui/watch_bg.webp"
+    text "[years]" size 160 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at year2
+    text "{b}[times]{/b}" size 340 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at _time2
+    text "{b}[weeks]{/b}" size 240 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
+       at week2
+    key "pad_b_press" action Return()
+    key "game_menu" action Return()
+    hbox:
+        xpos 0.638
+        ypos 0.9
+        spacing 15
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action Return()
+screen loop1_screen:
+    add "gui/watch_bg.webp"
+    add "loop_d":
+       at year2
+    add "loop_t":
+       at _time2
+    add "loop_w":
+       at week2
+screen loop2_screen:
+    add "gui/watch_bg.webp"
+    add "loop2_d":
+       at year2
+    add "loop2_t":
+       at _time2
+    add "loop2_w":
+       at week2
 #音乐盒
 init python:
 
@@ -130,13 +203,17 @@ init python:
     mr.add("music/richang.ogg")
     mr.add("music/school.ogg")
     mr.add("music/lanzhu.ogg")
+    mr.add("music/omou.ogg")
+    mr.add("music/home.ogg")
+    mr.add("music/sora.ogg")
     #mr.add("track2.ogg")
     #mr.add("track3.ogg")
 # Step 3. 创建音乐空间界面。
 screen music_room:
     add  "extra/bg_musicroom.webp"
     tag menu
-
+    #on "replaced" action Play("music", "music/title.ogg")
+    modal True
     #frame:
         #has vbox
 
@@ -171,117 +248,137 @@ screen music_room:
           textbutton _("{size=80}危机-陈次犬{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action mr.Play("music/lanzhu.ogg")
         else:
           textbutton _("{size=80}？？？{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.music_omou:
+          textbutton _("{size=80}毁灭-陈次犬{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action mr.Play("music/omou.ogg")
+        else:
+          textbutton _("{size=80}？？？{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.music_home:
+          textbutton _("{size=80}家-陈次犬{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action mr.Play("music/home.ogg")
+        else:
+          textbutton _("{size=80}？？？{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.music_sora:
+          textbutton _("{size=80}天空-陈次犬{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action mr.Play("music/sora.ogg")
+        else:
+          textbutton _("{size=80}？？？{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
-        if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action ShowMenu("menu")
-        if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action Return()
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+            action [Hide("music_room"), ShowMenu("Extra"),Play("music", "music/title.ogg")]
 
     # 音乐空间的音乐播放入口。
     on "replace" action mr.Play()
-
+    key "game_menu" action ShowMenu("Extra")
+    key "pad_b_press" action ShowMenu("Extra")
     # 离开时恢复主菜单的音乐。
-    on "replaced" action Play("music", "music/title.ogg")
 #音乐盒
+screen tips_option:
+    if main_menu:
+        key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+        key "pad_b_press" action Return()
 screen Tips():
 
     tag menu
     modal True
     add "gui/tips.webp"
-
+    add "gui/nvl.webp"
+    use tips_option
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Tips2")
+        add "ui_page"
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1_on.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1_on" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips")
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips2")
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips3")
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips4")
-        imagebutton idle "extra/page5.webp" hover "extra/page5_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page5" hover "ui_page5_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips5")
         
     key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.tips01:
-        textbutton _("{size=50}{b}pbb{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips01")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips02:
-        textbutton _("{size=50}{b}工口同人本{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips02")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips03:
-        textbutton _("{size=50}{b}d站{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips03")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips04:
-        textbutton _("{size=50}{b}鬼畜{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips04")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips05:
-        textbutton _("{size=50}{b}cq{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips05")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips06:
-        textbutton _("{size=50}{b}番剧{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips06")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips07:
-        textbutton _("{size=50}{b}npc{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips07")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips08:
-        textbutton _("{size=50}{b}地球online{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips08")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips09:
-        textbutton _("{size=50}{b}家里蹲{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips09")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips10:
-        textbutton _("{size=50}{b}油陷{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips10")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips11:
-        textbutton _("{size=50}{b}希望之花{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips11")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips12:
-        textbutton _("{size=50}{b}现充{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips12")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips13:
-        textbutton _("{size=50}{b}巴麻镁{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips13")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    vbox:
+        xpos 0.05
+        ypos 0.03
+        spacing 0
+        if persistent.tips01:
+          textbutton _("{size=50}{b}pbb{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips01")
+        else:
+          textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips02:
+          textbutton _("{size=50}{b}工口同人本{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips02")
+        else:
+          textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips03:
+            textbutton _("{size=50}{b}d站{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips03")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips04:
+            textbutton _("{size=50}{b}鬼畜{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips04")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips05:
+            textbutton _("{size=50}{b}cq{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips05")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips06:
+            textbutton _("{size=50}{b}番剧{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips06")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips07:
+            textbutton _("{size=50}{b}NPC{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips07")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips08:
+            textbutton _("{size=50}{b}地球online{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips08")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips09:
+            textbutton _("{size=50}{b}家里蹲{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips09")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips10:
+            textbutton _("{size=50}{b}油陷{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips10")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips11:
+            textbutton _("{size=50}{b}希望之草{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips11")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips12:
+            textbutton _("{size=50}{b}现充{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips12")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips13:
+            textbutton _("{size=50}{b}战场原白仪{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips13")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     
         
 screen Tips2():
@@ -289,698 +386,746 @@ screen Tips2():
     tag menu
     modal True
     add "gui/tips.webp"
+    add "gui/nvl.webp"
+    use tips_option
 
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Tips3")
+        add "ui_page"
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips")
-        imagebutton idle "extra/page2_on.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2_on" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips2")
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips3")
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips4")
-        imagebutton idle "extra/page5.webp" hover "extra/page5_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page5" hover "ui_page5_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips5")
         
         
     key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.tips14:
-        textbutton _("{size=50}{b}晓美岩{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips14")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips15:
-        textbutton _("{size=50}{b}《魔法少女小方》{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips15")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips16:
-        textbutton _("{size=50}{b}厨{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips16")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips17:
-        textbutton _("{size=50}{b}这是禁止事项{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips17")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips18:
-        textbutton _("{size=50}{b}at立场{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips18")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips19:
-        textbutton _("{size=40}{b}已经没有什么好怕的了{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips19")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips20:
-        textbutton _("{size=50}{b}再上映{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips20")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips21:
-        textbutton _("{size=50}{b}和我签订契约吧！{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips21")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips22:
-        textbutton _("{size=50}{b}中二{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips22")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips23:
-        textbutton _("{size=50}{b}灵魂宝石{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips23")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips24:
-        textbutton _("{size=50}{b}时间系能力{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips24")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips25:
-        textbutton _("{size=50}{b}女装{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips25")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips26:
-        textbutton _("{size=50}{b}抖乐{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips26")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    vbox:
+        xpos 0.05
+        ypos 0.03
+        spacing 0
+        if persistent.tips14:
+            textbutton _("{size=50}{b}斧乃木正弦{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips14")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips15:
+            textbutton _("{size=50}{b}故事系列{/b}{/size}")hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips15")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips16:
+            textbutton _("{size=50}{b}厨{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips16")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips17:
+            textbutton _("{size=50}{b}这是禁止事项{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips17")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips18:
+            textbutton _("{size=50}{b}•福杰{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips18")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips19:
+            textbutton _("{size=50}{b}社牛{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips19")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips20:
+            textbutton _("{size=50}{b}再上映{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips20")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips21:
+            textbutton _("{size=50}{b}二次元{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips21")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips22:
+            textbutton _("{size=50}{b}中二{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips22")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips23:
+            textbutton _("{size=50}{b}也儿夕传说{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips23")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips24:
+            textbutton _("{size=50}{b}也儿夕传说：旷野之炊{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips24")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips25:
+            textbutton _("{size=50}{b}林库{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips25")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips26:
+            textbutton _("{size=50}{b}抖乐{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips26")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     
 screen Tips3():
 
     tag menu
     modal True
     add "gui/tips.webp"
+    add "gui/nvl.webp"
+    use tips_option
 
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Tips4")
+        add "ui_page"
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips")
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips2")
-        imagebutton idle "extra/page3_on.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3_on" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips3")
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips4")
-        imagebutton idle "extra/page5.webp" hover "extra/page5_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page5" hover "ui_page5_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips5")
         
     key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.tips27:
-        textbutton _("{size=50}{b}PUA{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips27")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips28:
-        textbutton _("{size=50}{b}宝可魔{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips28")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips29:
-        textbutton _("{size=50}{b}任地堂{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips29")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips30:
-        textbutton _("{size=50}{b}witch{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips30")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips31:
-        textbutton _("{size=50}{b}泥可泥丝{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips31")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips32:
-        textbutton _("{size=40}{b}蒸汽朋克：边缘行者{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips32")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips33:
-        textbutton _("{size=50}{b}AADR{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips33")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips34:
-        textbutton _("{size=50}{b}ChieAnime{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips34")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips35:
-        textbutton _("{size=50}{b}漫展{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips35")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips36:
-        textbutton _("{size=50}{b}cosplay{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips36")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips37:
-        textbutton _("{size=50}{b}coser{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips37")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips38:
-        textbutton _("{size=50}{b}低德地图{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips38")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips39:
-        textbutton _("{size=50}{b}pb{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips39")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    vbox:
+        xpos 0.05
+        ypos 0.03
+        spacing 0
+        if persistent.tips27:
+            textbutton _("{size=50}{b}腹黑{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips27")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips28:
+            textbutton _("{size=50}{b}宝可魔{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips28")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips29:
+            textbutton _("{size=50}{b}任地堂{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips29")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips30:
+            textbutton _("{size=50}{b}witch{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips30")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips31:
+            textbutton _("{size=50}{b}泥可泥丝{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips31")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips32:
+            textbutton _("{size=50}{b}蒸汽朋克：边缘行者{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips32")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips33:
+            textbutton _("{size=50}{b}AADR{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips33")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips34:
+            textbutton _("{size=50}{b}ChieAnime{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips34")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips35:
+            textbutton _("{size=50}{b}漫展{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips35")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips36:
+            textbutton _("{size=50}{b}cosplay{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips36")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips37:
+            textbutton _("{size=50}{b}coser{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips37")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips38:
+            textbutton _("{size=50}{b}低德地图{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips38")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips39:
+            textbutton _("{size=50}{b}高塔{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips39")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
 screen Tips4():
 
     tag menu
     modal True
     add "gui/tips.webp"
+    add "gui/nvl.webp"
+    use tips_option
 
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Tips5")
+        add "ui_page"
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips")
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips2")
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips3")
-        imagebutton idle "extra/page4_on.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4_on" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips4")
-        imagebutton idle "extra/page5.webp" hover "extra/page5_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page5" hover "ui_page5_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips5")
         
     key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.tips40:
-        textbutton _("{size=50}{b}颜文字{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips40")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips41:
-        textbutton _("{size=50}{b}鹿目方{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips41")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.1 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips42:
-        textbutton _("{size=50}{b}撒旦的结合{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips42")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.15 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips43:
-        textbutton _("{size=50}{b}堂屋{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips43")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.2 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips44:
-        textbutton _("{size=50}{b}橘外人{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips44")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.25 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips45:
-        textbutton _("{size=50}{b}零子{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips45")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.3 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips46:
-        textbutton _("{size=50}{b}电子{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips46")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.35 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips47:
-        textbutton _("{size=50}{b}海马体{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips47")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.4 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips48:
-        textbutton _("{size=50}{b}时间悖论{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips48")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.45 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips49:
-        textbutton _("{size=50}{b}宇宙质量守恒{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips49")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.5 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips51:
-        textbutton _("{size=50}{b}影子{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips51")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.55 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips52:
-        textbutton _("{size=50}{b}端锅{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips52")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.6 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.tips50:
-        textbutton _("{size=50}{b}死亡回归{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips50")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.65 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    vbox:
+        xpos 0.05
+        ypos 0.03
+        spacing 0
+        if persistent.tips40:
+            textbutton _("{size=50}{b}颜文字{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips40")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips41:
+            textbutton _("{size=50}{b}神庙{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips41")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips42:
+            textbutton _("{size=50}{b}撒旦的结合{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips42")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips43:
+            textbutton _("{size=50}{b}堂屋{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips43")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips44:
+            textbutton _("{size=50}{b}橘外人{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips44")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips45:
+            textbutton _("{size=50}{b}零子{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips45")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips46:
+            textbutton _("{size=50}{b}皮带炖肉{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips46")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips47:
+            textbutton _("{size=50}{b}海马体{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips47")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips48:
+            textbutton _("{size=50}{b}时间悖论{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips48")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips49:
+            textbutton _("{size=50}{b}{font=SourceHanSansLite.ttf}{color=#ffffff}▶{/color}{/font}时间刻校正仪{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips49")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips51:
+            textbutton _("{size=50}{b}影子{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips51")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips52:
+            textbutton _("{size=50}{b}端锅{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips52")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips50:
+            textbutton _("{size=50}{b}死亡回归{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips50")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
 screen Tips5():
 
     tag menu
     modal True
     add "gui/tips.webp"
+    add "gui/nvl.webp"
+    use tips_option
 
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Tips")
+        add "ui_page"
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips")
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips2")
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips3")
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips4")
-        imagebutton idle "extra/page5_on.webp" hover "extra/page5_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page5_on" hover "ui_page5_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips5")
         
     key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.tips53:
-        textbutton _("{size=50}{b}原子核{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips53")
-    else:
-        textbutton _("{size=50}{b}？？？{/b}{/size}") xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    vbox:
+        xpos 0.05
+        ypos 0.03
+        spacing 0
+        if persistent.tips53:
+            textbutton _("{size=50}{b}原子匹配分布表{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips53")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips54:
+            textbutton _("{size=50}{b}蓝图{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips54")
+        else:
+            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
 screen tips01:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}（架空）即拼波波，一款网购软件。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}（架空）即拼波波，一款网上购物软件。因为往往能以便宜的价格买到商品，所以近些年逐渐流行起来。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips02:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}即R18同人志。好孩子不要看这个！{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}流行意思指18岁以上限制级漫画。也有课本或笔记本的简称叫这个。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips03:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}（架空）即Dilidili,一个弹幕视频网站。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}（架空）即Dilidili,一个弹幕视频网站。在青少年中很是流行，不仅可以用来看动漫，还能学习知识和技术。具有弹幕发送功能相较于其他流媒体网站相当于是特色了。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips04:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}主要是指将特定素材进行拼接，调音，p图等形式制作的\n无厘头搞笑视频。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}主要是指将特定素材进行拼接，调音，p图等形式制作的无厘头搞笑视频。题材可以分为纯搞笑类，以及调音唱歌类。{/size}") xpos 0.35 ypos 0.05 xsize 1160action ShowMenu("Tips")
 screen tips05:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}（架空）逊公司推出的一款基于互联网的即时通讯软件。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}（架空）逊公司推出的一款基于互联网的即时通讯软件。支持一对一对话，以及添加群聊对话。其发布几十年内积累了数以亿计的用户，但是近些年活跃量却逐渐减少。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips06:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}主要是对日本动画的一种称谓。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}主要是对日本动画的一种称谓。细分则可以分为表番和里番，表番又能细分出肉番。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips07:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}指非玩家控制的游戏角色。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}指非玩家控制的游戏角色。多在RPG游戏内起着引导玩家，或者给玩家布置任务的职责。或者扮演玩家的队友，陪玩家一起游玩游戏。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips08:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}虚构的游戏，其实是现实生活比喻成游戏的称呼。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}虚构的游戏，其实是现实生活比喻成游戏的称呼。是一种网络调侃用语。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips09:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}即整天呆在家里的阿宅。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}即整天呆在家里的阿宅。不擅长出门和社交，却擅长各类高难度电子游戏，动画角色和剧情则娓娓道来是这类群体的主要特征之一。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips10:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}（架空）沁野市的特色美食之一。由面粉裹上土豆丝和葱\n油炸而成。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}（架空）沁野市的特色美食之一。由面粉裹上土豆丝和葱油炸而成。吃起来先脆后软，很是享受。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips11:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}（架空）电视动画《机动战士矮达：铁血的奥利给》第二\n季的片尾曲的第一句歌词。因为该集过于生草而变成网络\n热梗。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}（架空）电视动画《机动战士矮达：铁血的奥利给》第二季的片尾曲的第一句歌词。因为该集过于生草而变成网络热梗。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips12:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}一般指那种，不接触ACG，在现实世界生活的很好的人，\n一般这种人都有对象，并且经常参加社交活动。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}一般指那种，不接触ACG，在现实世界生活的很好的人，一般这种人都有对象，并且经常参加社交活动。他们很少看动画和玩二次元游戏，社交圈子很广大。基本可以算是二次元/阿宅的反义词了。多含贬义（从阿宅的口中说出时）。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips13:
     use Tips
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips')
-    textbutton _("{size=50}（架空）电视动画《魔法少女小方》的登场角色。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips")
+    textbutton _("{size=50}（架空）电视动画《故事系列》的登场角色。擅长挥舞各种文具，是典型的女强人形象。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips")
 screen tips14:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）电视动画《魔法少女小方》的登场角色。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）电视动画《故事系列》的登场角色。是尸体经过变化得到的，称为付丧神。不擅长表达自己的表情。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips2")
 screen tips15:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）STAEE制作的电视动画。获奖无数。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）STAEE制作的电视动画。讲述了平凡高中生捡到吸血鬼以后发生的故事。具有很浓厚的艺术风格，而且出了很多神曲。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips2")
 screen tips16:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}指对XX作品很热爱的人的一种称呼。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}指对XX作品很热爱的人的一种称呼。互联网发展到现在，厨已经是粉丝的代名词了，但是厨仅能替代某作品的粉丝来使用，所谓作品多是游戏或者动画。某人或者某个公司则不能替代粉丝这个称呼。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips2")
 screen tips17:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）网络用语，出自电视动画《热宫春日的忧郁》中\n朝比奈十一九六的台词。想回避一些不想谈论或者是触碰\n到秘密的话题时可以使用。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）网络用语，出自电视动画《热宫春日的忧郁》中朝比奈十一九六的台词。想回避一些不想谈论或者是触碰到秘密的话题时可以使用。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips2")
 screen tips18:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）是电视动画《旧世纪福音战士》系列中的一种虚\n构力场。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）是电视动画《刺客过家家》中主角的姓氏。其中女主角的设定是拥有读心术超能力的小孩子。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips2")
 screen tips19:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）标准flag之一。出自电视动画《魔法少女小方》\n的巴麻镁。其在说完这句台词后没多久就被咬断了头。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}网络用语，全称为“社交牛逼症，这个称呼则又是由“社交恐惧症”衍生而来，用来形容那些很擅长与陌生人交流的人。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips2")
 screen tips20:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）电视动画《只有你不存在的街道》中男主角的能\n力，可以让时间逆转。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）电视动画《只有你不存在的街道》中男主角的能力，可以让时间逆转。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips2")
 screen tips21:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）电视动画《魔法少女小方》中pb的名台词。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}原意是指只有两个维的次元，即只有平面，后延伸词义，变成了ACG宅文化的代名词。能玩到这个游戏的人应该很清楚这个词是什么意思吧。（笑）{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips2")
 screen tips22:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}形容经常幻想自己是什么大人物，或者具有某种超能力，\n未成年人动画看多了可能会这样。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}形容经常幻想自己是什么大人物，或者具有某种超能力，未成年人动画看多了可能会这样。但是成年人中的动画受众群体也有存在。{/size}") xpos 0.35 ypos 0.05 xsize 1160 action ShowMenu("Tips2")
 screen tips23:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）电视动画《魔法少女小方》中的物品，魔法少女\n存储灵魂的容器。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）任地堂所开发的游戏系列，游戏的主要玩法是解密，剧情主要是救公主，启蒙了很多后来者游戏。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips2")
 screen tips24:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}涉及时间的超能力，例如时间停止，时间加速，时间倒流\n等。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）也儿夕传说系列的第一部真正的开放世界游戏，玩家可以随心所欲地做自己想做的事情，该游戏获得了PNG2017年度游戏大奖。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips2")
 screen tips25:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}ACG萌属性，指男人穿上女人的服饰。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）《也儿夕传说：旷野之炊》的玩家操控的角色的名字。林库可以直接传送到任意一个已解锁的神庙或者高塔上面。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips2")
 screen tips26:
     use Tips2
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips2')
-    textbutton _("{size=50}（架空）字节跑动公司推出的一款短视频软件。在全世界\n受到欢迎。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips2")
+    textbutton _("{size=50}（架空）字节跑动公司推出的一款短视频软件。在全世界受到欢迎。很大程度上让中年老年人享受到了智能电子设备带来的便利。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips2")
 screen tips27:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}全称“Pick-up Artist”，原意是指“搭讪艺术家”，其原本是\n指男性接受过系统化学习、实践并不断更新提升、自我完\n善情商的行为，后来泛指很会吸引异性、让异性着迷的人\n和其相关行为{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}ACG萌属性之一，当然现实世界也广泛存在。多用来形容那些表面上讨好他人，彬彬有礼，实际上深谋远虑，打算利用他人对自己的好感，将他人作为自己想要实现的计划的一部分的一种性格。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips28:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）GameFurry开发的掌机游戏系列。主要玩法是抓\n怪和对战，在全世界有着极高的人气。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）GameFurry开发的掌机游戏系列。主要玩法是抓怪和对战，在全世界有着极高的人气。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips29:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）世界知名的游戏开发与硬件开发公司，旗下代表\n作有也儿夕传说，超级羊里奥等。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）世界知名的游戏开发公司，旗下代表作有《也儿夕传说》，《超级羊里奥》等。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips30:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）任地堂旗下最新世代掌机。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）任地堂旗下与QS4,Xdox one同世代的游戏主机，具有掌机和主机两种形态。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips31:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）2022年七月新番。讲的是现代女忍者披着jk的外\n皮执行任务。结局令很多观众不满。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）2022年七月原创新番。讲的是现代女忍者披着jk的外皮执行任务。结局令很多观众不满。但是人设和音乐都很棒，只能说是不过不失。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips32:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）改编自游戏《蒸汽朋克1877》的原创动画。出色\n的剧情和人物表现力收获了一片好评。甚至带动了游戏销\n量大幅增加。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）改编自游戏《蒸汽朋克1877》的原创动画。出色的剧情和人物表现力收获了一片好评。甚至带动了原本一蹶不振的原作游戏销量大幅增加。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips33:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）全称America Atom's Digitization Research orga\nnization。美国原子数据化研究组织。主要研究方向是原子\n的数据化转换，传输和还原。在全球多个国家设有分部。\n有超过两千多位登记在册的科学家。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）全称America Atom's Digitization Research organization。美国原子数据化研究组织。主要研究方向是原子的数据化转换，传输和还原。在全球多个国家设有分部。有超过两千多位登记在册的科学家。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips34:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）沁野市最大的动漫展出，活动主要包括cosplay，\n网络游戏对战以及售卖动漫周边和同人志。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）沁野市最大的动漫展出，活动主要包括cosplay，网络游戏对战以及售卖动漫周边和同人志等。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips35:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}指ACG文化相关的展会，按照内容不同，漫展也可以被分\n为不同的种类，比如同人展、博览会等。对于部分御宅族，\n尤其是较缺乏实体ACG资源的地区来说是重要的ACG活动。\n漫展的举办地点一般以当地的会展中心、宾馆或大学校园\n为举办地，取决于会展的性质、规模及主办方。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}指ACG文化相关的展会，按照内容不同，漫展也可以被分为不同的种类，比如同人展、博览会等。对于部分御宅族，尤其是较缺乏实体ACG资源的地区来说是重要的ACG活动。漫展的举办地点一般是当地的会展中心、宾馆或大学校园，取决于会展的性质、规模及主办方。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips36:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}一种扮演虚构角色的表演艺术，是ACG领域的一种重要文\n化活动。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}一种扮演虚构角色的表演艺术，是ACG领域的一种重要文化活动。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips37:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}对进行cosplay的人的称呼。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}对进行cosplay的人的称呼。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips38:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）一款国产地图导航软件。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）一款国产地图导航软件。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips39:
     use Tips3
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips3')
-    textbutton _("{size=50}（架空）电视动画《魔法少女小方》登场角色。外表长得\n像一只兔子，不会说谎，拥有把女孩子变成魔法少女的能\n力。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips3")
+    textbutton _("{size=50}（架空）《也儿夕传说：旷野之炊》中的一种建筑，玩家需要爬山该建筑并与之互动才能解锁所在地区的地图信息，相关的术语有“爬塔开图”。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips3")
 screen tips40:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}指网络上用标点符号组成的表示自己喜怒哀乐的抽象表情。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}指网络上用标点符号组成的表示自己喜怒哀乐的抽象表情。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips41:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）电视动画《魔法少女小方》登场角色。主角。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}（架空）《也儿夕传说：旷野之炊》里遍布全地图的一类建筑，内部往往是各种解密，到达终点以后可以获得用于提高血量和体力上限的奖励。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips42:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）一款肉鸽游戏。玩家需要扮演“撒旦”在各个房间\n探索和打怪。高度的随机性和丰富的道具种类使得其非常\n耐玩。被玩家奉为“肉鸽之神”。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}（架空）一款肉鸽（高难度，低画面表现的一类游戏的称呼，主要特色有难度很高，随机的地图和道具，死后重新开始等）游戏。玩家需要扮演“撒旦”在各个房间探索和打怪。高度的随机性和丰富的道具种类使得其非常耐玩。被玩家奉为“肉鸽之神”。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips43:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）“客厅”在沁野市方言中的称呼。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}（架空）“客厅”在沁野市方言中的称呼。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips44:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）“橘”出自知名百合番《柑橘色味道》。在妹子和\n妹子透漏出百合气息时，可道“大橘已定”，冒出个男的来\n则称为“橘外人”。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}“橘”出自知名百合番{a=http://citrus-anime.com}《柑橘味香气》{/a}。用来调侃ACG女角色之间的亲密关系已经接近恋爱的程度了，可谓“大橘已定”，冒出个男的来则称为“橘外人”。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips45:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）一种未被以前的科学家发现的，一种新的物质形\n态。物理性质介于有质量的由原子构成的物体和电子之间\n，由原子转换而来，也能转换回原子，可以像电子一样被\n光速传输和被电子设备接收。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}（架空）一种未被以前的科学家发现的，一种新的物质形态。物理性质介于有质量的由原子构成的物体和电子之间，由原子转换而来，也能转换回原子，可以像电子一样被光速传输和被电子设备接收。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips46:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}是一种可以在电场中运动的粒子，可以通过载体材料进行\n传导。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}即被打，用皮带抽那种。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips47:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}大脑中负责存储记忆的一块区域，因其结构长得像海马而\n得名。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}大脑中负责存储记忆的一块区域，因其结构长得像海马而得名。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips48:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}最早在科幻小说中出现，指时间穿越者回到过去以后对未\n来造成的种种悖论。例如典型的祖父悖论：我回到过去杀\n死我的祖父，因为我的祖父死了，那就不会有我，那我就\n不可能回到过去杀死我的祖父。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}最早在科幻小说中出现，指时间穿越者回到过去以后对未来造成的种种悖论。例如典型的祖父悖论：我回到过去杀死我的祖父，因为我的祖父死了，那就不会有我，那我就不可能回到过去杀死我的祖父。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips49:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}指宇宙不管怎么运动，宇宙的总质量都是不变的。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    if persistent.time == 0:
+        textbutton _("{size=50}（架空）由叶梓澄之父开发出的跟零子有关的科学仪器。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
+    elif persistent.time == 1:
+        textbutton _("{size=50}（架空）由叶梓澄之父开发出的跟零子有关的科学仪器。具有危险性，可以向+1维度注入零子。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
+    elif persistent.time == 2:
+        textbutton _("{size=50}（架空）由叶梓澄之父开发出的跟零子有关的科学仪器。可以将零子注入更高维度。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips50:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）电视动画《Re:从一开始的异世界生活》中男主角\n的能力，死亡以后会回到死之前的一段时间。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}（架空）电视动画《Re:从一开始的异世界生活》中男主角的能力，死亡以后会回到死之前的一段时间。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips51:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）电视动画《秋日重现》中的反派，男主角由于无\n意识之中获得了影子中蛭子神的右眼，获得了死后回到过\n去的能力。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}（架空）电视动画《秋日重现》中的反派，男主角由于无意识之中获得了影子中蛭子神的右眼，获得了死后回到过去的能力。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips52:
     use Tips4
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    textbutton _("{size=50}（架空）电视剧《端锅》中一个反派，企图在锅里装上炸\n弹拉整公交车人陪葬。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips4")
+    textbutton _("{size=50}（架空）电视剧《端锅》中一个反派，企图在锅里装上炸弹拉整公交车人陪葬。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips4")
 screen tips53:
     use Tips5
     modal True
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips5')
-    textbutton _("{size=50}原子的最重要部分。由质子和中子组成。是粒子但是不具\n有电荷，所以无法进行电子传导。{/size}") xpos 0.3 ypos 0.05 action ShowMenu("Tips5")
+    textbutton _("{size=50}（架空）通过仪器将物质再构成为零子的时候用于记录再构成前物质的原子排布信息的，不属于物质本身所再构成的，外来的一部分零子，在零子还原为物质的过程中起着关键作用。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips5")
+screen tips54:
+    use Tips5
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips5')
+    textbutton _("{size=50}原指建筑或工程项目的设计图纸，用于指导建设和执行。后延伸含义为一项计划或行动的详细方案和策略。{/size}") xpos 0.35 ypos 0.05 xsize 1160  action ShowMenu("Tips5")
 #CG鉴赏
 #请根据你的需求改掉坐标及图片，直接放到专案目录下运行会报错（大概）
 ## Extra screen ###############################################################
@@ -989,26 +1134,33 @@ transform extra(wait=0):
     alpha 0.0
     pause(wait)
     easein 0.5 xoffset 0 alpha 1
+transform extra_zoom:
+   zoom 0.35
+   linear 1.0 zoom 0.35
+   repeat
 screen Extra():
-
     tag menu
     modal True
+    key "pad_b_press" action ShowMenu("menu")
     add "gui/extra.webp"
+    add "gui/nvl.webp"
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Extra2")
+        add "ui_page"
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         
-        imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("menu")
     hbox:
         
@@ -1018,55 +1170,72 @@ screen Extra():
         
         imagebutton idle "extra/musicroom.webp" hover "extra/musicroom_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("music_room")
+    key "game_menu" action Return()
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1_on.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1_on" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra")
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra2")
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra3")
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra4")
-    key "game_menu" action Return() #设置右键返回，方便使用
+    hbox:
+        xpos 0.05
+        ypos 0.05
+        spacing 30
+        if persistent.cg01_unlocked:
+            imagebutton hover "cg_1_on" idle "cg_1"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+              action ShowMenu('cg01')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+              action NullAction()
 
-#--------------------------------------------------------------------
-    if persistent.cg01_unlocked:
-        imagebutton hover "cg_gohan_tukue2" idle "cg_gohan_tukue2_on" xpos 0.05 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg01')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-
-    if persistent.cg02_unlocked:
-        imagebutton hover "cg_kexi_momo" idle "cg_kexi_momo_on" xpos 0.43 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg02')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-
-    if persistent.cg03_unlocked:
-        imagebutton hover "cg_kexi_egao" idle "cg_kexi_egao_on" xpos 0.05 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg03')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg04_unlocked:
-        imagebutton hover "cg_sorawomiru" idle "cg_sorawomiru_on" xpos 0.43 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg04')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    #我个人用的，加上声效以及没解锁时也有按钮（免除P背景图的麻烦
-    #一页有多少个CG就弄多少个按钮，记得每个复制粘贴后都要改
+        if persistent.cg02_unlocked:
+            imagebutton hover "cg_2_on" idle "cg_2" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+              action ShowMenu('cg02')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+              action NullAction()
+    hbox:
+        xpos 0.05
+        ypos 0.43
+        spacing 30
+        if persistent.cg03_unlocked:
+            imagebutton hover "cg_3_on" idle "cg_3" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg03')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.cg04_unlocked:
+            imagebutton hover "cg_4_on" idle "cg_4" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg04')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
 screen Extra2():
-
     tag menu
     modal True
+    key "pad_b_press" action ShowMenu("menu")
     add "gui/extra.webp"
-
+    add "gui/nvl.webp"
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Extra3")
+        add "ui_page"
+    hbox:
+        
+        xpos 0.638
+        ypos 0.9
+        spacing 15
+        
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("menu")
     hbox:
         
         xpos 0.792
@@ -1075,58 +1244,62 @@ screen Extra2():
         
         imagebutton idle "extra/musicroom.webp" hover "extra/musicroom_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("music_room")
+    key "game_menu" action Return()
     hbox:
-        
-        xpos 0.638
-        ypos 0.9
-        spacing 15
-        
-        imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("menu")
-    hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra")
-        imagebutton idle "extra/page2_on.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2_on" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra2")
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra3")
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra4")
-        
-    key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.cg05_unlocked:
-        imagebutton hover "cg_sorawomiru2" idle "cg_sorawomiru2_on" xpos 0.05 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg05')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg06_unlocked:
-        imagebutton hover "cg_neko" idle "cg_neko_on" xpos 0.43 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg06')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg07_unlocked:
-        imagebutton hover "cg_mizu" idle "cg_mizu_on" xpos 0.05 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg07')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg08_unlocked:
-        imagebutton hover "cg_kawa" idle "cg_kawa_on" xpos 0.43 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg08')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    hbox:
+        xpos 0.05
+        ypos 0.05
+        spacing 30
+        if persistent.cg05_unlocked:
+            imagebutton hover "cg_5_on" idle "cg_5"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg05')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+
+        if persistent.cg06_unlocked:
+            imagebutton hover "cg_6_on" idle "cg_6" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg06')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    hbox:
+        xpos 0.05
+        ypos 0.43
+        spacing 30
+        if persistent.cg07_unlocked:
+            imagebutton hover "cg_7_on" idle "cg_7" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg07')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.cg08_unlocked:
+            imagebutton hover "cg_8_on" idle "cg_8" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg08')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
 
 screen Extra3():
 
     tag menu
     modal True
+    key "pad_b_press" action ShowMenu("menu")
     add "gui/extra.webp"
+    add "gui/nvl.webp"
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Extra4")
+        add "ui_page"
     hbox:
         
         xpos 0.792
@@ -1141,51 +1314,64 @@ screen Extra3():
         ypos 0.9
         spacing 15
         
-        imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("menu")
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra")
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra2")
-        imagebutton idle "extra/page3_on.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3_on" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra3")
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra4")
         
     key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.cg09_unlocked:
-        imagebutton hover "cg_kabann" idle "cg_kabann_on" xpos 0.05 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg09')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg10_unlocked:
-        imagebutton hover "cg_kexi_miru" idle "cg_kexi_miru_on" xpos 0.43 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg10')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg11_unlocked:
-        imagebutton hover "cg_school_hiroba" idle "cg_school_hiroba_on" xpos 0.05 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg11')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg12_unlocked:
-        imagebutton hover "cg_school_hiroba2" idle "cg_school_hiroba2_on" xpos 0.43 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg12')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    hbox:
+        xpos 0.05
+        ypos 0.05
+        spacing 30
+        if persistent.cg09_unlocked:
+            imagebutton hover "cg_9_on" idle "cg_9"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg09')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+
+        if persistent.cg10_unlocked:
+            imagebutton hover "cg_10_on" idle "cg_10" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg10')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    hbox:
+        xpos 0.05
+        ypos 0.43
+        spacing 30
+        if persistent.cg11_unlocked:
+            imagebutton hover "cg_11_on" idle "cg_11" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg11')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.cg12_unlocked:
+            imagebutton hover "cg_12_on" idle "cg_12" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg12')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
 screen Extra4():
 
     tag menu
     modal True
+    key "pad_b_press" action ShowMenu("menu")
     add "gui/extra.webp"
+    add "gui/nvl.webp"
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Extra")
+        add "ui_page"
     hbox:
         
         xpos 0.792
@@ -1200,38 +1386,48 @@ screen Extra4():
         ypos 0.9
         spacing 15
         
-        imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("menu")
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra")
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra2")
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra3")
-        imagebutton idle "extra/page4_on.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_page4_on" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Extra4")
         
     key "game_menu" action Return() #设置右键返回，方便使用
-    if persistent.cg13_unlocked:
-        imagebutton hover "cg_kexi_shiru" idle "cg_kexi_shiru_on" xpos 0.05 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg13')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg14_unlocked:
-        imagebutton hover "cg_zicheng_te" idle "cg_zicheng_te_on" xpos 0.43 ypos 0.05  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg14')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.05 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg15_unlocked:
-        imagebutton hover "cg_kexi_syashin" idle "cg_kexi_syashin_on" xpos 0.05 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg15')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.05 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
-    if persistent.cg16_unlocked:
-        imagebutton hover "cg_zicheng_te2" idle "cg_zicheng_te2_on" xpos 0.43 ypos 0.43  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg16')
-    else:
-        imagebutton hover "no_cg" idle "no_cg_on" xpos 0.43 ypos 0.43 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    hbox:
+        xpos 0.05
+        ypos 0.05
+        spacing 30
+        if persistent.cg13_unlocked:
+            imagebutton hover "cg_13_on" idle "cg_13"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg13')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked"  at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+
+        if persistent.cg14_unlocked:
+            imagebutton hover "cg_14_on" idle "cg_14" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg14')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    hbox:
+        xpos 0.05
+        ypos 0.43
+        spacing 30
+        if persistent.cg15_unlocked:
+            imagebutton hover "cg_15_on" idle "cg_15" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg15')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.cg16_unlocked:
+            imagebutton hover "cg_16_on" idle "cg_16" at extra_zoom  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('cg16')
+        else:
+            imagebutton hover "unlocked_on" idle "unlocked" at extra_zoom hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+
 #--------------------------------------------------------------------
 
     
@@ -1246,6 +1442,7 @@ screen cg01:
     imagemap:
         ground 'bg_gohan_tukue2'
         key "game_menu" action ShowMenu('Extra')
+        key "pad_b_press" action ShowMenu("Extra")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra")
         #hotspot那里，因为我这是1920x1080分辨率就写这个数，其他分辨率自行改正
 
@@ -1257,6 +1454,7 @@ screen cg02:
     imagemap:
         ground 'bg_kexi_momo'
         key "game_menu" action ShowMenu('Extra')
+        key "pad_b_press" action ShowMenu("Extra")
         if persistent.cg02_1_unlocked:
             hotspot (0, 0, 1920, 1080) action ShowMenu("cg02_1")
         if not persistent.cg02_1_unlocked:
@@ -1267,6 +1465,7 @@ screen cg02_1:
     imagemap:
         ground '你的CG图差分'
         key "game_menu" action ShowMenu('Extra')
+        key "pad_b_press" action ShowMenu("Extra")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra")
 
 #再写一个界面就行了……记得给差分也设个变数
@@ -1283,84 +1482,98 @@ screen cg03:
     imagemap:
         ground 'bg_kexi_egao'
         key "game_menu" action ShowMenu('Extra')
+        key "pad_b_press" action ShowMenu("Extra")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra")
 screen cg04:
     tag menu
     imagemap:
         ground 'bg_sorawomiru'
         key "game_menu" action ShowMenu('Extra')
+        key "pad_b_press" action ShowMenu("Extra")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra")
 screen cg05:
     tag menu
     imagemap:
         ground 'bg_sorawomiru2'
         key "game_menu" action ShowMenu('Extra2')
+        key "pad_b_press" action ShowMenu("Extra2")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra2")
 screen cg06:
     tag menu
     imagemap:
         ground 'bg_neko'
         key "game_menu" action ShowMenu('Extra2')
+        key "pad_b_press" action ShowMenu("Extra2")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra2")
 screen cg07:
     tag menu
     imagemap:
         ground 'bg_mizu'
         key "game_menu" action ShowMenu('Extra2')
+        key "pad_b_press" action ShowMenu("Extra2")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra2")
 screen cg08:
     tag menu
     imagemap:
         ground 'bg_kawa'
         key "game_menu" action ShowMenu('Extra2')
+        key "pad_b_press" action ShowMenu("Extra2")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra2")
 screen cg09:
     tag menu
     imagemap:
         ground 'bg_kabann'
         key "game_menu" action ShowMenu('Extra3')
+        key "pad_b_press" action ShowMenu("Extra3")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra3")
 screen cg10:
     tag menu
     imagemap:
         ground 'bg_kexi_miru'
         key "game_menu" action ShowMenu('Extra3')
+        key "pad_b_press" action ShowMenu("Extra3")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra3")
 screen cg11:
     tag menu
     imagemap:
         ground 'bg_school_hiroba'
         key "game_menu" action ShowMenu('Extra3')
+        key "pad_b_press" action ShowMenu("Extra3")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra3")
 screen cg12:
     tag menu
     imagemap:
         ground 'bg_school_hiroba2'
         key "game_menu" action ShowMenu('Extra3')
+        key "pad_b_press" action ShowMenu("Extra3")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra3")
 screen cg13:
     tag menu
     imagemap:
         ground 'bg_kexi_shiru'
         key "game_menu" action ShowMenu('Extra4')
+        key "pad_b_press" action ShowMenu("Extra4")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra4")
 screen cg14:
     tag menu
     imagemap:
         ground 'bg_zicheng_te'
         key "game_menu" action ShowMenu('Extra4')
+        key "pad_b_press" action ShowMenu("Extra4")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra4")
 screen cg15:
     tag menu
     imagemap:
         ground 'bg_kexi_syashin'
         key "game_menu" action ShowMenu('Extra4')
+        key "pad_b_press" action ShowMenu("Extra4")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra4")
 screen cg16:
     tag menu
     imagemap:
         ground 'bg_zicheng_te2'
         key "game_menu" action ShowMenu('Extra4')
+        key "pad_b_press" action ShowMenu("Extra4")
         hotspot (0, 0, 1920, 1080) action ShowMenu("Extra4")
 #CG鉴赏
 
@@ -1474,6 +1687,7 @@ style input:
 
 screen choice(items):
     style_prefix "choice"
+    add "gui/nvl.webp"
     key "game_menu" action ShowMenu("game_menu")
     vbox:
         for i in items:
@@ -1500,37 +1714,49 @@ style choice_button_text is default:
 ## 快捷菜单界面 ######################################################################
 ##
 ## 快捷菜单显示于游戏内，以便于访问游戏外的菜单。
-
+transform quick:
+         rotate 0
+         zoom 0.5
+         linear 1.5 rotate 360
+         repeat
 screen quick_menu():
-
-    ## 确保该菜单出现在其他界面之上，
     zorder 100
-
     if quick_menu:
+      imagebutton idle "gui/quickmenu.webp" hover "gui/quickmenu_on.webp" xpos 0.0 ypos 0  at quick hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        action ToggleScreen("quick_menu_full")
+    else:
+      imagebutton idle "gui/none.webp" hover "gui/none.webp":
+        action NullAction()
+screen quick_menu_full():
+    ## 确保该菜单出现在其他界面之上，
+    key "pad_b_press" action Return()
+    if quick_menu_full_:
+        vbox:
+            xpos 0.007
+            ypos 0.12
 
-        hbox:
-            style_prefix "quick"
-
-            xalign 0.5
-            yalign 1.0
-
-            textbutton _("回退")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Rollback()
-            textbutton _("历史") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('history')
-            textbutton _("提示") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('Tips')
-            textbutton _("快进") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("自动播放") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Preference("auto-forward", "toggle")
-            textbutton _("保存") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('save')
-            textbutton _("快存") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action QuickSave()
-            textbutton _("快读") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action QuickLoad()
-            textbutton _("菜单") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu('game_menu')
-
+            textbutton _("回退")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn() action Rollback()
+            textbutton _("历史") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.03) action ShowMenu('history')
+            textbutton _("提示") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.06) action ShowMenu('Tips')
+            textbutton _("快进") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.09) action Skip() alternate Skip(fast=True, confirm=True)
+            textbutton _("自动") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.12) action Preference("auto-forward", "toggle")
+            textbutton _("保存") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.15) action ShowMenu('save')
+            textbutton _("快存") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.18) action QuickSave()
+            textbutton _("快读") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.21) action QuickLoad()
+            textbutton _("菜单") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.24) action ShowMenu('game_menu')
+    else:
+        vbox:
+            xpos 0.005
+            ypos 0.1
+    zorder 100
+    tag menu
 
 ## 此代码确保只要用户没有主动隐藏界面，就会在游戏中显示 quick_menu 界面。
 init python:
     config.overlay_screens.append("quick_menu")
 
 default quick_menu = True
-
+default quick_menu_full_ = True
 style quick_button is default
 style quick_button_text is button_text
 
@@ -1612,96 +1838,80 @@ style navigation_button_text:
 ## 用于在 Ren'Py 启动时显示标题菜单。
 ##
 ## https://www.renpy.cn/doc/screen_special.html#main-menu
-transform gear:
-     rotate 0
-     rotate_pad False
-     transform_anchor True
-     around (0.5,0.5)
-     xanchor 0.5
-     yanchor 0.5
-     xpos 0.68
-     ypos 0.1
-     linear 1.5 rotate 360
-     repeat
-transform main_menu_show_btn(wait=0):
-    xoffset 100
-    alpha 0.0
-    pause(wait)
-    easein 0.5 xoffset 0 alpha 1
-screen title1:
-    add "title/title1.webp" xpos 0.19 ypos 0.03
-screen title2:
-    add "title/title2.webp" xpos 0.19 ypos 0.03
-screen title3:
-    add "title/title3.webp" xpos 0.19 ypos 0.03
-screen title4:
-    add "title/title4.webp" xpos 0.19 ypos 0.03
+transform titlepos:
+     xpos 0.3
+     ypos 0.0-0.01
+screen title1():
+    add "title/title1.webp" at titlepos
+screen title2():
+    add "title/title2.webp" at titlepos
+screen title3():
+    add "title/title3.webp" at titlepos
+screen title4():
+    add "title/title4.webp" at titlepos
+image copyright= Text("Copyright © 2023 DFsteve",font="Aldrich-Regular.ttf", size=40,color="#000000",outlines = [(3,"#FFFFFF",1,2)])
 screen menu:
     use title_main
     modal True
-    add "block"
-    add "block2"
-    add "block3"
-    add "copyright"
+    add "gui/background2.webp":
+       at back_1
+    hbox:
+        spacing 15
+        xpos 0.0
+        ypos 0.93
+        add "copyright"
+        text "|[config.version]" size 40 font "Aldrich-Regular.ttf" color "#000000" outlines [(3,"#FFFFFF",1,2)]
+    add "title/gear2.webp":
+        at gear2
+    key "game_menu" action [Hide("menu"), ShowMenu("main_menu")]
+    key "pad_b_press" action [Hide("menu"), ShowMenu("main_menu")]
+
 #换标题
-    if persistent.chapter2:
+    if persistent.chapter==1:
+       use title1
+    elif persistent.chapter==2:
        use title2
-    if not persistent.chapter2:
-       use title1
-    if persistent.chapter2 and persistent.chapter3:
+    elif persistent.chapter==5:
        use title3
-    if not persistent.chapter2 and persistent.chapter3:
-       use title1
-    if persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
+    elif persistent.chapter==6:
        use title4
-    if not persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
+    else:
        use title1
 #换标题
     vbox:
-        spacing 0
+        spacing 15
         xpos 0
-        ypos 0.1
-        style_prefix "radio"
-        imagebutton idle "title/start.webp" hover "title/start_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        ypos 0.01
+        imagebutton idle "ui_start" hover "ui_start_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           at main_menu_show_btn()
           action Start()
-        imagebutton idle "title/load.webp" hover "title/load_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_load" hover "ui_load_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           at main_menu_show_btn(0.1)
           action ShowMenu("load")
-        imagebutton idle "title/quick.webp" hover "title/quick_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_quick" hover "ui_quick_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           at main_menu_show_btn(0.2)
           action QuickLoad()
-        imagebutton idle "title/extra.webp" hover "title/extra_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_tips" hover "ui_tips_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           at main_menu_show_btn(0.3)
-          action ShowMenu("Extra")
-        imagebutton idle "title/tips.webp" hover "title/tips_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.4)
           action ShowMenu("Tips")
-        imagebutton idle "title/help.webp" hover "title/help_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.5)
+        imagebutton idle "ui_help" hover "ui_help_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.4)
           action ShowMenu("help")
-        imagebutton idle "title/about.webp" hover "title/about_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.6)
+        imagebutton idle "ui_about" hover "ui_about_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.5)
           action ShowMenu("about")
-    imagebutton idle "title/options.webp" hover "title/options_on.webp" xpos 0.599 ypos 0.01 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("preferences")
-    add "title/gear.webp":
-       at gear
-    imagebutton idle "title/exit.webp" hover "title/exit_on.webp" xpos 0.64 ypos 0.9 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Quit(confirm=True)
-    #key "game_menu" action Return()
-image block =SnowBlossom("title/block.webp",count=45,border=10,xspeed=(-2,50),yspeed=(20,30),start=0,fast=True,horizontal=False)
-image block3 =SnowBlossom("title/block3.webp",count=40,border=10,xspeed=(-2,50),yspeed=(20,30),start=0,fast=True,horizontal=False)
-image block2 =SnowBlossom("title/block2.webp",count=20,border=10,xspeed=(-2,50),yspeed=(20,30),start=0,fast=False,horizontal=True)
-image copyright= Text("{b}Copyright © 2023 DFsteve{/b}",xpos=0,ypos=0.93,font="CangErYuMoW01-2.ttf",size=40,color="#000000")
-transform black:
-     alpha 1.0
-     linear 3.0 alpha 0.4
-     linear 3.0 alpha 1.0
-     repeat
-transform title_black:
-     alpha 0.0
-     linear 30.0 alpha 0.4
-     linear 30.0 alpha 0.0
-     repeat
+        imagebutton idle "ui_exit" hover "ui_exit_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.6)
+          action Quit(confirm=True)
+    hbox:
+        
+        xpos 0.638
+        ypos 0.9
+        spacing 15
+        
+        imagebutton idle "ui_extra" hover "ui_extra_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Extra")
+    imagebutton idle "ui_option" hover "ui_option_on" xpos 0.615 ypos 0.01 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("preferences")
 transform gear2:
      rotate 0
      rotate_pad False
@@ -1709,51 +1919,32 @@ transform gear2:
      around (0.5,0.5)
      xanchor 0.5
      yanchor 0.5
-     xpos 0.85
-     ypos 0.6
-     linear 2.0 rotate -360
+     xpos 0.9155
+     ypos 0.4
+     linear 2.5 rotate -360
      repeat
-transform gear3:
-     rotate 0
-     rotate_pad False
-     transform_anchor True
-     around (0.5,0.5)
-     xanchor 0.5
-     yanchor 0.5
-     xpos 0.55
-     ypos 0.8
-     linear 5.0 rotate 360
+transform alpha_anime:
+     alpha 1.0
+     linear 10 alpha 0.9
+     linear 3 alpha 0.4
+     linear 3 alpha 1.0
      repeat
 screen title_main():
     ## 此语句可确保替换掉任何其他菜单界面。
     tag menu
-    add "gui/black.webp"
 #换背景
-    if persistent.chapter2:
-       add "gui/main_menu.webp":
-        at black
-    if not persistent.chapter2:
-       add "gui/main_menu_3.webp":
-        at black
-    if persistent.chapter2 and persistent.chapter3:
-       add "gui/main_menu_2.webp":
-        at black
-    if not persistent.chapter2 and persistent.chapter3:
-       add "gui/main_menu_3.webp":
-        at black
-    if persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
-       add "gui/main_menu_4.webp":
-        at black
-    if not persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
-       add "gui/main_menu_3.webp":
-        at black
-    add "gui/title_black.webp":
-        at title_black
-    add "title/gear2.webp":
-        at gear2
-    add "title/gear3.webp":
-        at gear3
-    key "game_menu" action Return()
+    if persistent.chapter==1:
+       add "gui/main_menu_3.webp"
+    elif persistent.chapter==2:
+       add "gui/main_menu.webp"
+    elif persistent.chapter==5:
+       add "gui/main_menu_2.webp"
+    elif persistent.chapter==6:
+       add "gui/main_menu_4.webp"
+    else:
+       add "gui/main_menu_3.webp"
+    add "gui/alpha.webp" at alpha_anime
+    add "gui/background.webp"
     ## 此空框可使标题菜单变暗。
     #frame:
         #style "main_menu_frame"
@@ -1770,7 +1961,6 @@ screen title_main():
            # text "[config.name!t]":
              #   style "main_menu_title"
 
-           # text "[config.version]":
              #   style "main_menu_version"
  
 transform start:
@@ -1781,18 +1971,16 @@ transform start:
 screen main_menu():
     use title_main
 #换标题
-    if persistent.chapter2:
+    if persistent.chapter==1:
+       use title1
+    elif persistent.chapter==2:
        use title2
-    if not persistent.chapter2:
-       use title1
-    if persistent.chapter2 and persistent.chapter3:
+    elif persistent.chapter==5:
        use title3
-    if not persistent.chapter2 and persistent.chapter3:
-       use title1
-    if persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
+    elif persistent.chapter==6:
        use title4
-    if not persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
-       use title1
+    else:
+        use title1
 #换标题
     hbox: 
       xalign 0.0 
@@ -1801,8 +1989,11 @@ screen main_menu():
          action ShowMenu('menu')
     key "game_menu" action ShowMenu('menu')
     key "dismiss" action ShowMenu('menu')
-    add "gui/title_start.webp":
+    add "press_start":
+        xcenter 0.5
+        ycenter 0.8
         at start
+image press_start= Text("PRESS ANY KEY TO START",font="Aldrich-Regular.ttf", size=50,color="#ffffff",outlines = [(3,"#000000",2,2)])
 style main_menu_frame is empty
 style main_menu_vbox is vbox
 style main_menu_text is gui_text
@@ -1831,53 +2022,46 @@ style main_menu_title:
 style main_menu_version:
     properties gui.text_properties("version")
 ##游戏菜单
+transform back_1:
+     alpha 0.0
+     ycenter -0.5
+     linear 0.3 alpha 1.0 ycenter 0.5
 screen game_menu():
-    add "game_menu/bg.webp"
+    add "gui/background.webp"
+    add "gui/background2.webp":
+       at back_1
     key "game_menu" action Return()
-    imagebutton idle "title/options.webp" hover "title/options_on.webp" xpos 0.599 ypos 0.01 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("preferences")
-    add "title/gear.webp":
-       at gear
+    key "pad_b_press" action Return()
+    imagebutton idle "ui_option" hover "ui_option_on" xpos 0.615 ypos 0.01 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("preferences")
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         
-        imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action Return()
     vbox:
-        spacing 0
+        spacing 15
         xpos 0
-        ypos 0.05
-        imagebutton idle "game_menu/quicksave.webp" hover "game_menu/quicksave_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        ycenter 0.5
+        imagebutton idle "ui_save" hover "ui_save_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           at main_menu_show_btn()
-          action QuickSave()
-        imagebutton idle "game_menu/quickload.webp" hover "game_menu/quickload_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.1)
-          action QuickLoad()
-        imagebutton idle "game_menu/save.webp" hover "game_menu/save_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.2)
           action ShowMenu("save")
-        imagebutton idle "game_menu/load.webp" hover "game_menu/load_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.3)
+        imagebutton idle "ui_load" hover "ui_load_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.1)
           action ShowMenu("load")
-        imagebutton idle "game_menu/history.webp" hover "game_menu/history_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.4)
-          action ShowMenu("history")
-        imagebutton idle "game_menu/tips.webp" hover "game_menu/tips_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.5)
-          action ShowMenu("Tips")
-        imagebutton idle "game_menu/help.webp" hover "game_menu/help_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.6)
+        imagebutton idle "ui_help" hover "ui_help_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.2)
           action ShowMenu("help")
-        imagebutton idle "game_menu/about.webp" hover "game_menu/about_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.7)
+        imagebutton idle "ui_about" hover "ui_about_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.3)
           action ShowMenu("about")
-        imagebutton idle "game_menu/title.webp" hover "game_menu/title_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.8)
+        imagebutton idle "ui_title" hover "ui_title_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.4)
           action MainMenu()
-        imagebutton idle "game_menu/exit.webp" hover "game_menu/exit_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn(0.9)
+        imagebutton idle "ui_exit" hover "ui_exit_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          at main_menu_show_btn(0.5)
           action Quit(confirm=True)
 ## 游戏菜单界面 ######################################################################
 ##
@@ -2019,6 +2203,7 @@ screen about():
     tag menu
     modal True
     add "gui/main_menu_4.webp"
+    add "gui/nvl.webp"
     style_prefix "about"
     hbox:
         
@@ -2026,24 +2211,47 @@ screen about():
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     vbox:
         spacing -4
         xpos 0.2
-        ypos 0.1
-        label "[config.name!t]"
-        text _("版本 [config.version!t]\n")
+        ypos 0.0
+        if persistent.chapter==1:
+          add "title/title1.webp":
+            zoom 0.5
+            xpos 0.0
+        elif persistent.chapter==2:
+          add "title/title2.webp":
+            zoom 0.5
+            xpos 0.0
+        elif persistent.chapter==5:
+          add "title/title3.webp":
+            zoom 0.5
+            xpos 0.0
+        elif persistent.chapter==6:
+          add "title/title4.webp":
+            zoom 0.5
+            xpos 0.0
+        else:
+          add "title/title1.webp":
+            zoom 0.5
+            xpos 0.0
+        text _("版本 [config.version]\n")
 
             ## gui.about 通常在 options.rpy 中设置。
         if gui.about:
             text "[gui.about!t]\n"
 
         text _("引擎：{a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only]\n\n[renpy.license!t]")
+        text "    "
+        add "gui/logo2.webp":
+            zoom 0.5
         key "game_menu" action Return()
+        key "pad_b_press" action Return()
             
 style about_label is gui_label
 style about_label_text is gui_label_text
@@ -2068,24 +2276,29 @@ screen save():
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
 screen save_menu():
     add "game_menu/save_bg.webp"
+    add "gui/nvl.webp"
     tag menu
     key "game_menu" action FileDelete(None, confirm=True, page=None)
+    key "pad_b_press" action Return()
     default page_name_value = FilePageNameInputValue(pattern=_("第 {} 页"), auto=_("自动存档"), quick=_("快速存档"))
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
+        xzoom 1.1
     hbox:
         
         xpos 0.0
         ypos 0.9
         spacing 15
         
-        imagebutton idle "extra/page.webp" hover "extra/page_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action FilePageNext()
+        add "ui_page"
     button:
                 style "page_label"
 
@@ -2097,27 +2310,27 @@ screen save_menu():
                     style "page_label_text"
                     value page_name_value
     hbox:
-        xpos 0.2
+        xpos 0.18
         ypos 0.93
         spacing 15
-        imagebutton idle "extra/page1.webp" hover "extra/page1_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(1)
-        imagebutton idle "extra/page2.webp" hover "extra/page2_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(2)
-        imagebutton idle "extra/page3.webp" hover "extra/page3_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(3)
-        imagebutton idle "extra/page4.webp" hover "extra/page4_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(4)
-        imagebutton idle "extra/page5.webp" hover "extra/page5_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(5)
-        imagebutton idle "extra/page6.webp" hover "extra/page6_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(6)
-        imagebutton idle "extra/page7.webp" hover "extra/page7_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(7)
-        imagebutton idle "extra/page8.webp" hover "extra/page8_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(8)
-        imagebutton idle "extra/page9.webp" hover "extra/page9_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action FilePage(9)
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(1)
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(2)
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(3)
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(4)
+        imagebutton idle "ui_page5" hover "ui_page5_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(5)
+        imagebutton idle "ui_page6" hover "ui_page6_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(6)
+        imagebutton idle "ui_page7" hover "ui_page7_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(7)
+        imagebutton idle "ui_page8" hover "ui_page8_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(8)
+        imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage(9)
     
 
     
@@ -2178,10 +2391,10 @@ screen load():
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
 screen file_slots(title):
 
@@ -2301,6 +2514,7 @@ screen preferences():
     tag menu
     modal True
     add "gui/option.webp"
+    add "gui/nvl.webp"
     key "game_menu" action Return()
     hbox:
         
@@ -2308,10 +2522,10 @@ screen preferences():
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
         
     vbox:
@@ -2319,9 +2533,7 @@ screen preferences():
         ypos 0
         spacing 15
         style_prefix "radio"
-        imagebutton idle "options/display.webp" hover "options/display_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            at main_menu_show_btn()
-            action NullAction()
+        add "ui_display"
         textbutton _("{size=45}窗口化{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Preference("display", "window")
         textbutton _("{size=45}全屏{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Preference("display", "fullscreen")
     vbox:
@@ -2329,28 +2541,20 @@ screen preferences():
         ypos 0.26
         spacing 15
         style_prefix "check"
-        imagebutton idle "options/skip.webp" hover "options/skip_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            at main_menu_show_btn()
-            action NullAction()
+        add "ui_skip"
         textbutton _("{size=45}未读文本{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Preference("skip", "toggle")
         textbutton _("{size=45}选项后继续{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action Preference("after choices", "toggle")
         textbutton _("{size=45}忽略转场{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action InvertSelected(Preference("transitions", "toggle"))
 
                 ## 可在此处添加 radio_pref 或 check_pref 类型的额外 vbox，以添加
                 ## 额外的创建者定义的偏好设置。
-    hbox:
-        
-        xpos 0.635
-        ypos 0
-        spacing 15
-        imagebutton idle "options/other.webp" hover "options/other_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action NullAction()
     vbox:
         xpos 0.45
-        ypos 0.15
+        ypos 0.0
         spacing 15
         style_prefix "slider"
         box_wrap True
+        add "ui_other"
         label _("{size=45}文字速度{/size}")
         bar value Preference("text speed") released Play("sound","audio/bar.ogg") 
         label _("{size=45}自动前进时间{/size}")
@@ -2364,16 +2568,11 @@ screen preferences():
             label _("{size=45}音效音量{/size}")
             hbox:
                 bar  value Preference("sound volume") released Play("sound","audio/bar.ogg") 
-    vbox:
-        xpos 0.445
-        ypos 0.63
-        spacing 15
         if config.has_music or config.has_sound or config.has_voice:
-            null height gui.pref_spacing
 
-            textbutton _("{size=50}全部静音{/size}"):
+            textbutton _("{size=50}全部静音{/size}") xpos -0.03 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
              action Preference("all mute", "toggle")
-            style "mute_all_button"
+        
         #if config.sample_sound:
             #textbutton _("测试") action Play("sound", config.sample_sound)
 
@@ -2520,9 +2719,9 @@ screen history():
         xpos 0.638
         ypos 0.9
         spacing 0
-        imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
            action Return()
-
+    
     use old_menu(_("历史"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
 
         style_prefix "history"
@@ -2549,9 +2748,13 @@ screen history():
                 $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
                 text what:
                     substitute False
+                    kerning 10
+                    line_spacing 5
 
         if not _history_list:
             label _("尚无对话历史记录。")
+        key "pad_b_press" action Return()
+        key "game_menu" action Return()
 
 
 ## 此代码决定了允许在历史记录界面上显示哪些标签。
@@ -2604,6 +2807,7 @@ style history_label_text:
 ## 和 gamepad_help）来显示实际的帮助内容。
 screen help_keyboard():
     add "gui/main_menu.webp"
+    add "gui/nvl.webp"
     hbox:
         
         xpos 0.05
@@ -2618,10 +2822,10 @@ screen help_keyboard():
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     default device = "keyboard"
     vbox:
@@ -2636,6 +2840,7 @@ screen help_keyboard():
           action ShowMenu("help2")
 screen help_gamepad():
     add "gui/main_menu.webp"
+    add "gui/nvl.webp"
     hbox:
         
         xpos 0.05
@@ -2650,10 +2855,10 @@ screen help_gamepad():
         ypos 0.9
         spacing 15
         if main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
         if not main_menu:
-          imagebutton idle "title/return.webp" hover "title/return_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
     default device = "gamepad"
     vbox:
@@ -2668,11 +2873,13 @@ screen help_gamepad():
           action ShowMenu("help2")
 screen help():
     key "game_menu" action Return()
+    key "pad_b_press" action Return()
     modal True
     tag menu
     use help_keyboard
 screen help2():
     key "game_menu" action Return()
+    key "pad_b_press" action Return()
     modal True
     tag menu
     use help_gamepad
@@ -2751,22 +2958,37 @@ style confirm_button_text:
 ## https://www.renpy.cn/doc/screen_special.html#skip-indicator
 
 screen skip_indicator():
-
-    zorder 100
-    style_prefix "skip"
-
-    frame:
-
-        hbox:
-            spacing 9
-
-            text _("正在快进")
-
-            text "▸" at delayed_blink(0.0, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.2, 1.0) style "skip_triangle"
-            text "▸" at delayed_blink(0.4, 1.0) style "skip_triangle"
-
-
+    zorder 98
+    add "gui/say.webp":
+       ycenter 0.068
+    hbox:
+        spacing 1
+        ycenter 0.068
+        xpos 0.07
+        text _("{b}正在快进{/b}") size 35 font "ZiTiQuanWeiJunHei-W1-2.ttf" color "#ffffff"
+        text "■" at delayed_blink(0.0, 1.0) size 35 font "Cubic-11-1.000-R-2.ttf" color "#ffffff"
+        text "■" at delayed_blink(0.2, 1.0) size 35 font "Cubic-11-1.000-R-2.ttf" color "#ffffff"
+        text "■" at delayed_blink(0.4, 1.0)  size 35 font "Cubic-11-1.000-R-2.ttf" color "#ffffff"
+screen tips_say():
+    zorder 99
+    add "gui/say.webp":
+       ycenter 0.068
+    hbox:
+        spacing 1
+        ycenter 0.068
+        xpos 0.07
+        text _("{b}新的提示已记录{/b}") size 35 font "ZiTiQuanWeiJunHei-W1-2.ttf" color "#ffffff"
+        text "{b}~{/b}" at delayed_blink(0.0, 1.0) size 35 font "Cubic-11-1.000-R-2.ttf" color "#ffffff"
+screen tips_say2():
+    zorder 99
+    add "gui/say2.webp":
+       ycenter 0.068
+    hbox:
+        spacing 1
+        ycenter 0.068
+        xpos 0.07
+        text _("{b}提示“{color=#BFBFFF}时间刻校正仪{/color}”已更新{/b}") size 35 font "ZiTiQuanWeiJunHei-W1-2.ttf" color "#ffffff"
+        text "{b}~{/b}" at delayed_blink(0.0, 1.0) size 35 font "Cubic-11-1.000-R-2.ttf" color "#ffffff"
 ## 此变换用于一个接一个地闪烁箭头。
 transform delayed_blink(delay, cycle):
     alpha .5
@@ -2781,38 +3003,22 @@ transform delayed_blink(delay, cycle):
         repeat
 
 
-style skip_frame is empty
-style skip_text is gui_text
-style skip_triangle is skip_text
-
-style skip_frame:
-    ypos gui.skip_ypos
-    background Frame("gui/skip.webp", gui.skip_frame_borders, tile=gui.frame_tile)
-    padding gui.skip_frame_borders.padding
-
-style skip_text:
-    size gui.notify_text_size
-
-style skip_triangle:
-    ## 我们必须使用包含“▸”（黑色右旋小三角）字形的字体。
-    font "DejaVuSans.ttf"
-
-
 ## 通知界面 ########################################################################
 ##
 ## 通知界面用于向用户显示消息。（例如，当游戏快速保存或进行截屏时。）
 ##
 ## https://www.renpy.cn/doc/screen_special.html#notify-screen
-
 screen notify(message):
 
-    zorder 100
-    style_prefix "notify"
-
-    frame at notify_appear:
-        text "[message!tq]"
-
-    timer 3.25 action Hide('notify')
+    zorder 99
+    add "gui/say.webp":
+       ycenter 0.068
+    hbox:
+        spacing 1
+        ycenter 0.068
+        xpos 0.07
+        text "{b}[message!tq]{/b}" size 35 font "ZiTiQuanWeiJunHei-W1-2.ttf" color "#ffffff"
+    timer 2.5 action Hide('notify',transition=dissolve)
 
 
 transform notify_appear:

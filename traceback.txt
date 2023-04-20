@@ -1,34 +1,61 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/script.rpy", line 119, in script
-    show zicheng_pose1 mouth5 eyes4 other1 other2 at hito
-  File "renpy/common/00layeredimage.rpy", line 768, in _choose_attributes
-    raise Exception("The attributes for {} conflict: {}".format(tag, " ".join(both)))
-Exception: The attributes for zicheng_pose1 conflict: eyes4 other1 other2
+Executing ATL code at game/script.rpy:29
+  File "game/script.rpy", line 7165, in script
+    with fade2
+Exception: ATL appears to be in an infinite loop.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 119, in script
-    show zicheng_pose1 mouth5 eyes4 other1 other2 at hito
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1408, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1371, in show_imspec
-    renpy.config.show(name,
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 683, in show
-    name, what = _find_image(layer, key, name, what)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 499, in _find_image
-    new_what = renpy.game.context().images.apply_attributes(layer, key, name)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 983, in apply_attributes
-    return self.choose_image(nametag, required, optional, name)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 1003, in choose_image
-    newattrs = ca(tag, ca_required, ca_optional)
-  File "renpy/common/00layeredimage.rpy", line 768, in _choose_attributes
-    raise Exception("The attributes for {} conflict: {}".format(tag, " ".join(both)))
-Exception: The attributes for zicheng_pose1 conflict: eyes4 other1 other2
+  File "game/script.rpy", line 7165, in script
+    with fade2
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1658, in execute
+    renpy.exports.with_statement(trans, paired=paired)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 1657, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 2798, in do_with
+    return self.interact(trans_pause=True,
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 3912, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 2602, in draw_screen
+    surftree = renpy.display.render.render_screen(
+  File "render.pyx", line 495, in renpy.display.render.render_screen
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\transition.py", line 186, in render
+    renpy.display.render.render(self.transitions[-1], width, height, 0, 0)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\transition.py", line 378, in render
+    top = render(self.new_widget, width, height, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\layout.py", line 884, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\transform.py", line 747, in render
+    return transform_render(self, width, height, st, at)
+  File "accelerator.pyx", line 148, in renpy.display.accelerator.transform_render
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\transform.py", line 926, in update_state
+    fr = self.execute(self, self.st, self.at)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\atl.py", line 596, in execute
+    action, arg, pause = block.execute(trans, timebase, self.atl_state, events)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\atl.py", line 867, in execute
+    raise Exception("ATL appears to be in an infinite loop.")
+Exception: ATL appears to be in an infinite loop.
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.0.3.22090809
-彼零之时 alpha.0.33
-Thu Feb  9 19:05:00 2023
+彼零之时 alpha-v1.0.8
+Thu Apr 20 16:21:55 2023

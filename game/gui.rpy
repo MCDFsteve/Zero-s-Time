@@ -32,14 +32,14 @@ define gui.idle_color = '#ffffff'
 define gui.idle_small_color = '#ffffff'
 
 ## 当按钮和滑条被悬停时使用的颜色。
-define gui.hover_color = '#FFB5AD'
+define gui.hover_color = '#000000'
 
 ## 当文本按钮被选中但非焦点时使用的颜色。当一个按钮为当前屏幕或设置选项值时，会
 ## 处于选中状态。
-define gui.selected_color = '#ADE6FF'
+define gui.selected_color = '#000000'
 
 ## 当文本按钮无法被选择时使用的颜色。
-define gui.insensitive_color = '#B5B5B5'
+define gui.insensitive_color = '#5f5f5f'
 
 ## 滑条未填充的部分使用的颜色。这些颜色不直接使用，但在重新生成条形图像文件时使
 ## 用。
@@ -54,10 +54,10 @@ define gui.name_text_color = '#ffffff'
 ## 字体和字体大小 #####################################################################
 
 ## 游戏内文本使用的字体。
-define gui.text_font = "LXGWNeoXiHei.ttf"
+define gui.text_font = "ZiTiQuanWeiJunHei-W2-2.ttf"
 
 ## 角色名称使用的字体。
-define gui.name_text_font = "JiYingHuiPianHuiSong-2.ttf"
+define gui.name_text_font = "ZiTiQuanWeiJunHei-W3-2.ttf"
 
 ## 游戏外文本使用的字体。
 define gui.interface_text_font = "ZiTiQuanWeiJunHei-W2-2.ttf"
@@ -101,7 +101,7 @@ define gui.textbox_yalign = 1.0
 
 ## 叙述角色名字相对于文本框的位置。可以是从左侧或顶部起的整数像素，或设为 0.5 来
 ## 居中。
-define gui.name_xpos = 0.13
+define gui.name_xpos = 0.1155
 define gui.name_ypos = 0.1
 
 ## 角色名字的水平对齐方式。0.0 为左侧对齐，0.5 为居中显示，而 1.0 为右侧对齐。
@@ -119,7 +119,7 @@ define gui.namebox_tile = True
 
 ## 对话相对于文本框的位置。可以是相对于文本框从左侧或顶部起的整数像素，或设为
 ## 0.5 来居中。
-define gui.dialogue_xpos = 0.12
+define gui.dialogue_xpos = 0.117
 define gui.dialogue_ypos = 0.3
 
 ## 对话文本的最大宽度，以像素为单位。
@@ -174,11 +174,11 @@ define gui.confirm_button_text_xalign = 0.5
 define gui.page_button_borders = Borders(15, 6, 15, 6)
 define gui.page_label_text_size = 40
 define gui.quick_button_borders = Borders(15, 6, 15, 0)
-define gui.quick_button_text_size = 30
-define gui.quick_button_text_font = "JiYingHuiPianHuiSong-2.ttf"
-define gui.quick_button_text_outlines = [(2.5,"#000000",0,0)]
-define gui.quick_button_text_idle_color = "#E8F5F4"
-define gui.quick_button_text_selected_color = gui.accent_color
+define gui.quick_button_text_size = 40
+define gui.quick_button_text_font = "ZiTiQuanWeiJunHei-W2-2.ttf"
+define gui.quick_button_text_outlines = [(2.5,"#707070",1,0)]
+define gui.quick_button_text_idle_color = "#ffffff"
+define gui.quick_button_text_selected_color = "#000000"
 
 ## 您还可以通过添加正确命名的变量来添加自己的定制。例如，您可以将以下几行取消注
 ## 释来设置导航按钮的宽度。
@@ -189,16 +189,16 @@ define gui.quick_button_text_selected_color = gui.accent_color
 ## 选项按钮 ########################################################################
 ##
 ## 游戏内菜单使用的选项按钮。
-define gui.choice_button_text_font = "JiYingHuiPianHuiSong-2.ttf"
+define gui.choice_button_text_font = "ZiTiQuanWeiJunHei-W2-2.ttf"
 define gui.choice_button_width = 1185
-define gui.choice_button_height = None
+define gui.choice_button_height = 100
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(150, 8, 150, 8)
-define gui.choice_button_text_size = 50
-define gui.choice_button_text_xalign = 0.5
+define gui.choice_button_borders = Borders(150, 20, 150, 20)
+define gui.choice_button_text_size = 45
+define gui.choice_button_text_xcenter = 0.5
 define gui.choice_button_text_idle_color = "#ffffff"
-define gui.choice_button_text_hover_color = "#FF9294"
-define gui.choice_button_text_outlines = [(3,"#000000",0,0)]
+define gui.choice_button_text_hover_color = "#000000"
+define gui.choice_button_text_outlines = [(3,"#707070",1,1)]
 define gui.choice_button_text_insensitive_color = "#444444"
 
 
@@ -320,7 +320,7 @@ define gui.unscrollable = "hide"
 define config.history_length = 250
 
 ## 历史屏幕条目的高度，或设置为 None 以使高度变量自适应。
-define gui.history_height = 110
+define gui.history_height = 200
 
 ## 所指定叙述角色的标签的坐标、宽度和对齐方式。
 define gui.history_name_xpos = 0.22
@@ -361,7 +361,7 @@ define gui.nvl_name_width = 225
 define gui.nvl_name_xalign = 1.0
 
 ## 对话文本的坐标、宽度和对齐方式。
-define gui.nvl_text_xpos = 300
+define gui.nvl_text_xpos = 200
 define gui.nvl_text_ypos = 90
 define gui.nvl_text_spacing = 0
 define gui.nvl_text_width = 1500

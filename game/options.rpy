@@ -1,27 +1,688 @@
-﻿## 此文件包含有可自定义您游戏的设置。
-##
-## 以“##”开头的语句是注释，您不应该对其取消注释。以“#”开头的语句是注释掉的代码，
-## 在适用的时候您可能需要对其取消注释。
-## 基础 ##########################################################################
+define config.version  = "alpha-v1.0.9"
 define audio.v1 = "voice/v1.ogg"
 define audio.v3 = "voice/v3.ogg"
 define audio.v5 = "voice/v5.ogg"
 define audio.v7 = "voice/v7.ogg"
 define audio.v9 = "voice/v9.ogg"
 define audio.v11 = "voice/v11.ogg"
+define audio.school = "music/school.ogg"
+define audio.sora = "music/sora.ogg"
+define audio.speak = "music/speak.ogg"
+define audio.kexi = "music/kexi.ogg"
+define audio.richang = "music/richang.ogg"
+define audio.lanzhu = "music/lanzhu.ogg"
+define audio.ruins = "music/ruins.ogg"
+define audio.title2 = "music/title2.ogg"
+define audio.home = "music/home.ogg"
+define audio.title = "music/title.ogg"
+define audio.title2 = "music/title2.ogg"
+define audio.dead = "music/dead.ogg"
+define audio.suzu = "audio/school_suzu.ogg"
+define audio.ketaisong = "audio/ketaisong.ogg"
+define audio.ketai3 = "audio/ketai3.ogg"
+define audio.odoro = "audio/odoro.ogg"
+define audio.ochiru = "audio/ochiru.ogg"
+define audio.higurashi = "audio/higurashi.ogg"
+define audio.ame = "audio/ame.ogg"
+define audio.yabu = "audio/yabu.ogg"
+define audio.book = "audio/book.ogg"
+define audio.desk = "audio/desk.ogg"
+define audio.souji = "audio/souji.ogg"
+define audio.fan = "audio/fan.ogg"
+define audio.car_stop = "audio/car_stop.ogg"
+define audio.mizu_help = "audio/mizu_help.ogg"
 image logo= At("title/logo.webp")
 image warning= Text("{b}本故事纯属虚构。\n与现实生活中任何人\n和组织无关。请勿主观带入。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
 image play= Text("{b}本游戏推荐外设设备：鼠标。\n使用鼠标游玩以获得最佳效果。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
 image start= Text("{b}START{/b}", size=45,color="#000000")
+image hito_kotoba= Text("{font=Cubic-11-1.000-R-2.ttf}』{/font}{image=kotoba}{alt}kotoba{/alt}", size=45,color="#ffffff")
+image kotoba:
+        "gui/ctc/ctc_full.webp"
+        0.6
+        "gui/ctc/ctc_down1.webp"
+        0.1
+        "gui/ctc/ctc_down2.webp"
+        0.1
+        "gui/ctc/ctc_top3.webp"
+        0.6
+        "gui/ctc/ctc_down2.webp"
+        0.1
+        "gui/ctc/ctc_down1.webp"
+        0.1
+        "gui/ctc/ctc_full.webp"
+        0.6
+        "gui/ctc/ctc_top1.webp"
+        0.1
+        "gui/ctc/ctc_top2.webp"
+        0.1
+        "gui/ctc/ctc_down3.webp"
+        0.6
+        "gui/ctc/ctc_top2.webp"
+        0.1
+        "gui/ctc/ctc_top1.webp"
+        0.1
+        repeat
+##
+layeredimage unlocked:
+        always:
+            "gui/locked.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage unlocked_on:
+        always:
+            "gui/locked.webp"
+        group pose:
+            attribute title default:
+                "gui/locked.webp"
+##
+##
+layeredimage cg_1:
+        always:
+            "images/bg_gohan_tukue2.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_1_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_gohan_tukue2.webp"
+##
+##
+layeredimage cg_2:
+        always:
+            "images/bg_kexi_momo.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_2_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_kexi_momo.webp"
+##
+##
+layeredimage cg_3:
+        always:
+            "images/bg_kexi_egao.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_3_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_kexi_egao.webp"
+##
+##
+layeredimage cg_4:
+        always:
+            "images/bg_sorawomiru.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_4_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_sorawomiru.webp"
+##
+##
+layeredimage cg_5:
+        always:
+            "images/bg_sorawomiru2.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_5_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_sorawomiru2.webp"
+##
+##
+layeredimage cg_6:
+        always:
+            "images/bg_neko.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_6_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_neko.webp"
+##
+##
+layeredimage cg_7:
+        always:
+            "images/bg_mizu.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_7_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_mizu.webp"
+##
+##
+layeredimage cg_8:
+        always:
+            "images/bg_kawa.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_8_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_kawa.webp"
+##
+##
+layeredimage cg_9:
+        always:
+            "images/bg_kabann.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_9_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_kabann.webp"
+##
+##
+layeredimage cg_10:
+        always:
+            "images/bg_kexi_miru.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_10_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_kexi_miru.webp"
+##
+##
+layeredimage cg_11:
+        always:
+            "images/bg_school_hiroba.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_11_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_school_hiroba.webp"
+##
+##
+layeredimage cg_12:
+        always:
+            "images/bg_school_hiroba2.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_12_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_school_hiroba2.webp"
+##
+layeredimage cg_13:
+        always:
+            "images/bg_kexi_shiru.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_13_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_kexi_shiru.webp"
+##
+##
+layeredimage cg_14:
+        always:
+            "images/bg_zicheng_te.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_14_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_zicheng_te.webp"
+##
+##
+layeredimage cg_15:
+        always:
+            "images/bg_kexi_syashin.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_15_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_kexi_syashin.webp"
+##
+##
+layeredimage cg_16:
+        always:
+            "images/bg_zicheng_te2.webp"
+        group pose:
+            attribute title default:
+                "gui/nvl.webp"
+layeredimage cg_16_on:
+        always:
+            "gui/nvl.webp"
+        group pose:
+            attribute title default:
+                "images/bg_zicheng_te2.webp"
+##
+layeredimage ui_page1_on:
+        always:
+                "title_page1_2"
+layeredimage ui_page1:
+        always:
+                "title_page1"
+image title_page1= Text("1",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page1_2= Text("1",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage ui_page2_on:
+        always:
+                "title_page2_2"
+layeredimage ui_page2:
+        always:
+                "title_page2"
+image title_page2= Text("2",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page2_2= Text("2",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage ui_page3_on:
+        always:
+                "title_page3_2"
+layeredimage ui_page3:
+        always:
+                "title_page3"
+image title_page3= Text("3",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page3_2= Text("3",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage ui_page4_on:
+        always:
+                "title_page4_2"
+layeredimage ui_page4:
+        always:
+                "title_page4"
+image title_page4= Text("4",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page4_2= Text("4",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage ui_page5_on:
+        always:
+                "title_page5_2"
+layeredimage ui_page5:
+        always:
+                "title_page5"
+image title_page5= Text("5",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page5_2= Text("5",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+image title_page= Text("PAGE",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_page:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_page"
+##
+##
+layeredimage ui_page6_on:
+        always:
+                "title_page6_2"
+layeredimage ui_page6:
+        always:
+                "title_page6"
+image title_page6= Text("6",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page6_2= Text("6",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage ui_page7_on:
+        always:
+                "title_page7_2"
+layeredimage ui_page7:
+        always:
+                "title_page7"
+image title_page7= Text("7",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page7_2= Text("7",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage ui_page8_on:
+        always:
+                "title_page8_2"
+layeredimage ui_page8:
+        always:
+                "title_page8"
+image title_page8= Text("8",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page8_2= Text("8",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage ui_page9_on:
+        always:
+                "title_page9_2"
+layeredimage ui_page9:
+        always:
+                "title_page9"
+image title_page9= Text("9",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page9_2= Text("9",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+image title_page= Text("PAGE",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_page:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_page"
+##
+##
+image title_other= Text("OTHER",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_other_zhcn= Text("其他",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_other:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_other" xpos -0.01
+            attribute title default:
+                "title_other_zhcn" ypos 0.026 xpos 0.213
+##
+##
+image title_display= Text("DISPLAY",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_display_zhcn= Text("显示",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_display:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_display" xpos -0.006
+            attribute title default:
+                "title_display_zhcn" ypos 0.026 xpos 0.26
+##
+##
+image title_skip= Text("SKIP",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_skip_zhcn= Text("快进",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_skip:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_skip" xpos -0.006
+            attribute title default:
+                "title_skip_zhcn" ypos 0.026 xpos 0.145
+##
+image title_start2= Text("START",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_start_zhcn= Text("新游戏",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_start_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_start2"
+        group lang:
+            attribute title default:
+                "title_start_zhcn" ypos 0.026 xpos 0.213
+image title_start= Text("START",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_start:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_start"
+##
+##
+image title_quick2= Text("QUICK",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_quick_zhcn= Text("快速读取",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_quick_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_quick2"
+        group lang:
+            attribute title default:
+                "title_quick_zhcn" ypos 0.026 xpos 0.215
+image title_quick= Text("QUICK",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_quick:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_quick"
+##
+##
+image title_tips2= Text("TIPS",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_tips_zhcn= Text("提示",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_tips_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_tips2"
+        group lang:
+            attribute title default:
+                "title_tips_zhcn" ypos 0.026 xpos 0.150
+image title_tips= Text("TIPS",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_tips:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_tips"
+##
+image title_save2= Text("SAVE",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_save_zhcn= Text("保存",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_save_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_save2"
+        group lang:
+            attribute title default:
+                "title_save_zhcn" ypos 0.026 xpos 0.172
+image title_save= Text("SAVE",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_save:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_save"
+image title_load2= Text("LOAD",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_load_zhcn= Text("读取",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_load_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_load2"
+        group lang:
+            attribute title default:
+                "title_load_zhcn" ypos 0.026 xpos 0.181
+image title_load= Text("LOAD",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_load:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_load"
+image title_help2= Text("HELP",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_help_zhcn= Text("帮助",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_help_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_help2"
+        group lang:
+            attribute title default:
+                "title_help_zhcn" ypos 0.026 xpos 0.173
+image title_help= Text("HELP",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_help:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_help"
+image title_about2= Text("ABOUT",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_about_zhcn= Text("关于",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_about_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_about2"
+        group lang:
+            attribute title default:
+                "title_about_zhcn" ypos 0.026 xpos 0.23
+image title_about= Text("ABOUT",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_about:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_about"
+image title_title2= Text("TITLE",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_title_zhcn= Text("主菜单",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_title_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_title2"
+        group lang:
+            attribute title default:
+                "title_title_zhcn" ypos 0.026 xpos 0.177
+image title_title= Text("TITLE",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_title:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_title"
+image title_exit2= Text("EXIT",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_exit_zhcn= Text("退出",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_exit_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_exit2"
+        group lang:
+            attribute title default:
+                "title_exit_zhcn" ypos 0.026 xpos 0.145
+image title_exit= Text("EXIT",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_exit:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_exit"
+image title_return2= Text("RETURN",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_return_zhcn= Text("返回",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_return_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos -0.06
+        group pose:
+            attribute title default:
+                "title_return2" xpos 0.096
+        group lang:
+            attribute title default:
+                "title_return_zhcn" ypos 0.026 xpos 0.034
+image title_return= Text("RETURN",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_return:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.02
+        group pose:
+            attribute title default:
+                "title_return" xpos 0.096
+image title_option2= Text("OPTIONS",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_option_zhcn= Text("选项",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_option_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos -0.04
+        group pose:
+            attribute title default:
+                "title_option2" xpos 0.096
+        group lang:
+            attribute title default:
+                "title_option_zhcn" ypos 0.026 xpos 0.034
+image title_option= Text("OPTIONS",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_option:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.02
+        group pose:
+            attribute title default:
+                "title_option" xpos 0.096
+##
+image title_extra2= Text("EXTRA",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_extra_zhcn= Text("鉴赏",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_extra_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos -0.06
+        group pose:
+            attribute title default:
+                "title_extra2" xpos 0.096+0.053
+        group lang:
+            attribute title default:
+                "title_extra_zhcn" ypos 0.026 xpos 0.034+0.053
+image title_extra= Text("EXTRA",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_extra:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.02
+        group pose:
+            attribute title default:
+                "title_extra" xpos 0.096+0.053
+image suduxian_:
+        "anime/suduxian/1.webp"
+        0.1
+        "anime/suduxian/2.webp"
+        0.1
+        "anime/suduxian/3.webp"
+        0.1
+        "anime/suduxian/4.webp"
+        0.1
+        repeat
+screen suduxian:
+    add "suduxian_"
 label splashscreen:
-    if persistent.chapter3:
-       $ config.main_menu_music = "music/title2.ogg"
-    if not persistent.chapter3:
+    if persistent.chapter==1:
        $ config.main_menu_music = "music/title.ogg"
-    if persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
-       $ config.main_menu_music = "music/title.ogg"
-    if not persistent.chapter2 and persistent.chapter3 and persistent.chapter4:
+    elif persistent.chapter==5:
        $ config.main_menu_music = "music/title2.ogg"
+    elif persistent.chapter==6:
+       $ config.main_menu_music = "music/title.ogg"
+    else:
+       $ config.main_menu_music = "music/title.ogg"
     scene bg_none 
     with fade
     show logo:
@@ -45,7 +706,7 @@ label splashscreen:
 init python:
     define.move_transitions("move", 0.3)
 define config.name = _("彼零之时")
-define gui.interface_text_outlines = [(4,"#000000",0,0)]
+define gui.interface_text_outlines = [(4,"#707070",1,1)]
 define gui.input_text_outlines = [(4,"#000000",0,0)]
 define gui.input_prompt_text_outlines = [(4,"#000000",0,0)]
 define gui.label_text_outlines = [(4,"#000000",0,0)]
@@ -53,27 +714,28 @@ define gui.prompt_text_outlines = [(4,"#000000",0,0)]
 define gui.dialogue_text_outlines = [(2,"#000000",1,1)]
 define gui.notify_text_outlines = [(4,"#000000",0,0)]
 ##define gui.name_text_outlines = [(2,"#ffffff",0,0)]
-define config.mouse = { }
-define config.mouse['default'] = [ ( "gui/arrow.webp", 0, 0) ]
+#define config.mouse = { }
+if renpy.variant("small"):
+    image m_white:
+          "gui/none.webp"
+else:
+    image m_white:
+          "gui/mouse/white.webp"
+          xzoom 0.2
+          yzoom 0.2
+define config.mouse_displayable = MouseDisplayable("m_white", 0, 0)
 define config.nvl_adv_transition = Dissolve(1)
 define config.adv_nvl_transition = Dissolve(1)
 ## 决定上面给出的标题是否显示在标题界面屏幕。设置为 False 来隐藏标题。
 
 define gui.show_name = False
 
-## 游戏版本号。
-
-define config.version = "alpha.0.33"
 
 
 ## 放置在游戏内“关于”屏幕上的文本。将文本放在三个引号之间，并在段落之间留出空
 ## 行。
+define gui.about = _p("""作者：戴夫邻居史蒂夫DFsteve\n个人博客：{a=https://www.dfsteve.top}www.dfsteve.top{/a}""")
 
-define gui.about = _p("""
-作者：戴夫邻居史蒂夫DFsteve
-\n个人博客：{a=https://www.dfsteve.top}www.dfsteve.top{/a}
-
-""")
 
 
 ## 在构建的发布版中，可执行文件和目录所使用的短名称。此处仅限使用 ASCII 字符，并
@@ -213,11 +875,19 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
+    build.classify('**.rpy', None)
+    build.classify('**.save', None)
 
-    ## 若要封装文件，需将其列为“archive”。
+    ## 若要封装文件，需将其列为“archive”。打包，使其无法被玩家更改
 
-    # build.classify('game/**.webp', 'archive')
-    # build.classify('game/**.jpg', 'archive')
+    build.classify('game/**.png', 'archive')
+    build.classify('game/**.jpg', 'archive')
+    build.classify('game/**.rpyc', 'archive')
+    build.classify('game/**.mp3', 'archive')
+    build.classify('game/**.wav', 'archive')
+    build.classify('game/**.ttf', 'archive')
+    build.classify('game/**.ogg', 'archive')
+    build.classify('game/**.webp', 'archive')
 
     ## 匹配为文档模式的文件会在 Mac 应用程序构建中被复制，因此它们同时出现在 APP
     ## 和 ZIP 文件中。
