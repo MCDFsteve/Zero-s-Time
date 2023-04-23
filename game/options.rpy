@@ -1,4 +1,4 @@
-define config.version  = "alpha-v1.0.9"
+define config.version  = "alpha-v1.0.12"
 define audio.v1 = "voice/v1.ogg"
 define audio.v3 = "voice/v3.ogg"
 define audio.v5 = "voice/v5.ogg"
@@ -31,8 +31,9 @@ define audio.souji = "audio/souji.ogg"
 define audio.fan = "audio/fan.ogg"
 define audio.car_stop = "audio/car_stop.ogg"
 define audio.mizu_help = "audio/mizu_help.ogg"
+define audio.yousuru = "audio/yousuru.ogg"
 image logo= At("title/logo.webp")
-image warning= Text("{b}本故事纯属虚构。\n与现实生活中任何人\n和组织无关。请勿主观带入。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
+image warning= Text("{b}本故事纯属虚构。\n与现实生活中任何人和组织无关。\n存在的所有东西。\n都没有存在影射显示事物的含义\n请勿主观带入。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
 image play= Text("{b}本游戏推荐外设设备：鼠标。\n使用鼠标游玩以获得最佳效果。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
 image start= Text("{b}START{/b}", size=45,color="#000000")
 image hito_kotoba= Text("{font=Cubic-11-1.000-R-2.ttf}』{/font}{image=kotoba}{alt}kotoba{/alt}", size=45,color="#ffffff")
@@ -409,7 +410,7 @@ image title_other= Text("OTHER",font="Aldrich-Regular.ttf", size=120,color="#fff
 image title_other_zhcn= Text("其他",font="ZiTiQuanWeiJunHei-W1-2.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_other:
         always:
-            "gui/ui_white.webp" ypos 0.06 xpos 0.01
+            "gui/ui_white.webp" ypos 0.06 xpos 0.0
         group pose:
             attribute title default:
                 "title_other" xpos -0.01
@@ -715,15 +716,8 @@ define gui.dialogue_text_outlines = [(2,"#000000",1,1)]
 define gui.notify_text_outlines = [(4,"#000000",0,0)]
 ##define gui.name_text_outlines = [(2,"#ffffff",0,0)]
 #define config.mouse = { }
-if renpy.variant("small"):
-    image m_white:
-          "gui/none.webp"
-else:
-    image m_white:
-          "gui/mouse/white.webp"
-          xzoom 0.2
-          yzoom 0.2
-define config.mouse_displayable = MouseDisplayable("m_white", 0, 0)
+define config.mouse = {}
+define config.mouse['default'] = [("gui/mouse/white.webp", 0, 0)]
 define config.nvl_adv_transition = Dissolve(1)
 define config.adv_nvl_transition = Dissolve(1)
 ## 决定上面给出的标题是否显示在标题界面屏幕。设置为 False 来隐藏标题。
@@ -877,6 +871,8 @@ init python:
     build.classify('**/thumbs.db', None)
     build.classify('**.rpy', None)
     build.classify('**.save', None)
+    build.classify('**.txt', None)
+    build.classify('**.md', None)
 
     ## 若要封装文件，需将其列为“archive”。打包，使其无法被玩家更改
 

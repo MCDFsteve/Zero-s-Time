@@ -48,7 +48,7 @@ define t = Character(_("摊主"),voice_tag="linluo_old",outlines = [(3,"#3C67A8"
 define b = Character(_("保安"),outlines = [(3,"#A83C3E",0,0)],ctc="hito_kotoba",ctc_position="nestled")
 define n = Character(_("乘客"),outlines = [(3,"#A83C3E",0,0)],ctc="hito_kotoba",ctc_position="nestled")
 define y = Character(_("救助小组"),outlines = [(3,"#A83C3E",0,0)],ctc="hito_kotoba",ctc_position="nestled")
-define m = Character(_("覃可汐的母亲"),outlines = [(3,"#3CA855",0,0)],ctc="hito_kotoba",ctc_position="nestled")
+define m = Character(_("覃可汐的母亲"),voice_tag="kexihaha",outlines = [(3,"#3CA855",0,0)],ctc="hito_kotoba",ctc_position="nestled")
 define s = Character(_("老师"),voice_tag="sensei",outlines = [(3,"#A89C3C",0,0)],ctc="hito_kotoba",ctc_position="nestled")
 define w = Character(_("物理老师"),outlines = [(3,"#3CA855",0,0)],ctc="hito_kotoba",ctc_position="nestled")
 define nvle = Character("", kind=nvl, ctc="kotoba",ctc_position="nestled")
@@ -105,9 +105,9 @@ label start:
     "我努力到现在....终于......"
     "时间过的真快啊......回想起我第一次被牵扯进这个事件的时候....."
     "那个注定我永生难忘的九月......"
-    call disable_shortcut from _call_disable_shortcut_1
+    call disable_shortcut from _call_disable_shortcut
     $ persistent.chapter1 = True
-    $ persistent.chapter==1
+    $ persistent.chapter=1
     $ persistent.extra_chapter1 = True
     image chapter1 ="chapters/chapter1.webp"
     scene bg_none
@@ -119,7 +119,7 @@ label start:
     with fade2
     scene bg_none
     $ quick_menu = True
-    call enable_shortcut from _call_enable_shortcut_1
+    call enable_shortcut from _call_enable_shortcut
     $ persistent.time_end1 = False
     $ persistent.chapter2 = False
     $ persistent.chapter3 = False
@@ -201,6 +201,7 @@ label nowatch:
     hide noko
     hide hold_watch
     with dissolve
+    $ persistent.tips01 = True
     "并不是我过于敏感了。但是一个根本不认识的人突然要给你东西，而且不是卫生纸，传单或者{a=showmenu:tips01}{color=#F18D7D}pbb砍一刀{/color}{/a}什么的，太可疑了吧。"
 #词典
     
@@ -210,21 +211,11 @@ label nowatch:
     hide screen tips_say
     with tipsanime
 #词典
-    $ persistent.tips01 = True
+
     "从小老师和家长都告诉我不能随便拿陌生人的东西。我可是铭记于心。"
     "一想到几分钟或者几小时或者几天后，随着手表的倒计时结束。{size=45}嘭！{/size}我连带着周围的同学一起被炸成碎片。我就倒吸一口凉气。"
-    "又或者是某一天的假日，认识的朋友发给我一张照片或者视频，然后问“这是你”吗，然后点开一看是我在看{a=showmenu:tips02}{color=#F18D7D}工口同人本{/color}{/a}的照片，或者是我其他什么事的私房照。"
-    #词典
-     
-    play sound "audio/tips.ogg"
-    show screen tips_say
-    with dissolve
-    hide screen tips_say
-    with tipsanime
-     
-#词典
     $ persistent.tips02 = True
-    "被传上了互联网，然后最终变成了{a=showmenu:tips03}{color=#F18D7D}d站{/color}{/a}的{a=showmenu:tips04}{color=#F18D7D}鬼畜{/color}{/a}素材，加入了鬼畜全明星，连带着被录下来的我的声音一起。"
+    "又或者是某一天的假日，认识的朋友发给我一张照片或者视频，然后问“这是你”吗，然后点开一看是我在看{a=showmenu:tips02}{color=#F18D7D}工口同人本{/color}{/a}的照片，或者是我其他什么事的私房照。"
     #词典
      
     play sound "audio/tips.ogg"
@@ -236,6 +227,17 @@ label nowatch:
 #词典
     $ persistent.tips03 = True
     $ persistent.tips04 = True
+    "被传上了互联网，然后最终变成了{a=showmenu:tips03}{color=#F18D7D}d站{/color}{/a}的{a=showmenu:tips04}{color=#F18D7D}鬼畜{/color}{/a}素材，加入了鬼畜全明星，连带着被录下来的我的声音一起。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+#词典
+
     "摊主看我不收，打算硬塞给我。"
     play sound "audio/run.ogg"
     "吓得我更担心他葫芦里卖的什么药了。拔腿跑了起来。"
@@ -288,6 +290,7 @@ label nowatch:
     "只好假装自己在玩单机游戏了。"
     "主线任务：跟老师对话。"
     l "老师你好，我叫林洛。"
+    $ persistent.tips07 = True
     "我故作镇定地将老师当作{a=showmenu:tips07}{color=#F18D7D}NPC{/color}{/a}角色以后抬头看着说道。"
      #词典
      
@@ -298,7 +301,7 @@ label nowatch:
     with tipsanime
      
 #词典
-    $ persistent.tips07 = True
+
     "是一个女教师，戴着眼镜。看黑板上的笔迹，应该是教物理的。"
     voice v3
     s "林洛是吧？刚刚保安打电话的时候有跟我说过。我是你的班主任，叫我李老师就可以了。"
@@ -317,6 +320,7 @@ label nowatch:
     s "中午好好休息顺便准备一下。下午上课的时候你做个自我介绍向大家展示一下自己吧。"
     l "好的老师！"
     "我虽然表面上面无表情。但是心里乐开了花。"
+    $ persistent.tips08 = True
     "这可是后排靠窗的位子啊！主角专用座位。我就是这{a=showmenu:tips08}{color=#F18D7D}地球online{/color}{/a}的主角！"
      #词典
      
@@ -326,7 +330,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips08 = True
+
 #词典
     scene bg_tukue
     with fade
@@ -421,6 +425,7 @@ label nowatch:
     show kexi_pose eyes2 mouth3 at jin
     with dissolve
     "我果断否认。我一直是土生土长的芷柚市人。我的父母是。我的祖父母也是。"
+    $ persistent.tips09 = True
     "外加我父母都是工作狂。从来都没出去旅游过。对，一次都没有。结果我变成了{a=showmenu:tips09}{color=#F18D7D}家里蹲{/color}{/a}。这还得拜他们所赐。"
      #词典
     play sound "audio/tips.ogg"
@@ -429,7 +434,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips09 = True
+
 #词典
     l "怎么了？"
     "很奇怪为什么刚认识的同学会问我这种偏隐私的东西。"
@@ -487,6 +492,7 @@ label nowatch:
     scene bg_kuruma_matu
     with fade
     play music richang fadeout 1.0 fadein 1.0
+    $ persistent.tips10 = True
     "在公交站牌旁边的移动商贩那里买了点{a=showmenu:tips10}{color=#F18D7D}油陷{/color}{/a}。"
      #词典
      
@@ -496,7 +502,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips10 = True
+
 #词典
     "因为公交车上禁止吃东西，而且在车上吃我会吐的。所以我打算忍到进学校以后吃。"
     scene bg_none
@@ -590,6 +596,7 @@ label nowatch:
     voice v3
     c "照顾班员是班长的责任。"
     "叶梓澄补充道。"
+    $ persistent.tips11 = True
     "flag就不用立了吧。很怕等会响起{a=showmenu:tips11}{color=#F18D7D}《希望之草》{/color}{/a}。我在心里想着。"
      #词典
      
@@ -599,11 +606,12 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips11 = True
+
 #词典
     scene bg_gohan2
     with dissolve
     "无法推脱。于是我帮着买饭。看着班长排着队帮我办理饭卡。不由得有一丝心动。"
+    $ persistent.tips12 = True
     "不行！怎么能这么{a=showmenu:tips12}{color=#F18D7D}现充{/color}{/a}！"
      #词典
      
@@ -613,7 +621,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips12 = True
+
 #词典
     "我心里的主人格呵斥道。"
     "排队的途中，我端详着班长的饭卡。"
@@ -626,6 +634,9 @@ label nowatch:
       xcenter 0.2
       ycenter 0.3
     with dissolve
+    $ persistent.tips13 = True
+    $ persistent.tips14 = True
+    $ persistent.tips15 = True
     "居然是{a=showmenu:tips13}{color=#F18D7D}战场原白仪{/color}{/a}和{a=showmenu:tips14}{color=#F18D7D}斧乃木正弦{/color}{/a}！原来班长也是个{a=showmenu:tips15}{color=#F18D7D}故事{/color}{/a}粉丝吗？"
      #词典
      
@@ -635,9 +646,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips13 = True
-    $ persistent.tips14 = True
-    $ persistent.tips15 = True
+
 #词典
     "泪目！还以为不会找到同好的！"
     scene bg_gohan3
@@ -683,6 +692,7 @@ label nowatch:
     "额，如果不把青椒看作是青椒而是其他什么蔬菜的话。倒也能吃得下去了。"
     "鼓起胆抬头看了一眼班长。正在低头吃着饭。依然是一副面无表情。就像《故事》里的斧乃木正弦一样。"
     "感觉这样不行！得活跃一下气氛才可以。怎么能让别人对我的初印象就止步于此。心中的恶魔在耳旁窃窃私语了。"
+    $ persistent.tips16 = True
     l "那个！班长你也是故事{a=showmenu:tips16}{color=#F18D7D}厨{/color}{/a}吗？"
      #词典
      
@@ -692,7 +702,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips16 = True
+
 #词典
     scene bg_gohan_tukue
     with dissolve
@@ -777,6 +787,7 @@ label nowatch:
     "覃可汐似乎瞟见了我正在做的题目。"
     "哇！这道题你都会做！隐藏学霸吗？"
     l "我不是什么都知道，我只知道我知道的。"
+    $ persistent.tips20 = True
     nvle "糟糕！不小心把心里想的话说出来了。这算什么？我也没有经历过{a=showmenu:tips20}{color=#F18D7D}再上映{/color}{/a}啊喂！"
     nvl clear
      #词典
@@ -786,7 +797,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips20 = True
+
     show kexi_pose2 mouth3 at jin
     with Dissolve(1)
 #词典
@@ -812,6 +823,7 @@ label nowatch:
     "是覃可汐。拿着合盖的中性笔。在戳我的肩"
     voice v3
     x "我什么都不知道！只有你自己知道"
+    $ persistent.tips22 = True
     "啊~这突然{a=showmenu:tips22}{color=#F18D7D}中二{/color}{/a}的台词吓得我差点后仰倒了过去。"
      #词典
      
@@ -821,13 +833,14 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips22 = True
+
 #词典
     "故事厨无疑了。"
     "没想到覃可汐是这种外向型的人。反而主动地找我套话了。"
     l "我什么都知道！"
     "我附和着对方说道。"
     "她笑了。很开心地笑了。"
+    $ persistent.tips26 = True
     "既不是那种做作的笑，也不是公交上刷{a=showmenu:tips26}{color=#F18D7D}抖乐{/color}{/a}外放的那种猴子笑。而是一种发自内心的，很爽朗轻快的笑声。"
      #词典
      
@@ -837,7 +850,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips26 = True
+
 #词典
     "我也跟着笑了。"
     scene bg_none
@@ -847,6 +860,7 @@ label nowatch:
     play music "music/home.ogg" fadeout 1.0 fadein 1.0
     "认识了两个同好。班长叶梓澄。以及...同桌覃可汐。"
     "覃可汐跟我是认识没多久的吧。就主动跟我聊这么多。"
+    $ persistent.tips27 = True
     "是潜在{a=showmenu:tips27}{color=#F18D7D}腹黑{/color}{/a}吗？"
      #词典
      
@@ -856,7 +870,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips27 = True
+
 #词典
     "为什么我会有这种罪恶的想法。明明对方可能只是跟我一样。遇到志同道合的人以后话匣子收不住了而已。"
     "今天晚上我睡得依然很香甜。开始期待以后有更好的校园生活了。"
@@ -885,6 +899,7 @@ label nowatch:
     with dissolve
     show kexi_pose2 mouth1 at jin
     with dissolve
+    $ persistent.tips28 = True
     voice v3
     x "诶？这是你自己构思的{a=showmenu:tips28}{color=#F18D7D}宝可魔{/color}{/a}吗？"
      #词典
@@ -895,7 +910,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips28 = True
+
 #词典
     "只好开始解释了。"
     scene bg_egaku
@@ -905,6 +920,7 @@ label nowatch:
     with dissolve
     voice v1
     x "画的真不错啊！"
+    $ persistent.tips29 = True
     l "小孩子不懂事画着玩的。反正{a=showmenu:tips29}{color=#F18D7D}任地堂{/color}{/a}不会看到更不会征求我的建议。"
      #词典
      
@@ -914,12 +930,13 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips29 = True
+
 #词典
     l "再加上游戏官方现在，有些老宝可魔根本不做进新作游戏。唉~"
     voice v5
     x "是这样吗？我一直想玩这个游戏但是一直没有设备...唉~不知道下次考试以后我妈会不会给我买。"
     l "其实...我偷偷带过来了。"
+    $ persistent.tips30 = True
     l "{a=showmenu:tips30}{color=#F18D7D}witch{/color}{/a}游戏机。"
      #词典
      
@@ -929,7 +946,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips30 = True
+
 #词典
     "这本该是禁止事项的。但出于对覃可汐的信任。还是告诉了她。"
     "也是今天早上才想到可以带进学校。本来打算午睡时间带去公共卫生间找个隔间爽玩一中午的。"
@@ -997,6 +1014,8 @@ label nowatch:
     with dissolve
     voice v1
     c "有的。"
+    $ persistent.tips31 = True
+    $ persistent.tips32 = True
     l "我追了{a=showmenu:tips31}{color=#F18D7D}泥可泥丝{/color}{/a}，还有{a=showmenu:tips32}{color=#F18D7D}蒸汽朋克：边缘行者{/color}{/a}。这两部都很不错。"
          #词典
      
@@ -1006,8 +1025,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips31 = True
-    $ persistent.tips32 = True
+
 #词典
     hide zicheng_pose2
     show zicheng_pose1 yingan at jin
@@ -1165,6 +1183,7 @@ label nowatch:
     with fade
     play music school fadeout 1.0 fadein 1.0
     "放学前最后一节课是物理课。"
+    $ persistent.tips33 = True
     w "{a=showmenu:tips33}{color=#F18D7D}AADR{/color}{/a},全称America Atom's Digitization Research organization。美国原子数据化研究组织。"
      #词典
      
@@ -1174,7 +1193,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips33 = True
+
 #词典
     w "这个组织一直致力于研究原子的数据化转换，传输和还原。在全球各地都有分部。其中最近的分部位于......"
     scene bg_schoolmae
@@ -1353,6 +1372,7 @@ label nowatch:
     hide kexi_pose2
     show kexi_pose at jin
     with dissolve
+    $ persistent.tips34 = True
     voice v3
     x "对了。明天的{a=showmenu:tips34}{color=#F18D7D}ChieAnime{/color}{/a}你去不去？"
      #词典
@@ -1363,12 +1383,13 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips34 = True
+
 #词典
     l "这是什么？"
     "第一次听到这个称谓。是什么活动的名字吗？"
     show kexi_pose eyes3 mouth3 at jin
     with dissolve
+    $ persistent.tips35 = True
     voice v5
     x "{a=showmenu:tips35}{color=#F18D7D}漫展{/color}{/a}啦漫展！就在市中心的广场附近那个会展中心那里！"
      #词典
@@ -1379,7 +1400,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips35 = True
+
 #词典
     hide kexi_pose
     show kexi_pose2 mouth4 at jin
@@ -1388,6 +1409,8 @@ label nowatch:
     x "我打算去出cos！你也要来吗？来的话我就顺便把游戏机带了在漫展还给你吧！"
     "在经过了0.01秒艰苦的思想斗争以后。"
     l "来！"
+    $ persistent.tips36 = True
+    $ persistent.tips37 = True
     "澄清一下。我并不是想去看{a=showmenu:tips36}{color=#F18D7D}cosplay{/color}{/a}的漂亮女{a=showmenu:tips37}{color=#F18D7D}coser{/color}{/a}。只是想拿回我的游戏机而已！"
     #词典
      
@@ -1397,8 +1420,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips36 = True
-    $ persistent.tips37 = True
+
 #词典
     show kexi_pose2 mouth3 at jin
     voice v3
@@ -1407,6 +1429,7 @@ label nowatch:
     x "怕你找不到路,迷路了就完蛋啦！"
     l "迷路什么的怎么可能存在呢？"
     "我嘴上这样说着。"
+    $ persistent.tips38 = True
     "关于我在转学第一天就迷路了三个小时并被{a=showmenu:tips38}{color=#F18D7D}低德地图{/color}{/a}骗到市郊这件事,我不会跟任何人说。"
     #词典
      
@@ -1416,7 +1439,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips38 = True
+
 #词典
     l "但是。"
     l "我不知道我可以cos什么。而且明天的话我也来不及准备cos服了吧。"
@@ -1440,6 +1463,7 @@ label nowatch:
     scene bg_kami
     with dissolve
     "一定要来哦！明天来我家见面。拜托了{font=SourceHanSansLite.ttf}( •̀ ω •́ )✧{/font}"
+    $ persistent.tips40 = True
     "{a=showmenu:tips40}{color=#F18D7D}颜文字{/color}{/a}是什么鬼！？"
     #词典
      
@@ -1449,7 +1473,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips40 = True
+
 #词典
     "虽然还.....挺不错的......"
     scene bg_tukue
@@ -1583,6 +1607,7 @@ label nowatch:
     with fade
     "吃完了。"
     "第一次吃这么快。应该还有时间。"
+    play sound run
     "我一气呵成地收拾餐具，然后往教学楼飞奔。"
     scene bg_2_3
     with fade
@@ -1635,6 +1660,7 @@ label nowatch:
     $ persistent.cg12_unlocked = True
     with dissolve
     "我抬起头看着班长叶梓澄。她正在一边和覃可汐交谈，一边慢慢靠近覃可汐。"
+    $ persistent.tips44 = True
     "她俩的关系很不错啊~愈发感觉自己是个{a=showmenu:tips44}{color=#F18D7D}橘外人{/color}{/a}了。"
         #词典
      
@@ -1644,7 +1670,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips44 = True
+
 #词典
     "开始犹豫明天到底还去不去参加漫展。"
     "覃可汐已经打扫到了楼下了，我还在广场前面。不行了我得加油了！"
@@ -1657,8 +1683,15 @@ label nowatch:
     "嘭！"
     "猛烈的一阵巨响！"
     "发生了什么？我猛地一抬头。"
-    scene bg_kexi_shiru
-    with fade
+    scene bg_kexi_shiru at shake:
+        zoom 1.1
+    with fade2
+    show bg_syuucyuu:
+        alpha 1.0
+        linear 1.0 alpha 0.5
+        linear 1.0 alpha 1.0
+        repeat
+    with dissolve
     $ persistent.cg13_unlocked = True
     c "啊......啊......"
     "叶梓澄叫着。"
@@ -1690,8 +1723,15 @@ label nowatch:
     with fade
     play music "music/omou.ogg" fadeout 1.0 fadein 1.0
     "覃可汐被河流吞噬者，哭喊着让我救她。"
-    scene bg_kexi_shiru
-    with fade
+    scene bg_kexi_shiru at shake:
+        zoom 1.1
+    with fade2
+    show bg_syuucyuu:
+        alpha 1.0
+        linear 1.0 alpha 0.5
+        linear 1.0 alpha 1.0
+        repeat
+    with dissolve
     "是啊。我明明是可以救覃可汐的。"
     "如果我没有准时到教室。是不是就不会这样了。"
     scene bg_none
@@ -1858,6 +1898,7 @@ label nowatch:
     "覃可汐的亲属们就是在这个“帐篷”底下布置桌椅，招揽宾客。"
     "几个小孩已经开始等上菜了。"
     "但我和叶梓澄此行目的并不是吃酒。"
+    $ persistent.tips43 = True
     "叶梓澄把拿的花束分给了我一半。然后带我到了房子的{a=showmenu:tips43}{color=#F18D7D}堂屋{/color}{/a}。"
     #词典
      
@@ -1867,7 +1908,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips43 = True
+
 #词典
     scene bg_kexi_syashin
     with dissolve
@@ -1901,27 +1942,36 @@ label nowatch:
     with dissolve
     l "啊？"
     "回头一看。"
-    show kexi_haha
+    show kexihaha_pose at jin
     with dissolve
     play music sora fadeout 1.0 fadein 1.0
+    voice v3
     m "我是覃可汐的妈妈。这几天老听女儿提到你的名字。"
+    voice v3
     m "不打算多呆一会吗？"
     l "不了......谢谢阿姨..."
+    voice v3
     m "哦对了！你等一会。"
-    hide kexi_haha
+    hide kexihaha_pose
     with dissolve
     "说罢覃可汐的母亲便回里屋了。"
     scene bg_kexihome
     with fade
     "过了一分钟以后走了出来。"
-    show kexi_haha
+    show kexihaha_pose at jin
     with dissolve
+    voice v3
     m "这个...是你的对吧！"
     "手里拿着的正是我之前借给覃可汐的游戏机。"
+    voice v3
     m "还是感谢您，让我女儿最后享受了一段快乐的时光。这个东西她很早就想要了。"
+    hide kexihaha_pose
+    show kexihaha_pose eyes2 at jin
+    with dissolve
+    voice v3
     m "但是因为我嫌贵了一直没买......"
-    show kexi_haha2
     "一边说着，覃可汐的母亲的眼泪开始止不住了......"
+    voice v3
     m "请你......把这个东西拿回去吧！"
     "我接过了游戏机。"
     scene bg_none
@@ -2160,6 +2210,7 @@ label nowatch:
     with dissolve
     voice v5
     c "但是跟AADR不同。我父亲确确实实好几年前就已经成功实现了把物体的构成物质，原子进行拆分重组来构成了一种新的物质粒子，这种新的物质粒子，可以进行存储和还原，并且支持以光速进行运动。"
+    $ persistent.tips45 = True
     voice v5
     c "我父亲将物质的原子分解成的这种新创造的物质粒子，命名为“{a=showmenu:tips45}{color=#F18D7D}零子{/color}{/a}”。由于零子的物理性质之一是具有吸收特定波长的能力，所以肉眼可以观测到其是一种黑白相间，呈漂浮碎屑状的物质。"
 #词典
@@ -2169,7 +2220,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips45 = True
+
 #词典
     hide zicheng_pose1
     show zicheng_pose2 eyes2 at jin
@@ -2178,6 +2229,7 @@ label nowatch:
     c "零子是一种梦幻般的物质，我父亲如此形容它。这个宇宙上，只要是由原子作为基本物质结构而构造而形成的物质，都能转换成零子。"
     voice v3
     c "我父亲也已经开发出来可以将质量较小的物质再构成为零子，传输到特定地方再还原为原子的集合体，也就是物质最开始面貌的机器。"
+    $ persistent.tips53 = True
     voice v3
     c "至于如何负责还原，就需要在物质再构成之前，有一部分外来的零子负责记录和保存物质内原子的空间排布关系，这部分零子被成为：{a=showmenu:tips53}{color=#F18D7D}原子匹配分布表{/color}{/a}！"
 #词典
@@ -2187,8 +2239,9 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips53 = True
+
 #词典
+    $ persistent.tips54 = True
     l "相当于记录的{a=showmenu:tips54}{color=#F18D7D}蓝图{/color}{/a}对吧！"
 #词典
     play sound "audio/tips.ogg"
@@ -2197,7 +2250,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips54 = True
+
 #词典
     voice v1
     c "没错！"
@@ -2207,6 +2260,7 @@ label nowatch:
     c "但是一直未曾公开。因为——————"
     voice v3
     c "我父亲偶然之中又开发出来了一种新的仪器。可以将零子注入更高维度。"
+    $ persistent.tips49 = True
     voice v3
     c "我父亲将它命名为“{a=showmenu:tips49}{color=#F18D7D}时间刻校正仪{/color}{/a}”！"
     #词典
@@ -2216,7 +2270,6 @@ label nowatch:
     hide screen tips_say
     with tipsanime
     $ persistent.time = 2
-    $ persistent.tips49 = True
     $ time_end1 = True
    #词典
     l "这......这是什么意思？"
@@ -2506,6 +2559,7 @@ label nowatch:
     "对不起......叶梓澄......看来失败了呢......任务....."
     "等等!我想起来什么。"
     "我在时间机器内找了找。"
+    $ persistent.tips47 = True
     "找到了！早期测试零子传输功能的手表。可以把大脑中{a=showmenu:tips47}{color=#F18D7D}海马体{/color}{/a}内存储的信息拷贝成零子并进行传输。"
 #词典
      
@@ -2515,13 +2569,14 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips47 = True
+
 #词典
     scene bg_schoolmae
     with fade2
     play music richang fadeout 1.0 fadein 1.0
     "我开始在曾经的学校门口搭建摊位。这是最好的能将手表交给过去的我的方式了。"
     "过去的我一定会来这个地方。到时候我便将手表交还给他......"
+    $ persistent.tips48 = True
     "至于{a=showmenu:tips48}{color=#F18D7D}时间悖论{/color}{/a}.......我回到过去的一瞬间，就已经是过去的一部分了。"
 #词典
      
@@ -2531,7 +2586,7 @@ label nowatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips48 = True
+
 #词典
     scene bg_schoolmae
     with fade2
@@ -2617,7 +2672,7 @@ label nowatch:
     $ quick_menu = False
     $ quick_menu_full_= False
     play music "music/end.ogg" fadeout 1.0 fadein 1.0
-    call disable_shortcut from _call_disable_shortcut
+    call disable_shortcut from _call_disable_shortcut_1
     scene bg_none
     show end1
     with fade2
@@ -2631,7 +2686,7 @@ label nowatch:
     $ renpy.pause(189, hard=False)
     $ quick_menu = True
     $ quick_menu_full_= True
-    call enable_shortcut from _call_enable_shortcut
+    call enable_shortcut from _call_enable_shortcut_1
     return
 #拿手表
 label havewatch:
@@ -2651,6 +2706,8 @@ label havewatch:
       ycenter 0.3
     with dissolve
     "开机了。不过貌似仅仅只能显示时间。有点失望，还以为能玩玩俄罗斯方块什么的。虽然长得像个智能手表。但一点也不智能。"
+    $ persistent.tips05 = True
+    $ persistent.tips06 = True
     "拿这个手表上{a=showmenu:tips05}{color=#F18D7D}cq{/color}{/a}或者看{a=showmenu:tips06}{color=#F18D7D}番剧{/color}{/a}看来是不现实了。"
  #词典
      
@@ -2661,8 +2718,7 @@ label havewatch:
     with tipsanime
      
 #词典
-    $ persistent.tips05 = True
-    $ persistent.tips06 = True
+
     hide watch_on
     hide watch_off
     l "老板这表多少钱？"
@@ -2742,6 +2798,7 @@ label havewatch:
     "只好假装自己在玩单机游戏了。"
     "主线任务：跟老师对话。"
     l "老师你好，我叫林洛。"
+    $ persistent.tips07 = True
     "我故作镇定地将老师当作{a=showmenu:tips07}{color=#F18D7D}NPC{/color}{/a}角色以后抬头看着说道。"
      #词典
      
@@ -2752,7 +2809,7 @@ label havewatch:
     with tipsanime
      
 #词典
-    $ persistent.tips07 = True
+
     "是一个女教师，戴着眼镜。看黑板上的笔迹，应该是教物理的。"
     s "林洛是吧？刚刚保安打电话的时候有跟我说过。我是你的班主任，叫我李老师就可以了。"
     s "你先坐那个位置吧！正好那里现在没人！"
@@ -2770,6 +2827,7 @@ label havewatch:
     s "中午好好休息顺便准备一下。下午上课的时候你做个自我介绍向大家展示一下自己吧。"
     l "好的老师！"
     "我虽然表面上面无表情。但是心里乐开了花。"
+    $ persistent.tips08 = True
     "这可是后排靠窗的位子啊！主角专用座位。我就是{a=showmenu:tips08}{color=#F18D7D}地球online{/color}{/a}的主角！"
      #词典
      
@@ -2779,7 +2837,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips08 = True
+
 #词典
     scene bg_tukue
     with fade
@@ -2961,6 +3019,7 @@ label havewatch:
     show kexi_pose eyes2 mouth3 at jin
     with dissolve
     "我果断否认。我一直是土生土长的芷柚市人。我的父母是。我的祖父母也是。"
+    $ persistent.tips09 = True
     "外加我父母都是工作狂。从来都没出去旅游过。对，一次都没有。结果我变成了{a=showmenu:tips09}{color=#F18D7D}家里蹲{/color}{/a}。这还得拜他们所赐。"
      #词典
      
@@ -2970,7 +3029,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips09 = True
+
 #词典
     l "怎么了？"
     "很奇怪为什么刚认识的同学会问我这种偏隐私的东西。"
@@ -3039,6 +3098,8 @@ label havewatch:
     with fade
     play music richang fadeout 1.0 fadein 1.0
     $ times = "07:15"
+    $ persistent.tips10 = True
+
     "在公交站牌旁边的移动商贩那里买了点{a=showmenu:tip10}{color=#F18D7D}油陷{/color}{/a}。"
      #词典
      
@@ -3048,7 +3109,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips10 = True
 #词典
     "因为公交车上禁止吃东西，而且在车上吃我会吐的。所以我打算忍到进学校以后吃。"
     scene bg_none
@@ -3149,6 +3209,8 @@ label havewatch:
     voice v3
     c "照顾班员是班长的责任。"
     "叶梓澄补充道。"
+    $ persistent.tips11 = True
+
     "flag就不用立了吧。很怕等会响起{a=showmenu:tips11}{color=#F18D7D}《希望之草》{/color}{/a}。我在心里想着。"
      #词典
      
@@ -3158,12 +3220,13 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips11 = True
 #词典
     scene bg_gohan2
     with dissolve
     $ times = "12:47"
     "无法推脱。于是我帮着买饭。看着班长排着队帮我办理饭卡。不由得有一丝心动。"
+    $ persistent.tips12 = True
+
     "不行！怎么能这么{a=showmenu:tips12}{color=#F18D7D}现充{/color}{/a}！"
      #词典
      
@@ -3173,7 +3236,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips12 = True
 #词典
     "我心里的主人格呵斥道。"
     "排队的途中，我端详着班长的饭卡。"
@@ -3186,6 +3248,9 @@ label havewatch:
       xcenter 0.2
       ycenter 0.3
     with dissolve
+    $ persistent.tips13 = True
+    $ persistent.tips14 = True
+    $ persistent.tips15 = True
     "居然是{a=showmenu:tips13}{color=#F18D7D}战场原白仪{/color}{/a}和{a=showmenu:tips14}{color=#F18D7D}斧乃木正弦{/color}{/a}！原来班长也是个{a=showmenu:tips15}{color=#F18D7D}故事{/color}{/a}粉丝吗？"
      #词典
      
@@ -3195,9 +3260,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips13 = True
-    $ persistent.tips14 = True
-    $ persistent.tips15 = True
+
 #词典
     "泪目！还以为不会找到同好的！"
     scene bg_gohan3
@@ -3246,6 +3309,8 @@ label havewatch:
     "额，如果不把青椒看作是青椒而是其他什么蔬菜的话。倒也能吃得下去了。"
     "鼓起胆抬头看了一眼班长。正在低头吃着饭。依然是一副面无表情。就像《故事》里的斧乃木正弦一样。"
     "感觉这样不行！得活跃一下气氛才可以。怎么能让别人对我的初印象就止步于此。心中的恶魔在耳旁窃窃私语了。"
+    $ persistent.tips16 = True
+
     l "那个！班长你也是故事{a=showmenu:tips16}{color=#F18D7D}厨{/color}{/a}吗？"
      #词典
      
@@ -3255,7 +3320,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips16 = True
 #词典
     scene bg_gohan_tukue
     with dissolve
@@ -3345,6 +3409,8 @@ label havewatch:
     "覃可汐似乎瞟见了我正在做的题目。"
     "哇！这道题你都会做！隐藏学霸吗？"
     l "我不是什么都知道，我只知道我知道的。"
+    $ persistent.tips20 = True
+
     nvle "糟糕！不小心把心里想的话说出来了。这算什么？我也没有经历过{a=showmenu:tips20}{color=#F18D7D}再上映{/color}{/a}啊喂！"
     nvl clear
     #词典
@@ -3355,7 +3421,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips20 = True
 #词典
     show kexi_pose2 mouth3 at jin
     with Dissolve(1)
@@ -3383,6 +3448,8 @@ label havewatch:
     "是覃可汐。拿着合盖的中性笔。在戳我的肩"
     voice v3
     x "我什么都不知道！只有你自己知道"
+    $ persistent.tips22 = True
+
     "啊~这突然{a=showmenu:tips22}{color=#F18D7D}中二{/color}{/a}的台词吓得我差点后仰倒了过去。"
      #词典
      
@@ -3392,13 +3459,14 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips22 = True
 #词典
     "故事厨无疑了。"
     "没想到覃可汐是这种外向型的人。反而主动地找我套话了。"
     l "我什么都知道！"
     "我附和着对方说道。"
     "她笑了。很开心地笑了。"
+    $ persistent.tips26 = True
+
     "既不是那种做作的笑，也不是公交上刷{a=showmenu:tips26}{color=#F18D7D}抖乐{/color}{/a}外放的那种猴子笑。而是一种发自内心的，很爽朗轻快的笑声。"
      #词典
      
@@ -3408,7 +3476,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips26 = True
 #词典
     "我也跟着笑了。"
     hide screen watch
@@ -3421,6 +3488,8 @@ label havewatch:
     "认识了两个同好。班长叶梓澄。以及...同桌覃可汐。"
     "那个摊主依旧没有看到。但我已经慢慢地开始不在意这些事了。"
     "覃可汐跟我是认识没多久的吧。就主动跟我聊这么多。"
+    $ persistent.tips27 = True
+
     "是潜在{a=showmenu:tips27}{color=#F18D7D}腹黑{/color}{/a}吗？"
      #词典
      
@@ -3430,7 +3499,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips27 = True
 #词典
     "为什么我会有这种罪恶的想法。明明对方可能只是跟我一样。遇到志同道合的人以后话匣子收不住了而已。"
     "今天晚上我睡得很香甜。开始期待以后有更好的校园生活了。"
@@ -3468,6 +3536,8 @@ label havewatch:
     show kexi_pose2 mouth1 at jin
     with dissolve
     $ times = "07:25"
+    $ persistent.tips28 = True
+
     voice v3
     x "诶？这是你自己构思的{a=showmenu:tips28}{color=#F18D7D}宝可魔{/color}{/a}吗？"
      #词典
@@ -3478,7 +3548,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips28 = True
 #词典
     "只好开始解释了。"
     scene bg_egaku
@@ -3488,6 +3557,8 @@ label havewatch:
     with dissolve
     voice v1
     x "画的真不错啊！"
+    $ persistent.tips29 = True
+
     l "小孩子不懂事画着玩的。反正{a=showmenu:tips29}{color=#F18D7D}任地堂{/color}{/a}不会看到更不会征求我的建议。"
      #词典
      
@@ -3497,12 +3568,13 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips29 = True
 #词典
     l "再加上游戏官方现在，有些老宝可魔根本不做进新作游戏。唉~"
     voice v5
     x "是这样吗？我一直想玩这个游戏但是一直没有设备...唉~不知道下次考试以后我妈会不会给我买。"
     l "其实...我偷偷带过来了。"
+    $ persistent.tips30 = True
+
     l "{a=showmenu:tips30}{color=#F18D7D}witch{/color}{/a}游戏机。"
      #词典
      
@@ -3512,7 +3584,6 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips30 = True
 #词典
     "这本该是禁止事项的。但出于对覃可汐的信任。还是告诉了她。"
     "也是今天早上才想到可以带进学校。本来打算午睡时间带去公共卫生间找个隔间爽玩一中午的。"
@@ -3584,6 +3655,8 @@ label havewatch:
     with dissolve
     voice v1
     c "有的。"
+    $ persistent.tips31 = True
+    $ persistent.tips32 = True
     l "我追了{a=showmenu:tips31}{color=#F18D7D}泥可泥丝{/color}{/a}，还有{a=showmenu:tips32}{color=#F18D7D}蒸汽朋克：边缘行者{/color}{/a}。这两部都很不错。"
          #词典
      
@@ -3593,8 +3666,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips31 = True
-    $ persistent.tips32 = True
+
 #词典
     hide zicheng_pose2
     show zicheng_pose1 yingan at jin
@@ -3764,6 +3836,7 @@ label havewatch:
     $ times = "17:15"
     play music school fadeout 1.0 fadein 1.0
     "放学前最后一节课是物理课。"
+    $ persistent.tips33 = True
     w "{a=showmenu:tips33}{color=#F18D7D}AADR{/color}{/a},全称America Atom's Digitization Research organization。美国原子数据化研究组织。"
      #词典
      
@@ -3773,7 +3846,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips33 = True
+
 #词典
     w "这个组织一直致力于研究原子的数据化转换，传输和还原。在全球各地都有分部。其中最近的分部位于......"
     scene bg_schoolmae
@@ -3965,6 +4038,7 @@ label havewatch:
     hide kexi_pose2
     show kexi_pose at jin
     with dissolve
+    $ persistent.tips34 = True
     voice v3
     x "对了。明天的{a=showmenu:tips34}{color=#F18D7D}ChieAnime{/color}{/a}你去不去？"
      #词典
@@ -3975,12 +4049,13 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips34 = True
+
 #词典
     l "这是什么？"
     "第一次听到这个称谓。是什么活动的名字吗？"
     show kexi_pose eyes3 mouth3 at jin
     with dissolve
+    $ persistent.tips35 = True
     voice v5
     x "{a=showmenu:tips35}{color=#F18D7D}漫展{/color}{/a}啦漫展！就在市中心的广场附近那个会展中心那里！"
      #词典
@@ -3991,7 +4066,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips35 = True
+
 #词典
     hide kexi_pose
     show kexi_pose2 mouth4 at jin
@@ -4000,6 +4075,8 @@ label havewatch:
     x "我打算去出cos！你也要来吗？来的话我就顺便把游戏机带了在漫展还给你吧！"
     "在经过了0.01秒艰苦的思想斗争以后。"
     l "来！"
+    $ persistent.tips36 = True
+    $ persistent.tips37 = True
     "澄清一下。我并不是想去看{a=showmenu:tips36}{color=#F18D7D}cosplay{/color}{/a}的漂亮女{a=showmenu:tips37}{color=#F18D7D}coser{/color}{/a}。只是想拿回我的游戏机而已！"
     #词典
      
@@ -4009,8 +4086,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips36 = True
-    $ persistent.tips37 = True
+
 #词典
     show kexi_pose2 mouth3 at jin
     voice v3
@@ -4019,6 +4095,7 @@ label havewatch:
     x "怕你找不到路,迷路了就完蛋啦！"
     l "迷路什么的怎么可能存在呢？"
     "我嘴上这样说着。"
+    $ persistent.tips38 = True
     "关于我在转学第一天就迷路了三个小时并被{a=showmenu:tips38}{color=#F18D7D}低德地图{/color}{/a}骗到市郊这件事,我不会跟任何人说。"
     #词典
      
@@ -4028,7 +4105,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips38 = True
+
 #词典
     l "但是。"
     l "我不知道我可以cos什么。而且明天的话我也来不及准备cos服了吧。"
@@ -4054,6 +4131,7 @@ label havewatch:
     with dissolve
     $ times = "07:32"
     "一定要来哦！明天来我家见面。拜托了{font=SourceHanSansLite.ttf}( •̀ ω •́ )✧{/font}"
+    $ persistent.tips40 = True
     "{a=showmenu:tips40}{color=#F18D7D}颜文字{/color}{/a}是什么鬼！？"
     #词典
      
@@ -4063,7 +4141,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips40 = True
+
 #词典
     "虽然还.....挺不错的......"
     scene bg_tukue
@@ -4208,6 +4286,7 @@ label havewatch:
     "吃完了。"
     "第一次吃这么快。只花了五分钟。"
     "很好！离约定时间还有五分钟。我一气呵成地收拾餐具，然后往教学楼飞奔。"
+    play sound run
     scene bg_2_3
     with fade
     $ times = "12:48"
@@ -4262,6 +4341,7 @@ label havewatch:
     with dissolve
     $ times = "12:54"
     "我抬起头看着班长叶梓澄。她正在一边和覃可汐交谈，一边慢慢靠近覃可汐。"
+    $ persistent.tips44 = True
     "她俩的关系很不错啊~愈发感觉自己是个{a=showmenu:tips44}{color=#F18D7D}橘外人{/color}{/a}了。"
         #词典
      
@@ -4271,7 +4351,7 @@ label havewatch:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips44 = True
+
 #词典
     "开始犹豫明天到底还去不去参加漫展。"
     "覃可汐已经打扫到了楼下了，我还在广场前面。不行了我得加油了！"
@@ -4285,8 +4365,15 @@ label havewatch:
     "嘭！"
     "猛烈的一阵巨响！"
     "发生了什么？我猛地一抬头。"
-    scene bg_kexi_shiru
-    with fade
+    scene bg_kexi_shiru at shake:
+        zoom 1.1
+    with fade2
+    show bg_syuucyuu:
+        alpha 1.0
+        linear 1.0 alpha 0.5
+        linear 1.0 alpha 1.0
+        repeat
+    with dissolve
     $ persistent.cg13_unlocked = True
     voice v3
     c "啊......啊......"
@@ -4319,8 +4406,15 @@ label havewatch:
     with fade
     play music "music/omou.ogg" fadeout 1.0 fadein 1.0
     "覃可汐被河流吞噬者，哭喊着让我救她。"
-    scene bg_kexi_shiru
-    with fade
+    scene bg_kexi_shiru at shake:
+        zoom 1.1
+    with fade2
+    show bg_syuucyuu:
+        alpha 1.0
+        linear 1.0 alpha 0.5
+        linear 1.0 alpha 1.0
+        repeat
+    with dissolve
     "是啊。我明明是可以救覃可汐的。"
     "如果我没有准时到教室。是不是就不会这样了。"
     scene bg_none
@@ -4476,6 +4570,7 @@ label nocome:
     "父母出门上班去了。家里只有我一个人。"
     "我试图用各种方法回避注意力。"
     "但无论我做什么都感觉没有意思了。"
+    $ persistent.tips42 = True
     "平时最爱玩的{a=showmenu:tips42}{color=#F18D7D}《撒旦的结合》{/color}{/a}，开了游戏也只能对着游戏窗口发呆。"
     #词典
      
@@ -4485,7 +4580,7 @@ label nocome:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips42 = True
+
 #词典
     scene bg_none
     with fade
@@ -4563,6 +4658,7 @@ label come:
     "覃可汐的亲属们就是在这个“帐篷”底下布置桌椅，招揽宾客。"
     "几个小孩已经开始等上菜了。"
     "但我和叶梓澄此行目的并不是吃酒。"
+    $ persistent.tips43 = True
     "叶梓澄把拿的花束分给了我一半。然后带我到了房子的{a=showmenu:tips43}{color=#F18D7D}堂屋{/color}{/a}。"
     #词典
      
@@ -4572,7 +4668,7 @@ label come:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips43 = True
+
 #词典
     scene bg_kexi_syashin
     with dissolve
@@ -4608,28 +4704,35 @@ label come:
     $ times = "09:41"
     l "啊？"
     "回头一看。"
-    show kexi_haha
+    show kexihaha_pose at jin
     with dissolve
     play music sora fadeout 1.0 fadein 1.0
+    voice v3
     m "我是覃可汐的妈妈。这几天老听女儿提到你的名字。"
     m "不打算多呆一会吗？"
     l "不了......谢谢阿姨..."
     m "哦对了！你等一会。"
-    hide kexi_haha
+    hide kexihaha_pose
     with dissolve
     "说罢覃可汐的母亲便回里屋了。"
     scene bg_kexihome
     with fade
     $ times = "09:43"
     "过了一分钟以后走了出来。"
-    show kexi_haha
+    show kexihaha_pose at jin
     with dissolve
+    voice v3
     m "这个...是你的对吧！"
     "手里拿着的正是我之前借给覃可汐的游戏机。"
+    voice v3
     m "还是感谢您，让我女儿最后享受了一段快乐的时光。这个东西她很早就想要了。"
+    hide kexihaha_pose
+    show kexihaha_pose eyes2 at jin
+    with dissolve
+    voice v3
     m "但是因为我嫌贵了一直没买......"
-    show kexi_haha2
     "一边说着，覃可汐的母亲的眼泪开始止不住了......"
+    voice v3
     m "请你......把这个东西拿回去吧！"
     "我接过了游戏机。"
     hide screen watch
@@ -4779,9 +4882,9 @@ label chapter1_5:
     "{b}{size=50}{cps=5}2022年9月19日  12：27  星期一！！！{/cps}{/size}{/b}"
     hide screen watch
     with dissolve
-    call disable_shortcut from _call_disable_shortcut_6
+    call disable_shortcut from _call_disable_shortcut_2
     $ persistent.chapter2 = True
-    $ persistent.chapter==2
+    $ persistent.chapter=2
     $ persistent.extra_chapter2 = True
     $ persistent.achievement_chapter1 = True
     image chapter2 ="chapters/chapter2.webp"
@@ -4794,7 +4897,7 @@ label chapter1_5:
     with fade2
     scene bg_none
     $ quick_menu = True
-    call enable_shortcut from _call_enable_shortcut_6
+    call enable_shortcut from _call_enable_shortcut_2
     scene bg_school_basketball
     with dissolve
     play music "music/omou.ogg" fadeout 1.0 fadein 1.0
@@ -4852,6 +4955,7 @@ label chapter1_5:
     "我得冷静一下，理清一下我现在的状况。"
     "再次看了看手表的时间，确认今天是19号，星期一。"
     nvle "难道我......"
+    $ persistent.tips50 = True
     nvle "时间穿越了？{a=showmenu:tips50}{color=#F18D7D}死亡回归{/color}{/a}了？"
 #词典
      
@@ -4861,13 +4965,14 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips50 = True
+
 #词典
     nvl clear
     scene bg_toire
     with fade
     $ times = "12:40"
     "我来到了卫生间。对着镜子仔细观察我的脸。"
+    $ persistent.tips51 = True
     "嗯......左右眼瞳色一致。看来不是{a=showmenu:tips51}{color=#F18D7D}影子{/color}{/a}的力量。"
 #词典
      
@@ -4877,7 +4982,7 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips51 = True
+
 #词典
     "开始回想起迄今为止的状况。"
     show bg_kuruma_matu
@@ -4890,6 +4995,7 @@ label chapter1_5:
     with fade
     "然后......"
     "似乎是，在十字路口的位置被一辆货车撞了。"
+    $ persistent.tips52 = True
     "但是我并没有在车上看见{a=showmenu:tips52}{color=#F18D7D}端锅{/color}{/a}的。"
 #词典
      
@@ -4899,7 +5005,7 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips52 = True
+
 #词典
     "那种痛感真实的不像做梦。现在想起来还后怕。"
     "然后...我就回到了这里！19号！星期一！"
@@ -5238,6 +5344,7 @@ label chapter1_5:
     "下课了。"
     "想起上课前覃可汐说的那句“非常感谢”。这是什么意思？"
     "难道我试图拯救覃可汐的想法被她看透了？这...这怎么可能！难不成覃可汐有读心术不成？"
+    $ persistent.tips18 = True
     "{a=showmenu:tips18}{color=#F18D7D}覃可汐•福杰......{/color}{/a}"
     #词典
      
@@ -5247,7 +5354,7 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips18 = True
+
 #词典
     "我还是先询问一下吧......可能会获得新的线索。"
     stop sound
@@ -5263,6 +5370,7 @@ label chapter1_5:
     with vpunch
     voice v1
     x "？"
+    $ persistent.tips19 = True
     voice v5
     x "哇哦~转校来的第一天就主动跟新同学搭话！你原来也是个{a=showmenu:tips19}{color=#F18D7D}社牛{/color}{/a}吗？厉害！完全看不出来！"
     #词典
@@ -5273,7 +5381,7 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips19 = True
+
 #词典
     hide kexi_pose2
     show kexi_pose2 mouth3 at jin
@@ -5494,6 +5602,7 @@ label chapter1_5:
     nvle "不过这得怪我，突然就开口询问，是谁都会怀疑的吧。"
     nvl clear
     nvle "不过更奇怪的一点是，叶梓澄似乎从我说出自己来自未来以后，就有一点相信的态度。如果是普通人听我这么说以后。"
+    $ persistent.tips21 = True
     nvle "不是嘲讽就是骂我是神经病吧。或者是批判我是被{a=showmenu:tips21}{color=#F18D7D}二次元{/color}{/a}幻想入脑了的无药可救的傻子。"
     #词典
      
@@ -5503,7 +5612,7 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips21 = True
+
 #词典
     nvl clear
     play sound suzu
@@ -5601,6 +5710,7 @@ label chapter1_5:
     hide zicheng_pose2
     show zicheng_pose1 eyes7 mouth3 at jin
     with dissolve
+    $ persistent.tips23 = True
     voice v3
     c "你有玩过{a=showmenu:tips23}{color=#F18D7D}也儿夕传说{/color}{/a}吗？"
     #词典
@@ -5611,8 +5721,9 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips23 = True
+
 #词典
+    $ persistent.tips24 = True
     voice v3
     c "{a=showmenu:tips24}{color=#F18D7D}也儿夕传说：旷野之炊{/color}{/a}。"
     #词典
@@ -5623,9 +5734,12 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips24 = True
+
 #词典
     l "有玩过。"
+    $ persistent.tips25 = True
+    $ persistent.tips39 = True
+    $ persistent.tips41 = True
     voice v5
     c "那就好理解了。这个研究项目就是致力于实现将{a=showmenu:tips25}{color=#F18D7D}林库{/color}{/a}送到{a=showmenu:tips39}{color=#F18D7D}高塔{/color}{/a}，或者送到{a=showmenu:tips41}{color=#F18D7D}神庙{/color}{/a}的效果。"
     #词典
@@ -5636,9 +5750,6 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips25 = True
-    $ persistent.tips39 = True
-    $ persistent.tips41 = True
 #词典
     "谢谢。已经秒懂了。"
     l "了解了。但是......"
@@ -6047,6 +6158,8 @@ label chapter1_5:
     "我跟随叶梓澄出了研究所门口。"
     l "叶梓澄。难道说？"
     "出研究所的时候，天已经暗了下来。"
+    $ persistent.tips46 = True
+
     "如果是平时这个时候我还不回家，那就等着吃{a=showmenu:tips46}{color=#F18D7D}皮带炖肉{/color}{/a}了。"
     #词典
      
@@ -6056,7 +6169,6 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips46 = True
 #词典
     "但是我必须尽我最大的努力改变未来的惨剧。"
     $ times = "18:49"
@@ -6097,6 +6209,12 @@ label chapter1_5:
     with dissolve
     play sound book
     play music sora fadein 1.0 fadeout 1.0
+    if persistent.time_end1:
+        $ persistent.time = 2
+    else:
+        $ persistent.time = 0
+    $ persistent.tips49 = True
+
     nvle "7月12日。 \n{a=showmenu:tips49}{color=#F18D7D}时间刻校正仪{/color}{/a}还是有点过于危险了，在我将其改造到不足以对世界造成困扰之后再公之于众吧。"
     #词典
      
@@ -6106,11 +6224,6 @@ label chapter1_5:
     hide screen tips_say
     with tipsanime
      
-    $ persistent.tips49 = True
-    if persistent.time_end1:
-        $ persistent.time = 2
-    else:
-        $ persistent.time = 0
 #词典
     nvl clear
     show bg_note_7_28
@@ -6130,6 +6243,7 @@ label chapter1_5:
     "研究笔记写的很密，基本每页都有关于每次开展研究的记录。"
     play music speak fadein 1.0 fadeout 1.0
     $ times = "18:55"
+    $ persistent.time = 1
     l "{a=showmenu:tips49}{color=#BFBFFF}时间刻校正仪{/color}{/a}......是什么？"
     #词典
      
@@ -6138,7 +6252,6 @@ label chapter1_5:
     with dissolve
     hide screen tips_say2
     with tipsanime
-    $ persistent.time = 1
 #词典
     l "还有......+1维度又是什么东西？零子又是什么？"
     show zicheng_pose1 eyes7 mouth3 at jin
@@ -6376,12 +6489,34 @@ label chapter1_5:
     with vpunch
     $ times = "19:26"
     l "时间跳跃机器？"
-    l "但是它是手表而不是电话微波炉。"
+    $ persistent.tips63 = True
+
+    l "但是它是手表而不是{a=showmenu:tips63}{color=#BFBFFF}电话电磁炉{/color}{/a}。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+#词典
     hide zicheng_pose2
     show zicheng_pose1 mouth1 at jin
     with dissolve
+    $ persistent.tips64 = True
+
     voice v3
-    c "这一切都是斯坦因之窗的选择！"
+    c "这一切都是{a=showmenu:tips64}{color=#BFBFFF}斯坦因之窗{/color}{/a}的选择！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+#词典
     "不愧是老二次元，恐怖如斯。阅番量真不是盖的。"
     voice v3
     c "没想到你也是个很有趣的人呢~就像覃可汐一样。"
@@ -6478,7 +6613,7 @@ label chapter1_5:
     with dissolve
     $ times = "19:33"
     voice v5
-    c "林洛.................我也不希望看覃可汐死掉啊！但是现在的死掉是为了改变未来以后不会死掉。"
+    c "林洛.................我也不希望看覃可汐死掉啊！但是现在的死去是为了改变未来以后不会死去。"
     voice v3
     c "这样吧。你和我都先各自冷静地思考一下。你等会再告诉我结论。"
     voice v3
@@ -6547,7 +6682,7 @@ menu:
      "不同意（插手避免覃可汐的死亡）":
       jump disagree
 default disagree = False
-#不拿手表
+#
 label disagree:
     l "我决定...采用你提出的方法。但是。"
     l "覃可汐这件事上。我果然还是无法冷眼旁观。"
@@ -6653,8 +6788,20 @@ label disagree:
     hide kexi_pose
     show kexi_pose eyes5 at jin
     with dissolve
+    $ persistent.tips55 = True
+    $ persistent.tips56 = True
     voice v5
-    x "唉~高中生活对我来说跟劳动改造一样！谁受得了啊~如果不是条件不允许，我可能就黑化成沙皇了。"
+    x "唉~高中生活对我来说跟劳动改造一样！谁受得了啊~如果不是条件不允许，我可能就{a=showmenu:tips55}{color=#F18D7D}黑化{/color}{/a}成{a=showmenu:tips56}{color=#F18D7D}沙皇{/color}{/a}了。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     play sound odoro
     with vpunch
     voice v1
@@ -6667,9 +6814,7 @@ label disagree:
     show kexi_pose2 mouth3 at jin
     with dissolve
     voice v3
-    x "打死不读书是吧！那我就打死你！"
-    l "哈哈哈哈~"
-    "对不起，被覃可汐轻佻的话语逗笑了。"
+    x "哈哈哈哈~"
     voice v3
     x "我们真是臭味相投呢~"
     hide kexi_pose2
@@ -6813,8 +6958,19 @@ label disagree:
     with dissolve
     play sound odoro
     with vpunch
+    $ persistent.tips57 = True
     voice v3
-    c "别打岔。我不是在原地tp。"
+    c "别打岔。我不是在{a=showmenu:tips57}{color=#F18D7D}原地tp{/color}{/a}。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     hide zicheng_pose1
     show zicheng_pose2 at jin
     with dissolve
@@ -6824,8 +6980,19 @@ label disagree:
     c "一种机能是往更高维度注入零子。"
     voice v3
     c "一种机能是从更高维度抽出零子。"
+    $ persistent.tips58 = True
     voice v3
-    c "我父亲将我们这个维度的编号命名为0。这个编号也是所谓的“时间刻”。"
+    c "我父亲将我们这个维度的编号命名为0。这个编号也是所谓的“{a=showmenu:tips58}{color=#F18D7D}时间刻{/color}{/a}”。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+    
+#词典
     voice v3
     c "而这个更高维度的时间刻则为+1。"
     l "我懂了。原来我们是0。"
@@ -6840,8 +7007,17 @@ label disagree:
     with dissolve
     voice v5
     c "我父亲认为，+1时间刻的维度，其不能被我们所处的0时间刻的维度所观测到。但是这两个维度之间却可以相互作用。"
+    $ persistent.time = 3
     voice v3
-    c "时间刻校正仪的功能便是如此。用作两个维度间数据交换的桥梁。"
+    c "{a=showmenu:tips49}{color=#BFBFFF}时间刻校正仪{/color}{/a}的功能便是如此。用作两个维度间数据交换的桥梁。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say2
+    with dissolve
+    hide screen tips_say2
+    with tipsanime
+#词典
     voice v3
     c "注入零子的功能便是0时间刻维度作用于+1时间刻维度。"
     voice v3
@@ -6863,7 +7039,16 @@ label disagree:
     scene bg_kame2
     with dissolve
     c "零子则是水。往+1时间刻维度注入零子就是把水舀进水缸里。从+1时间刻维度抽出之前注入的零子，就是把水缸里的水再舀出来。"
-    l "时间刻校正仪就相当于盛水的水瓢对吧！"
+    $ persistent.time = 4
+    l "{a=showmenu:tips49}{color=#BFBFFF}时间刻校正仪{/color}{/a}就相当于盛水的水瓢对吧！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say2
+    with dissolve
+    hide screen tips_say2
+    with tipsanime
+#词典
     c "厉害啊林洛，都学会抢答了！"
     scene bg_1f_kai
     with dissolve
@@ -6898,12 +7083,34 @@ label disagree:
     hide zicheng_pose2
     show zicheng_pose1 mouth5 other1 at jin
     with dissolve
+    $ persistent.tips59 = True
     voice v5
-    c "你...............你告诉过去的我。我现在最想要的东西是宝可魔 方/圆的游戏卡带。最希望交换得到的宝可魔是鸡嘴火龙。"
+    c "你...............你告诉过去的我。我现在最想要的东西是宝可魔 方/圆的游戏卡带。最希望交换得到的宝可魔是{a=showmenu:tips59}{color=#F18D7D}鸡嘴火龙{/color}{/a}。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     voice v3
     c "你这样说，过去的我绝对会相信你的话了。"
     l "哦...好！"
-    l "但是......鸡嘴火兽我已经有了。等事情结束以后，通讯交换给你进化吧！"
+    $ persistent.tips60 = True
+    l "但是......{a=showmenu:tips60}{color=#F18D7D}鸡嘴火兽{/color}{/a}我已经有了。等事情结束以后，通讯交换给你进化吧！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     voice v3
     c "那....约定好咯！"
     scene bg_none
@@ -7139,7 +7346,18 @@ label disagree:
     "此时时间已经快接近下午一点了。"
     l "太好了........."
     x "？"
-    x "你是抖M吗？为什么我随便翻你的绘画本，你却说太好了。"
+    $ persistent.tips61 = True
+    x "你是{a=showmenu:tips61}{color=#F18D7D}抖M{/color}{/a}吗？为什么我随便翻你的绘画本，你却说太好了。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     play sound book
     $ times = "13:09"
     scene bg_tukue2
@@ -7337,7 +7555,7 @@ label disagree:
     voice v1
     c "死了......"
     voice v3
-    c "医生说......没抢救过来.......损伤到了脑干......."
+    c "医生说......没抢救过来.......损伤到了大脑......."
     l "........."
     "我说不出话来。"
     voice v1
@@ -7357,8 +7575,19 @@ label disagree:
     voice v1
     c "林洛......"
     l "？  什么？"
+    $ persistent.tips62 = True
     voice v3
-    c "不要忘了我......如果你去到的只是一个平行宇宙的话......"
+    c "不要忘了我......如果你去到的只是一个{a=showmenu:tips62}{color=#F18D7D}平行宇宙{/color}{/a}的话......"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     l "平行宇宙......不会存在的！我坚信没有这种东西！"
     l "这个世界是独一无二的。未来的我，将会和过去的你，再次相遇。"
     l "和过去的你相遇！不是别人！是独一无二的你啊！"
@@ -7424,192 +7653,588 @@ label disagree:
     $ persistent.disagree = True
     jump chapter2_5
 label agree:
-    "我决定.........采用你提出的方法。"
-    "我想明白了。你是正确的。"
-    "我们现在对我这块手表的机能方面的东西还处于摸索阶段。"
-    "稍微有点出入，可能就会导致无法触发手表的功能。最终导致无法回到过去。"
-    "对不起了......覃可汐......"
-    "你如果知道了我这样做，就尽情恨我吧。但是我非这样做不可。"
-    "请原谅我对你的袖手旁观。"
-    "好的。我明白了。"
-    "未来就交给你了！"
+    l "我决定.........采用你提出的方法。"
+    l "我想明白了。你是正确的。"
+    l "我们现在对我这块手表的机能方面的东西还处于摸索阶段。"
+    l "稍微有点出入，可能就会导致无法触发手表的功能。最终导致无法回到过去。"
+    l "在根基已经被夺走的情况下，就算让覃可汐暂时的避开事件，恐怕也还是治标不治本罢了。"
+    play music sora fadein 1.0 fadeout 1.0
+    $ times = "19:45"
+    nvle "对不起了......覃可汐......"
+    nvle "你如果知道了我这样做，就尽情恨我吧。但是我非这样做不可。"
+    nvle "请原谅我对你的袖手旁观。"
+    nvl clear
+    voice v3
+    c "好的。我明白了。"
+    voice v3
+    c "未来就交给你了！"
+    play music home fadein 1.0 fadeout 1.0
+    hide screen watch
+    with dissolve
+    scene bg_none
+    with dissolve
     "我和叶梓澄喊了夜班的出租车，离开了研究所。"
     "看了我的手机，果不其然，一列列未接来电。是我妈打过来的。"
     "回到家的时候找的理由是，被班主任留在学校补习课程了。"
     "幸运的是我妈信了，而且没有找班主任打电话确认。当然她并没有班主任的手机号就是了。"
     "在我对覃可汐的不安中，星期二到来了。"
+    $ years = "2022.9.20"
+    $ times = "07:10"
+    $ weeks = _("周二")
+    play music school fadein 1.0 fadeout 1.0
+    $ times = "07:21"
+    show screen watch
+    with dissolve
+    scene bg_2_3
+    with fade
     "早早地就到了教室。"
+    $ times = "07:22"
+    scene bg_tukue
+    with dissolve
     "叶梓澄原来的愁眉已经消散了不少。大概是因为从阴霾中看到了希望的关系。"
     "我不会让这唯一的希望变成绝望的。"
-    "为了尽量防止未来因为蝴蝶效应而改变。我尽量保持着和覃可汐以及班上其他同学的人际关系。"
+    scene bg_none
+    with fade
+    hide screen watch
+    with dissolve
+    $ persistent.tips65 = True
+    play music title fadein 1.0  fadeout 1.0
+    "为了尽量防止未来因为{a=showmenu:tips65}{color=#F18D7D}蝴蝶效应{/color}{/a}而改变。我尽量保持着和覃可汐以及班上其他同学的人际关系。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     "甚至什么时候吃饭，什么时候去洗手间也尽量保持一致。"
-    "........."
+    nvle "........."
+    $ years = "2022.9.21"
+    $ times = "09:01"
+    $ weeks = _("周三")
+    nvl clear
+    show screen watch
+    with dissolve
+    play music sora fadein 1.0 fadeout 1.0
     s "叶梓澄！你来一下办公室。"
+    scene bg_tukue
+    with fade
     "星期三了。不出意外的，班主任将叶梓澄叫到了办公室。"
     "这次的叶梓澄，或许是已经提前做好了心理准备。即便是得知了自己父亲的死讯，依旧保持着一副平和的面庞。"
+    scene bg_tukue
+    with fade
+    $ times = "09:03"
     "叶梓澄回到教室以后。径直走到了我的座位前面。"
+    play sound desk
     "轻敲了我的桌角。"
-    "出来一下。我有话跟你说。"
-    "班长？班主任找你出去是有什么事吗？"
+    scene bg_tukue2
+    with dissolve
+    show zicheng_pose1 eyes3 mouth3 at jin
+    with dissolve
+    voice v3
+    c "出来一下。我有话跟你说。"
+    show kexi_pose at jin:
+        xpos 0.8
+    with dissolve
+    voice v3
+    x "班长？班主任找你出去是有什么事吗？"
     "覃可汐凑了过来。用一副关心的语气问道。"
     "叶梓澄凝视了一会覃可汐。"
+    hide zicheng_pose1
+    show zicheng_pose1 mouth1 at jin
+    with dissolve
     "接着脸上摆出了营业式微笑。"
-    "没事......谢谢你为我担心。"
-    "是吗？好的！"
-    "但是班长.........如果你有什么困难的话，不要藏在心里自己一个人承担哟！向我说出来吧！我会尽我所能帮助你的！"
-    "覃可汐......"
+    voice v3
+    c "没事......谢谢你为我担心。"
+    hide kexi_pose
+    show kexi_pose eyes4 at jin:
+        xpos 0.8
+    with dissolve
+    voice v3
+    x "是吗？好的！"
+    hide kexi_pose
+    show kexi_pose mouth1 at jin:
+        xpos 0.8
+    with dissolve
+    voice v5
+    x "但是班长.........如果你有什么困难的话，不要藏在心里自己一个人承担哟！向我说出来吧！我会尽我所能帮助你的！"
+    hide zicheng_pose1
+    show zicheng_pose1 eyes2 mouth5 at jin
+    with dissolve
+    voice v1
+    c "覃可汐......"
     "叶梓澄的脸上，泪珠终于滴落了下来。再也止不住地。流了出来。"
-    "覃可汐........我........."
+    voice v3
+    c "覃可汐........我........."
+    scene bg_kexi_te_zicheng
+    with dissolve
+    $ times = "09:04"
     "覃可汐一把把叶梓澄揽在了怀里，像母亲一样，轻轻拍打着叶梓澄的背。"
-    "嗯......没事的，叶梓澄......谁让我是你的朋友呢......"
+    x "嗯......没事的，叶梓澄......谁让我是你的朋友呢......"
     "我的内心深受触动。"
-    "覃可汐......我会把未来引导到一个你能健康活下来的未来的！"
-    "但是这次...请稍微受点苦！"
+    nvle "覃可汐......我会把未来引导到一个你能无忧无虑的生活下去的世界的！"
+    nvle "但是这次...请稍微受点苦痛！"
+    nvl clear
+    play music school fadein 1.0 fadeout 1.0
+    scene bg_none
+    with fade
     "我跟着叶梓澄出了教室。"
-    "和你的描述一样。发现了...我父亲的遗体。"
-    "而且遗体并不完整，只找到了一只手臂。"
-    "到目前为止。时间的走向都大致跟我所经历过的一致。"
-    "我已经申请离校回家了。所以在那之前。我得跟你把话说清楚。"
-    "我这几天仔细翻阅了我父亲留下来的笔记。查看了除时间机器以外的内容。"
-    "尤其是笔记上所记载的关于“时间刻校正仪”的内容。"
-    "从笔记上所记载的内容来推断。"
-    "这个时间刻校正仪。是我父亲制造的仪器。"
-    "这个.....我觉得这一条可以省略.肯定是你父亲制造的。"
-    "别打岔。我不是在原地tp。"
-    "时间刻校正仪具有两种机能。"
-    "一种机能是往更高维度注入零子。"
-    "一种机能是从更高维度抽出零子。"
-    "我父亲将我们这个维度的编号命名为0。这个编号也是所谓的“时间刻”。"
-    "而这个更高维度的时间刻则为+1。"
-    "我懂了。原来我们是0。"
-    "你先听我说！"
-    "我父亲认为，+1时间刻的维度，其不能被我们所处的0时间刻的维度所观测到。但是这两个维度之间却可以相互作用。"
-    "时间刻校正仪的功能便是如此。用作两个维度间数据交换的桥梁。"
-    "注入零子的功能便是0时间刻维度作用于+1时间刻维度。"
-    "而抽出零子的功能则是+1时间刻维度作用于0时间刻维度。"
-    "通过往+1时间刻维度注入零子，会导致0时间刻维度产生变化。"
-    "你的意思是？用这个仪器，把零子注入到+1时间刻维度以后，我们所处的这个世界会被影响到？"
-    "对。"
-    "但是具体有哪些影响，我父亲没写在里面。"
-    "往+1时间刻维度注入零子以后，再抽出之前注入的所有零子。可以终止+1时间刻维度对0时间刻维度的干涉。"
-    "要比喻的话......大概就是 。+1时间刻维度是一口缸。最开始的时候里面是空的。"
-    "零子则是水。往+1时间刻维度注入零子就是把水舀进水缸里。从+1时间刻维度抽出之前注入的零子，就是把水缸里的水再舀出来。"
-    "时间刻校正仪就相当于盛水的水瓢对吧！"
-    "厉害啊林洛，都学会抢答了。"
-    "差不多就是这个意思。"
-    "现在我父亲已经遇害了。也就是说，这个时间刻校正仪很可能现在已经在AADR手里了。"
-    "如果未来AADR会利用时间刻校正仪，来做某种影响未来世界的事情。"
-    "估计就是，利用的+1时间刻维度对我们所处的0时间刻维度的干涉。通过时间刻校正仪来改变这个世界的形状。"
-    "所以林洛。希望再拜托你一件事。你下次回到过去以后，帮忙调查一下时间刻校正仪的更详细的事情，可以吗？主要是调查对我们世界的干涉是什么。"
-    "我觉得给你手表的摊主大概率知道。然后......照例把调查结果.....告诉给过去的我。"
-    "那个......"
-    "我突然想起了什么。"
-    "如果我下次成功回到过去了。我该怎么把信息传达给你呢？怎么让过去的你信服？"
-    "此言在理。谨慎的过去的我，可能会对你持有高度警戒。这样的话......"
-    "嗯........"
-    "你告诉过去的我。我现在最想要的东西是宝可魔 方/圆的游戏卡带。最希望交换得到的宝可魔是鸡嘴火龙。"
-    "你这样说，过去的我绝对会相信你的话了。"
-    "哦...好！"
-    "但是......鸡嘴火兽我已经有了。等事情结束以后，通讯交换给你进化吧！"
-    "那....约定好咯！"
+    $ times = "09:05"
+    scene bg_1f_kai
+    with fade
+    play music speak fadein 1.0 fadeout 1.0
+    show zicheng_pose1 eyes7 mouth4 at jin
+    with dissolve
+    voice v3
+    c "和你的描述一样。发现了...我父亲的遗体。"
+    voice v3
+    c "而且遗体并不完整，只找到了一只手臂。"
+    l "到目前为止。时间的走向都大致跟我所经历过的一致。"
+    voice v3
+    c "我已经申请离校回家了。所以在那之前。我得跟你把话说清楚。"
+    voice v3
+    c "我这几天仔细翻阅了我父亲留下来的笔记。查看了除时间机器以外的内容。"
+    voice v3
+    c "尤其是笔记上所记载的关于“时间刻校正仪”的内容。"
+    voice v3
+    c "从笔记上所记载的内容来推断。"
+    hide zicheng_pose1
+    show zicheng_pose1 eyes7 mouth3 at jin
+    with dissolve
+    voice v3
+    c "这个时间刻校正仪。是我父亲制造的仪器。"
+    l "这个.....我觉得这一条可以省略。肯定是你父亲制造的。"
+    hide zicheng_pose1
+    show zicheng_pose1 eyes3 other1 at jin
+    with dissolve
+    play sound odoro
+    with vpunch
+    $ persistent.tips57 = True
+    voice v3
+    c "别打岔。我不是在{a=showmenu:tips57}{color=#F18D7D}原地tp{/color}{/a}。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    hide zicheng_pose1
+    show zicheng_pose2 at jin
+    with dissolve
+    voice v3
+    c "时间刻校正仪具有两种机能。"
+    voice v3
+    c "一种机能是往更高维度注入零子。"
+    voice v3
+    c "一种机能是从更高维度抽出零子。"
+    $ persistent.tips58 = True
+    voice v3
+    c "我父亲将我们这个维度的编号命名为0。这个编号也是所谓的“{a=showmenu:tips58}{color=#F18D7D}时间刻{/color}{/a}”。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+    
+#词典
+    voice v3
+    c "而这个更高维度的时间刻则为+1。"
+    l "我懂了。原来我们是0。"
+    play sound odoro
+    hide zicheng_pose2
+    show zicheng_pose1 eyes6 other1 at jin
+    with vpunch
+    voice v1
+    c "你先听我说！"
+    hide zicheng_pose1
+    show zicheng_pose2 at jin
+    with dissolve
+    voice v5
+    c "我父亲认为，+1时间刻的维度，其不能被我们所处的0时间刻的维度所观测到。但是这两个维度之间却可以相互作用。"
+    $ persistent.time = 3
+    voice v3
+    c "{a=showmenu:tips49}{color=#BFBFFF}时间刻校正仪{/color}{/a}的功能便是如此。用作两个维度间数据交换的桥梁。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say2
+    with dissolve
+    hide screen tips_say2
+    with tipsanime
+#词典
+    voice v3
+    c "注入零子的功能便是0时间刻维度作用于+1时间刻维度。"
+    voice v3
+    c "而抽出零子的功能则是+1时间刻维度作用于0时间刻维度。"
+    voice v3
+    c "通过往+1时间刻维度注入零子，会导致0时间刻维度产生变化。"
+    l "你的意思是？用这个仪器，把零子注入到+1时间刻维度以后，我们所处的这个世界会被影响到？"
+    play sound odoro
+    with vpunch
+    voice v1
+    c "对。"
+    voice v3
+    c "但是具体有哪些影响，我父亲没写在里面。"
+    voice v5
+    c "往+1时间刻维度注入零子以后，再抽出之前注入的所有零子。可以终止+1时间刻维度对0时间刻维度的干涉。"
+    scene bg_kame
+    with dissolve
+    c "要比喻的话......大概就是 。+1时间刻维度是一口缸。最开始的时候里面是空的。"
+    scene bg_kame2
+    with dissolve
+    c "零子则是水。往+1时间刻维度注入零子就是把水舀进水缸里。从+1时间刻维度抽出之前注入的零子，就是把水缸里的水再舀出来。"
+    $ persistent.time = 4
+    l "{a=showmenu:tips49}{color=#BFBFFF}时间刻校正仪{/color}{/a}就相当于盛水的水瓢对吧！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say2
+    with dissolve
+    hide screen tips_say2
+    with tipsanime
+#词典
+    c "厉害啊林洛，都学会抢答了！"
+    scene bg_1f_kai
+    with dissolve
+    show zicheng_pose2 at jin
+    with dissolve
+    voice v3
+    c "差不多就是这个意思。"
+    voice v3
+    c "现在我父亲已经遇害了。也就是说，这个时间刻校正仪很可能现在已经在AADR手里了。"
+    voice v3
+    c "如果未来AADR会利用时间刻校正仪，来做某种影响未来世界的事情。"
+    voice v3
+    c "估计就是，利用的+1时间刻维度对我们所处的0时间刻维度的干涉。通过时间刻校正仪来改变这个世界的形状。"
+    hide zicheng_pose2
+    show zicheng_pose1 eyes7 mouth3 at jin
+    with dissolve
+    voice v5
+    c "所以林洛。希望再拜托你一件事。你下次回到过去以后，帮忙调查一下时间刻校正仪的更详细的事情，可以吗？主要是调查对我们世界的干涉是什么。"
+    voice v3
+    c "我觉得给你手表的摊主大概率知道。然后......照例把调查结果.....告诉给过去的我。"
+    l "那个......"
+    nvle "我突然想起了什么。"
+    nvl clear
+    l "如果我下次成功回到过去了。我该怎么把信息传达给你呢？怎么让过去的你信服？"
+    hide zicheng_pose1
+    show zicheng_pose2 at jin
+    with dissolve
+    voice v3
+    c "此言在理。谨慎的过去的我，可能会对你持有高度警戒。这样的话......"
+    voice v1
+    c "嗯........"
+    hide zicheng_pose2
+    show zicheng_pose1 mouth5 other1 at jin
+    with dissolve
+    $ persistent.tips59 = True
+    voice v5
+    c "你...............你告诉过去的我。我现在最想要的东西是宝可魔 方/圆的游戏卡带。最希望交换得到的宝可魔是{a=showmenu:tips59}{color=#F18D7D}鸡嘴火龙{/color}{/a}。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    voice v3
+    c "你这样说，过去的我绝对会相信你的话了。"
+    l "哦...好！"
+    $ persistent.tips60 = True
+    l "但是......{a=showmenu:tips60}{color=#F18D7D}鸡嘴火兽{/color}{/a}我已经有了。等事情结束以后，通讯交换给你进化吧！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    voice v3
+    c "那....约定好咯！"
+    scene bg_none
+    with fade
+    "................."
+    play sound suzu
+    play music school fadein 1.0 fadeout 1.0
+    $ times = "09:10"
+    scene bg_tukue
+    with fade
     "上课了。"
     "叶梓澄已经收拾完了东西，离开了学校。"
     "我现在需要做的事情就是等待下个星期一的到来了。"
+    hide screen watch
+    with dissolve
+    scene bg_none
+    with fade
+    play music title fadein 1.0 fadeout 1.0 
     "剩下这几天，我都尽量还原了我之前所做的事情。"
     "游戏机也借给了覃可汐。"
+    $ years = "2022.9.23"
+    $ times = "06:36"
+    $ weeks = _("周五")
+    play music home fadein 1.0 fadeout 1.0
+    show screen watch
+    with dissolve
+    scene bg_home
+    with fade
     "不安中，星期五到了！"
-    "对了林洛！明天的ChieAnime你去吗？"
+    $ times = "07:29"
+    play music school fadein 1.0 fadeout 1.0
+    scene bg_tukue2
+    with dissolve
+    show kexi_pose mouth1 at jin
+    with dissolve
+    voice v3
+    x "对了林洛！明天的ChieAnime你去吗？"
+    hide screen watch
+    with dissolve
+    scene bg_none
+    with dissolve
     "上午和覃可汐尽情讨论了很多东西。看着覃可汐最后的微笑。"
+    play sound suzu 
+    scene bg_tukue
+    with fade
+    $ times = "12:30"
+    show screen watch
+    with dissolve
+    play music sora fadein 1.0 fadeout 1.0
     "命运的转折点。中午到了。"
     "我需要做的事就是什么都不做。"
     "只需要看着覃可汐在我眼前死去。"
     "这是计划的一部分。"
+    stop sound
+    hide screen watch
+    with dissolve
+    scene bg_none
+    with fade
     "......"
+    scene bg_tukue2
+    with fade
+    show screen watch
+    with dissolve
+    show kexi_pose mouth1 at jin
+    with dissolve
+    voice v3
     x "所以，就拜托你吃饭的时候快一点点啦！12点50在教室见！"
     l "啊好！"
+    scene bg_gohan_tukue
+    with fade
+    $ times = "12:40"
     "我去食堂吃饭了。"
     "吃的和上次一样的饭菜，坐的和上次一样的座位。"
+    scene bg_2_3
+    with fade
+    $ times = "12:48"
     "在一样的时间点跑回教室。"
+    play sound run
     l "呼~呼~"
     "还有一样的腹部剧痛。但是已经无所谓了。"
+    scene bg_class_naka
+    with dissolve
+    show kexi_pose mouth1 at jin
+    with dissolve
+    $ times = "12:49"
+    voice v3
     x "守约了呢！真不错！"
+    voice v3
     x "扫把和铲子给你！我们走吧！"
     "覃可汐微笑着。"
-    "怎么了？你看起来像是有什么心事的样子。"
-    "啊.....没事！在想晚上应该吃什么！"
-    "害~我还以为是在计划怎么使用时间系能力呢！"
-    "某种意义上来说，确实是这样。"
+    voice v3
+    x "怎么了？你看起来像是有什么心事的样子。"
+    l "啊.....没事！在想晚上应该吃什么！"
     l "需要做什么？"
     "我虽然已经知道要怎么做了，但还是为了还原过去，所以问道。"
+    hide kexi_pose
+    show kexi_pose2 mouth1 at jin
+    with dissolve
+    voice v5
     x "很简单的！把教室正外面的广场打扫一下！然后看看有没有垃圾，清理一下就可以啦！走吧！"
     l "理解了！走吧!"
+    hide kexi_pose2
+    show kexi_pose2 mouth4 at jin
+    with dissolve
+    voice v5
     x "要记得一件事哦！必须在午睡之前打扫干净才行。不然检查卫生的干部来了就得扣分了。"
+    hide kexi_pose2
+    show kexi_pose2 mouth3 at jin
+    with dissolve
+    voice v3
     x "不过我相信你可以的。"
     "覃可汐微笑着向我打气。"
+    scene bg_school_hiroba
+    $ persistent.cg11_unlocked = True
+    with dissolve
+    $ times = "12:52"
     "广场上依旧是很多的人。都是吃完饭以后回来的。"
     "我打扫着广场左侧。覃可汐则负责右侧。"
     "计划最后在中间会合。"
     "跟我所经历过的时间一样的闷热感。"
     "黑压压的乌云，仿佛随时都会降下雨来。或许就是上天在准备祭奠覃可汐的礼炮。"
-    "林洛......"
-    "............"
-    "在值日吗？加油啊！"
+    show zicheng_pose1 eyes7 at jin
+    with dissolve
+    voice v1
+    c "林洛......"
+    c "............"
+    hide zicheng_pose1
+    show zicheng_pose1 eyes2 mouth1 at jin
+    with dissolve
+    voice v3
+    c "在值日吗？加油啊！"
     "叶梓澄很清楚接下来会发生什么，但还是故作微笑。"
+    $ times = "12:55"
+    scene bg_none
+    with fade2
     "时间差不多要到了。"
     "我不自觉地闭上了双眼。难以忍心再看一遍覃可汐的死亡。"
+    play sound "audio/hasai.ogg"
+    $ times = "12:56"
+    with vpunch
     "嘭！"
-    "啊！！！！"
+    x "啊！！！！"
+    play sound yakamashii fadein 1.0 fadeout 1.0 
     "周围的人群开始喧闹了起来。"
     "但是我依然紧闭着眼。"
     "抓着扫把的手在颤抖。"
-    "抱歉......覃可汐......"
-    "......"
+    stop sound
+    nvle "抱歉......覃可汐......"
+    hide screen watch
+    nvl clear
+    nvle "......"
+    nvl clear
+    play music kexi fadein 1.0 fadeout 1.0
+    $ times = "17:44"
+    show screen watch
+    with dissolve
+    scene bg_schoolmae
+    with fade
     "放学后和叶梓澄约好在校门口见面。"
-    "林洛......"
-    "覃可汐已经........"
+    show zicheng_pose1 eyes2 mouth4 at jin
+    with dissolve
+    voice v1
+    c "林洛......"
+    voice v3
+    c "覃可汐已经........"
     "叶梓澄强忍着泪水没有哭出来。"
-    "已经......“准确的”死去了......"
-    "接下来交给我吧！叶梓澄！"
-    "毕竟我可不能让覃可汐白死一次。我会通过我的努力，创造一个覃可汐不会死去的世界！"
-    "好.......改变未来的战斗。在这个未来上的最后一块拼图......就交给你了......"
-    "最后，林洛，我想。"
-    "什么？"
-    "这大概是身处这里的我和你最后的一次见面了。"
-    "如果存在所谓平行宇宙的话......"
-    "平行宇宙这种东西......怎么证明其是否存在呢？"
-    "抱歉......无法证明......"
-    "怎么会呢？我坚信，这个世界是独一无二的。未来的我，将会和过去的你，再次相遇。"
-    "和过去的你相遇！不是别人！是独一无二的你啊！"
-    "林洛........"
-    "如果真的是这样......那就太好了......"
-    "不会忘记我........真的太好了......"
+    voice v3
+    c "已经......“准确的”死去了......"
+    l "接下来交给我吧！叶梓澄！"
+    nvle "毕竟我可不能让覃可汐白死一次。我会通过我的努力，创造一个覃可汐不会死去的世界！"
+    nvl clear
+    voice v3
+    c "好.......改变未来的战斗。在这个未来上的最后一块拼图......就交给你了......"
+    c "................"
+    voice v1
+    c "最后，林洛，我想。"
+    l "什么？"
+    voice v3
+    c "这大概是身处这里的我和你最后的一次见面了。"
+    $ persistent.tips62 = True
+    voice v3
+    c "如果存在所谓{a=showmenu:tips62}{color=#F18D7D}平行宇宙{/color}{/a}的话......"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    l "平行宇宙这种东西......怎么证明其是否存在呢？"
+    voice v3
+    c "抱歉......无法证明......"
+    l "怎么会呢？我坚信，这个世界是独一无二的。未来的我，将会和过去的你，再次相遇。"
+    l "和过去的你相遇！不是别人！是独一无二的你啊！"
+    hide zicheng_pose1
+    show zicheng_pose1 eyes2 mouth1 other2 at jin
+    with dissolve
+    voice  v1
+    c "林洛........"
+    voice v3
+    c "如果真的是这样......那就太好了......"
+    voice v3
+    c "不会忘记我........真的太好了......"
+    play music title fadein 1.0 fadeout 1.0
+    play sound yousuru
+    $ times = "17:46"
+    with vpunch
+    scene bg_zicheng_te_linluo
+    with dissolve
+    l "呃啊！！"
     "叶梓澄突然抱了上来,就在黄昏之时的校门口。"
-    "呃啊！！"
     "我都没来得及做好心理准备，被叶梓澄突然的动作吓了一跳。"
-    "好.....我不会忘了你的！"
-    "我会回到过去！将你陪我所做的努力......一一告知过去的没有这段记忆的你！"
-    "嗯......"
-    "我相信你！"
-    "嗯......"
+    l "好.....我不会忘了你的！"
+    l "我会回到过去！将你陪我所做的努力......一一告知过去的没有这段记忆的你！"
+    c "嗯......"
+    c "我相信你！"
+    l "嗯......"
+    hide screen watch
+    scene bg_none
+    with fade2
+    $ years = "2022.9.26"
+    $ times = "07:00"
+    $ weeks = _("周一")
+    scene bg_home
+    with fade2
+    show screen watch
+    with dissolve
+    play music home fadein 1.0 fadeout 1.0
     "命运的周一到了。"
     "这几天我已经做好了充足的准备。"
     "再次铭记叶梓澄告知我的事情。"
+    play music title2 fadein 1.0 fadeout 1.0
+    $ times = "07:16"
+    scene bg_kuruma_matu
+    with dissolve
     "我在车站面前等待着命中注定的那辆公交车。"
+    with vpunch
     "来了。"
+    play sound car_stop
+    scene bg_none
+    with fade2
     "公交车缓缓停到我前面。"
     "我大吸了一口新鲜空气，便上了车。"
+    play sound run
     "一切都准备好了。直接来吧！"
+    stop sound
     play sound "audio/yakamashii.ogg"
+    $ times = "07:20"
     n "听说了吗？昨天西路那边十字路口出了车祸，骑电动车的那个直接被撞飞几十米了！"
     "能听到这段对话，说明我并没有坐错车。"
     "我已经极力安慰麻痹自己了。但是我的手脚还是像条件反射似的止不住的颤抖。"
     "那就闭眼吧。"
     "什么都不去想。"
     "静静的等待。"
+    play sound "audio/kuruma.ogg"
+    $ times = "07:23"
+    with vpunch
     "嘭！！！！！！！！！！！！"
+    with vpunch
     "！！！！！！！！！！！！！！！！！！！！！！"
+    hide screen watch
+    with dissolve
+    with vpunch
     "来了........."
+    with vpunch
     "来........了........."
+    stop sound
     $ persistent.disagree = False
     jump chapter2_5
 label chapter2_5:
@@ -7908,7 +8533,7 @@ label chapter2_6:
     "12点41了，我大步走进了校门。"
     "我手上戴的，不是手表，而是未来！"
     "AADR！我会打碎你们的阴谋的！！"
-    call disable_shortcut from _call_disable_shortcut_2
+    call disable_shortcut from _call_disable_shortcut_3
     $ persistent.chapter3 = True
     $ persistent.chapter==3
     $ persistent.extra_chapter3 = True
@@ -7923,7 +8548,7 @@ label chapter2_6:
     with fade2
     scene bg_none
     $ quick_menu = True
-    call enable_shortcut from _call_enable_shortcut_2
+    call enable_shortcut from _call_enable_shortcut_3
     $ save_name = "{font=ZiTiQuanWeiJunHei-W3-2.ttf}章节三：收束迷宫的展露{/font}"
     "我走进教室的时候，里面已经空无一人了。"
     "我只好自己走到我的座位上坐着。"
@@ -8938,7 +9563,7 @@ label loop1_false:
     $ end = 2
     $ quick_menu = False
     play music "music/end.ogg" fadeout 1.0 fadein 1.0
-    call disable_shortcut from _call_disable_shortcut_3
+    call disable_shortcut from _call_disable_shortcut_4
     scene bg_none
     show end2
     with fade2
@@ -8951,7 +9576,7 @@ label loop1_false:
     with fade2
     $ renpy.pause(189, hard=True)
     $ quick_menu = True
-    call enable_shortcut from _call_enable_shortcut_3
+    call enable_shortcut from _call_enable_shortcut_4
     return
 label loop1_true:
     play sound "audio/loop.ogg"
@@ -9199,7 +9824,7 @@ label loop1_true:
     hide screen loop2_screen
     scene bg_none
     with fade
-    call disable_shortcut from _call_disable_shortcut_4
+    call disable_shortcut from _call_disable_shortcut_5
     $ persistent.chapter4 = True
     $ persistent.chapter==4
     $ persistent.extra_chapter4 = True
@@ -9214,7 +9839,7 @@ label loop1_true:
     with fade2
     scene bg_none
     $ quick_menu = True
-    call enable_shortcut from _call_enable_shortcut_4
+    call enable_shortcut from _call_enable_shortcut_5
     $ save_name = "{font=ZiTiQuanWeiJunHei-W3-2.ttf}章节四：命运枷锁的挣脱{/font}"
     "....................."
     "呼！"
@@ -9700,7 +10325,7 @@ label loop1_true:
     "或许这件事从一开始..........就是被注定的命运吧................."
     $ quick_menu = False
     play music "music/end.ogg" fadeout 1.0 fadein 1.0
-    call disable_shortcut from _call_disable_shortcut_5
+    call disable_shortcut from _call_disable_shortcut_6
     scene bg_none
     show end3_f
     with fade2
@@ -9713,7 +10338,7 @@ label loop1_true:
     with fade2
     $ renpy.pause(189, hard=True)
     $ quick_menu = True
-    call enable_shortcut from _call_enable_shortcut_5
+    call enable_shortcut from _call_enable_shortcut_6
     return
     $ persistent.chapter==5
     $ persistent.chapter==6

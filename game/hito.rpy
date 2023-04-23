@@ -1090,3 +1090,92 @@ init -1:
             pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
             attribute mouth1 default:
                 "sensei1_zui"
+#可汐妈
+init -1 python:
+    def kexihaha_zui_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="kexihaha":
+            return ("kexihaha_zui_shuohua", .1)#播放口型动画1
+        else:
+            return ("kexihaha_zui_bi", .1)
+init -1:
+#定义口型动画1
+    image kexihaha_zui_shuohua:
+        "images/hito/kexi_haha/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/kexi_haha/cengdie/zui_zhangkai.webp"
+        0.1
+        "images/hito/kexi_haha/cengdie/zui_banzhang.webp"
+        0.1
+        "images/hito/kexi_haha/cengdie/zui_bi.webp"
+        0.1
+        repeat
+    image kexihaha_zui_bi:
+        "images/hito/kexi_haha/cengdie/zui_bi.webp"
+        0.2
+        repeat
+    image kexihaha_zui = DynamicDisplayable(kexihaha_zui_)
+#yan睛正常
+    image kexihaha_yan_bi:
+        "images/hito/kexi_haha/cengdie/yan_bi.webp"
+    image kexihaha_yan_zhang:
+        "images/hito/kexi_haha/cengdie/yan_zhangkai.webp"
+    image kexihaha_yan_banzhang:
+        "images/hito/kexi_haha/cengdie/yan_banzhang.webp"
+
+    image kexihaha_yan:
+        "kexihaha_yan_zhang"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "kexihaha_yan_banzhang"
+        0.1
+        "kexihaha_yan_bi"
+        0.2
+        "kexihaha_yan_banzhang"
+        0.1
+        repeat
+    image kexihaha_yan_liulei_zhang:
+        "images/hito/kexi_haha/cengdie/yan_zhangkai_leishui.webp"
+    image kexihaha_yan_liulei_banzhang:
+        "images/hito/kexi_haha/cengdie/yan_banzhang_leishui.webp"
+    image kexihaha_yan2:
+        "kexihaha_yan_liulei_zhang"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "kexihaha_yan_liulei_banzhang"
+        0.1
+        "kexihaha_yan_bi"
+        0.2
+        "kexihaha_yan_liulei_banzhang"
+        0.1
+        repeat
+#yan睛正常
+    image kexihaha_pose_def:
+        "images/hito/kexi_haha/cengdie/zhuqugan.webp"
+    layeredimage kexihaha_pose:
+
+        group pose:
+            attribute pose1 default:
+                "kexihaha_pose_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "kexihaha_yan"
+            attribute eyes2 :
+                "kexihaha_yan2"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1 default:
+                "kexihaha_zui"

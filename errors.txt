@@ -2,13 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/options.rpy", line 304: The always statement can only have one displayable, two found.
-    attribute title default:
-                    ^
+File "game/options.rpy", line 722: expected statement.
+    xzoom 0.2
+           ^
 
-File "game/options.rpy", line 308: The always statement can only have one displayable, two found.
-    attribute title default:
-                    ^
+File "game/options.rpy", line 723: expected statement.
+    yzoom 0.2
+           ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu Apr 20 17:30:49 2023
+Sun Apr 23 20:30:40 2023
