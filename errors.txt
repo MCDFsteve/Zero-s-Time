@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/options.rpy", line 722: expected statement.
-    xzoom 0.2
-           ^
-
-File "game/options.rpy", line 723: expected statement.
-    yzoom 0.2
-           ^
+File "game/rpy/chapters/chapter3.rpy", line 2: Line is indented, but the preceding hide screen statement statement does not expect a block. Please check this line's indentation.
+    call disable_shortcut from _call_disable_shortcut_3
+    ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sun Apr 23 20:30:40 2023
+Thu Apr 27 20:53:33 2023

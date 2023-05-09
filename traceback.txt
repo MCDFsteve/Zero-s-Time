@@ -1,51 +1,32 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-Exception: DynamicImage 'gui/button/radio_[prefix_]foreground.webp': could not find image. ('gui/button/radio_insensitive_foreground.webp', 'gui/button/radio_foreground.webp', and 1 more.)
+After initialization, but before game start.
+  File "game/rpy/tips.rpy", line 1293, in prepare_screen
+    screen tips79:
+  File "game/rpy/tips.rpy", line 1293, in prepare
+    screen tips79:
+Exception: A screen named Tips7 does not exist.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
-    python hide:
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1131, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\python.py", line 1061, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
-    python hide:
-  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
-    ui.interact()
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ui.py", line 299, in interact
-    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 3810, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  [Previous line repeated 1 more time]
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\screen.py", line 456, in visit_all
-    self.child.visit_all(callback, seen=None)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 582, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 572, in visit_all
-    for d in self.visit():
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 778, in visit
-    self.find_target()
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 676, in find_target
-    raise Exception(error)
-Exception: DynamicImage 'gui/button/radio_[prefix_]foreground.webp': could not find image. ('gui/button/radio_insensitive_foreground.webp', 'gui/button/radio_foreground.webp', and 1 more.)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\bootstrap.py", line 277, in bootstrap
+    renpy.main.main()
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\main.py", line 660, in main
+    run(restart)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\main.py", line 95, in run
+    renpy.display.screen.prepare_screens()
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\screen.py", line 976, in prepare_screens
+    s.ast.prepare_screen()
+  File "game/rpy/tips.rpy", line 1293, in prepare_screen
+    screen tips79:
+  File "game/rpy/tips.rpy", line 1293, in prepare
+    screen tips79:
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\sl2\slast.py", line 1916, in prepare
+    raise Exception("A screen named {} does not exist.".format(self.target))
+Exception: A screen named Tips7 does not exist.
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.0.3.22090809
-彼零之时 alpha-v1.0.11
-Sun Apr 23 21:03:56 2023
+彼零之时 alpha-v1.0.18
+Fri May  5 20:16:02 2023
