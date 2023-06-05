@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/rpy/chapters/chapter3.rpy", line 2: Line is indented, but the preceding hide screen statement statement does not expect a block. Please check this line's indentation.
-    call disable_shortcut from _call_disable_shortcut_3
-    ^
+File "game/rpy/chapters/chapter4.rpy", line 552: expected statement.
+    repeat
+          ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu Apr 27 20:53:33 2023
+Thu Jun  1 16:48:44 2023

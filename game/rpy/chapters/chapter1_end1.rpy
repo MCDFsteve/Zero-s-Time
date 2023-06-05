@@ -16,7 +16,7 @@ label nowatch:
     "从小老师和家长都告诉我不能随便拿陌生人的东西。我可是铭记于心。"
     "一想到几分钟或者几小时或者几天后，随着手表的倒计时结束。{size=45}嘭！{/size}我连带着周围的同学一起被炸成碎片。我就倒吸一口凉气。"
     $ persistent.tips02 = True
-    "又或者是某一天的假日，认识的朋友发给我一张照片或者视频，然后问“这是你”吗，然后点开一看是我在看{a=showmenu:tips02}{color=#F18D7D}工口同人本{/color}{/a}的照片，或者是我其他什么事的私房照。"
+    "又或者是某一天的假日，认识的朋友发给我一张照片或者视频，然后问“这是你”吗，然后点开一看是我在看{a=showmenu:tips02}{color=#F18D7D}本子{/color}{/a}的照片，或者是我其他什么事的私房照。"
     #词典
      
     play sound "audio/tips.ogg"
@@ -54,10 +54,10 @@ label nowatch:
     scene bg_school_basketball
     with fade
     "一边欣赏着校内的景色一边寻找我所在班级的教学楼。"
-    "穿过篮球场再走过桥应该就是了。"
+    "校内种植了好多植被。"
     play sound suzu
     suzu "咚~咚~"
-    "伴随着清脆的铃声一起。我感觉到了地面的震动。但是这时的我刚走过桥。"
+    "伴随着清脆的铃声一起。我感觉到了地面的震动。"
     l "额！"
     scene bg_school_humans
     with dissolve
@@ -74,9 +74,9 @@ label nowatch:
     scene bg_school_soto
     with dissolve
     "还有一点比较好，可以透过一楼的窗户直接看到走廊外面的广场。"
-    "应该是叫广场吧。反正就是教学楼前面到大屏幕告示板之间的一块空地。走廊外面的人工种植的草地也可以直接看见。"
-    "大屏幕告示牌后面有一条人工河，通过桥梁连接着对岸的篮球场以及学校大门。"
-    "河对岸栽种的几颗桂花树也能看得清楚。只是这个季节已经没有桂花了。估计得明年春天才有的看了。"
+    "应该是叫广场吧。反正就是教学楼前面的一块空地。"
+    "风景还可以。"
+    "但是并不足让我能爱上上学。"
     scene bg_2_3
     with dissolve
     "学生都出去吃午饭了。上一节课的老师却还留在教室里。似乎还在整理教案。"
@@ -171,6 +171,7 @@ label nowatch:
     "是一个紫色头发的女孩子，梳着单马尾。本来是面无表情的，被老师点名以后看向了我，脸上挤出了一副营业式笑容。"
     "感觉有什么心事啊......"
     play music school fadeout 1.0 fadein 1.0
+    stop sound
     scene bg_tukue
     with fade
     "下课了。"
@@ -217,13 +218,13 @@ label nowatch:
     "我心里这么想着。"
     scene bg_kinoshita
     with dissolve
-    show kexi_pose at jin
+    show kexi_pose mono at jin
     with dissolve
     play music kexi fadeout 1.0 fadein 1.0
     voice v5
     x "那个...我就长话短说了。你，，，或者你的亲属。以前是否来过沁野市。"
     l "没有。"
-    show kexi_pose eyes2 mouth3 at jin
+    show kexi_pose mono eyes2 mouth3 at jin
     with dissolve
     "我果断否认。我一直是土生土长的芷柚市人。我的父母是。我的祖父母也是。"
     $ persistent.tips09 = True
@@ -240,7 +241,7 @@ label nowatch:
     l "怎么了？"
     "很奇怪为什么刚认识的同学会问我这种偏隐私的东西。"
     l "那个？我还不知道你的名字呢。"
-    show kexi_pose eyes1 mouth1 at jin
+    show kexi_pose mono eyes1 mouth1 at jin
     with dissolve
     "反正现在不问以后肯定也得问。我克服我的恐惧，礼貌性地问了一句。"
     voice v3
@@ -258,7 +259,7 @@ label nowatch:
     "不对。我为什么这么害怕被当成搭讪。桃花运这种东西不是越多越好吗？"
     "果然还是我的家里蹲之魂控制住了我的人格啊呜。"
     hide kexi_pose
-    show kexi_pose2 mouth1 at jin
+    show kexi_pose2 mono mouth1 at jin
     with dissolve
     voice v3
     x "嗯~明天见。真是不好意思占用了你很多时间..."
@@ -274,8 +275,10 @@ label nowatch:
     with dissolve
     play music sora fadeout 1.0 fadein 1.0
     "班长依然站在道路中间，仰望着天空。"
-    scene bg_schoolmae
+    play sound higurashi loop
+    scene bg_schoolmae yubi
     with fade
+    play sound run
     play music richang fadeout 1.0 fadein 1.0
     "出了校门。"
     "来的时候那个很可疑的摊位不见了。"
@@ -409,7 +412,7 @@ label nowatch:
      
 
 #词典
-    scene bg_gohan2
+    scene bg_gohan
     with dissolve
     "无法推脱。于是我帮着买饭。看着班长排着队帮我办理饭卡。不由得有一丝心动。"
     $ persistent.tips12 = True
@@ -546,7 +549,7 @@ label nowatch:
     c "你同桌就是一个哦~"
     "什么？故事厨竟在我身边！"
     scene bg_kinoshita
-    show kexi_pose at jin
+    show kexi_pose mono at jin
     show noko
     "我的同桌，也就是开学那天放学后找我搭讪的那个女生......"
     "什么搭讪...呸！我太看得起我自己了。这叫质问才对。"
@@ -698,7 +701,7 @@ label nowatch:
     "已经来不及了。整个画本被她抽了过去。"
     scene bg_tukue2
     with dissolve
-    show kexi_pose2 mouth1 at jin
+    show kexi_pose2 mono mouth1 at jin
     with dissolve
     $ persistent.tips28 = True
     voice v3
@@ -894,16 +897,17 @@ label nowatch:
     scene bg_none
     with fade
     "那一整天班长都没有再回来。"
-    scene bg_schoolmae
+    play sound higurashi loop
+    scene bg_schoolmae yubi
     with fade
     play music richang fadeout 1.0 fadein 1.0
     "下午放学后。我和覃可汐约定好在校门口“交货”。"
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     with dissolve
     l "好好照顾它哟！"
     "我如此告诫道。除了家里的电脑以外，这台掌机就是我最珍贵的伙伴了。"
     hide kexi_pose
-    show kexi_pose2 mouth4 at jin
+    show kexi_pose2 mono mouth4 at jin
     with dissolve
     voice v3
     x "嗯！我今晚通宵了明天就还你。"
@@ -917,7 +921,7 @@ label nowatch:
     "伴随着上课铃。覃可汐背着书包匆忙地冲了进来。"
     scene bg_tukue2
     with dissolve
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     play audio odoro
     with vpunch
     voice v3
@@ -928,11 +932,11 @@ label nowatch:
     nvle "我如此答道。感觉自己渐渐和其他人的距离变近了。"
     nvle "没有以前那样害怕和别人交谈了。这就是找到朋友的感觉吗？"
     nvl clear
-    show kexi_pose eyes3 mouth3 at jin
+    show kexi_pose mono eyes3 mouth3 at jin
     with dissolve
     voice v5
     x "啊啊啊谢谢！我跟你讲我昨天有个馆主一直打不过。克制我全队的属性。啊啊~"
-    show kexi_pose eyes5 at jin
+    show kexi_pose mono eyes5 at jin
     with dissolve
     voice v3
     x "打了几个小时都打不过！身上的钱全都输光啦！"
@@ -942,7 +946,7 @@ label nowatch:
     l "你还在上高中啊！你还要上学啊！"
     l "你这么搞，什么时候倒学校里了都不稀奇。"
     hide kexi_pose
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     with dissolve
     voice v3
     x "啊哈哈哈~对不起！下次不会了~"
@@ -954,7 +958,7 @@ label nowatch:
     "我突然想起了什么。"
     l "班长今天怎么没有来，你知道是什么原因吗？"
     hide kexi_pose2
-    show kexi_pose eyes2 at jin
+    show kexi_pose mono eyes2 at jin
     with dissolve
     "覃可汐一听。态度突然转变了。"
     "笑脸瞬间收了回去。"
@@ -997,7 +1001,8 @@ label nowatch:
 
 #词典
     w "这个组织一直致力于研究原子的数据化转换，传输和还原。在全球各地都有分部。其中最近的分部位于......"
-    scene bg_schoolmae
+    play sound higurashi loop
+    scene bg_schoolmae yubi
     with fade
     play music richang fadeout 1.0 fadein 1.0
     "放学了。"
@@ -1155,7 +1160,7 @@ label nowatch:
     "快上课的时候。班长终于来了。紧随其后的是覃可汐。"
     scene bg_tukue2
     with dissolve
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     play audio odoro
     with vpunch
     voice v1
@@ -1165,7 +1170,7 @@ label nowatch:
     x "那个......可不可以......"
     l "再让你玩一天对吧！"
     hide kexi_pose
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     with dissolve
     voice v1
     x "谢谢！"
@@ -1188,7 +1193,7 @@ label nowatch:
 #词典
     l "这是什么？"
     "第一次听到这个称谓。是什么活动的名字吗？"
-    show kexi_pose eyes3 mouth3 at jin
+    show kexi_pose mono eyes3 mouth3 at jin
     with dissolve
     $ persistent.tips35 = True
     voice v5
@@ -1204,7 +1209,7 @@ label nowatch:
 
 #词典
     hide kexi_pose
-    show kexi_pose2 mouth4 at jin
+    show kexi_pose2 mono mouth4 at jin
     with dissolve
     voice v5
     x "我打算去出cos！你也要来吗？来的话我就顺便把游戏机带了在漫展还给你吧！"
@@ -1223,7 +1228,7 @@ label nowatch:
      
 
 #词典
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     voice v3
     x "好！那......星期六我们在校门口集合吧!"
     voice v3
@@ -1244,10 +1249,10 @@ label nowatch:
 #词典
     l "但是。"
     l "我不知道我可以cos什么。而且明天的话我也来不及准备cos服了吧。"
-    show kexi_pose2 mouth2 at jin
+    show kexi_pose2 mono mouth2 at jin
     voice v3
     x "嗯......这确实是个问题......"
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     voice v3
     x "不过没关系！你就来帮我提包.....你就来陪我们一起逛就行！"
     "喂！绝对是说漏嘴了什么对吧！"
@@ -1492,9 +1497,9 @@ label nowatch:
     scene bg_none
     with fade
     play sound "audio/hasai.ogg"
-    play music "music/dead.ogg" fadeout 1.0 fadein 1.0
+    play music omou fadeout 1.0 fadein 1.0
     with vpunch
-    "嘭！"
+    nan "嘭！"
     "猛烈的一阵巨响！"
     "发生了什么？我猛地一抬头。"
     scene bg_kexi_shiru at shake:
@@ -1511,27 +1516,33 @@ label nowatch:
     "叶梓澄叫着。"
     c "覃可汐......"
     c "覃可汐她......"
-    "这一切发生的过于突然。"
-    "刚刚还生龙活虎的覃可汐..."
-    "头部被一个花盆砸中了。"
-    "倒在了地上。"
-    "身体开始淌出鲜红的血来......."
-    "我被吓得愣在了原地。"
-    "叶梓澄也是，直接呆在了原地。"
-    "路过的行人也停住了脚步，朝这边看过来。"
-    "办公室和教学楼里的同学也纷纷探出头来。"
-    "时间仿佛凝固了。"
-    "凝固了。"
-    "我脸上没有表情。因为我已经吓得不敢做出任何其他动作了。"
-    "手中的扫把不知道何时自己倒在了地上。是什么时候松手的也不知道了。"
-    "覃可汐...她......"
+    nvle "这一切发生的过于突然。"
+    nvle "刚刚还生龙活虎的覃可汐..."
+    nvl clear
+    nvle "头部被一个花盆砸中了。"
+    nvle "倒在了地上。"
+    nvle "身体开始淌出鲜红的血来......."
+    nvl clear
+    nvle "我被吓得愣在了原地。"
+    nvle "叶梓澄也是，直接呆在了原地。"
+    nvle "路过的行人也停住了脚步，朝这边看过来。"
+    nvl clear
+    nvle "办公室和教学楼里的同学也纷纷探出头来。"
+    nvle "时间仿佛凝固了。"
+    nvle "凝固了。"
+    nvl clear
+    nvle "我脸上没有表情。因为我已经吓得不敢做出任何其他动作了。"
+    nvle "手中的扫把不知道何时自己倒在了地上。是什么时候松手的也不知道了。"
+    nvle "覃可汐...她......"
+    nvl clear
     "一个离的最近的男老师穿过围观的人群走了过来。"
     s "大家！不要围观！不要围观！有序回到教室！"
     "然后拿出手机开始拨打急救电话。"
     c "林洛......覃可汐她......"
-    "叶梓澄带着哭腔朝着我喊道。"
-    "但我还是一动也不敢动。"
-    "再次想起来昨晚的梦境。"
+    nvle "叶梓澄带着哭腔朝着我喊道。"
+    nvle "但我还是一动也不敢动。"
+    nvle "再次想起来昨晚的梦境。"
+    nvl clear
     scene bg_mizu
     show noko
     with fade
@@ -1550,7 +1561,7 @@ label nowatch:
     "如果我没有准时到教室。是不是就不会这样了。"
     scene bg_none
     with fade2
-    play music "music/dead.ogg" fadeout 1.0 fadein 1.0
+    play music omou fadeout 1.0 fadein 1.0
     "我这样想着。周围视野逐渐没入黑暗。周围的喧闹声和叶梓澄的哭喊声也逐渐消失在我的脑海。"
     "都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错..."
     "都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错..."
@@ -1570,17 +1581,17 @@ label nowatch:
     "为什么......为什么刚好......"
     "回想着这一切的一切。"
     scene bg_tukue2
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     show noko
     with fade2
     "今天早上，覃可汐还在用着灿烂的笑容跟我在打招呼。"
     scene bg_tukue2
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     show noko
     with fade2
     "今天早上，覃可汐还在邀请我明天去参加ChieAnime。"
     scene bg_tukue2
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     show noko
     with fade2
     "覃可汐借的游戏机也还没来得及亲手还我......"
@@ -1612,7 +1623,7 @@ label nowatch:
     with dissolve
     "我站在警戒线外面，看着地面上的血迹和粉笔画的线条。"
     "不知道看了多久。班长过来了。"
-    show zicheng_pose1 eyes2 mouth4 at jin
+    show zicheng_pose1 mono eyes2 mouth4 at jin
     with dissolve
     voice v3
     c "林洛......回去吧......"
@@ -1675,16 +1686,21 @@ label nowatch:
     "家里只有我一个人。"
     scene bg_kuruma_matu
     with fade
+    show screen ame
+    with dissolve
     play sound ame loop fadeout 1.0 fadein 1.0
     "我拿着雨伞出了门。"
     "因为一醒来外面就一直下着大雨。"
     "连苍天都对覃可汐的死感到可惜吗......"
     "今天的公交车来的格外的慢。等了差不多半个小时才有车过来。"
+    hide screen ame
     scene bg_none
     with fade
     car "{color=#C1394F}尊敬的旅客您好！沁野市高级中学站到了！请各位旅客有序下车！谢谢！{/color}"
-    scene bg_schoolmae
+    scene bg_schoolmae ame
     with fade
+    show screen ame
+    with dissolve
     "下车了。"
     show zicheng_2
     with dissolve
@@ -1692,6 +1708,7 @@ label nowatch:
     "手里拿着一把花束。"
     c "走吧~"
     "叶梓澄没有多说什么。只说了这两个字。"
+    hide screen ame
     scene bg_none
     with fade
     "我们拦了一辆出租车。目的地就是覃可汐的家。葬礼举办的地方。"
@@ -1703,15 +1720,12 @@ label nowatch:
     "叶梓澄终于开口了。"
     scene bg_kexihome
     with fade
+    show screen ame
+    with dissolve
     "我右脚踏出车外，目视着周围。"
     "覃可汐的房子是很古朴的红砖平房。这样来看其实家境并不是很好。"
     "可以理解为什么当初覃可汐会抱怨家里人不给她买游戏机了。"
-    "房子里外都很喧闹。来的人很多。大部分都是中年人和老人。应该都是覃可汐的亲戚。"
-    "由于还是白天，所以负责敲锣打鼓的仪仗队并没有来。"
-    "从二楼阳台拉到对面楼房二楼阳台的遮雨布，构成了一个很大的“帐篷”。"
-    "覃可汐的亲属们就是在这个“帐篷”底下布置桌椅，招揽宾客。"
-    "几个小孩已经开始等上菜了。"
-    "但我和叶梓澄此行目的并不是吃酒。"
+    "大概是因为还是白天，来的人很少。大部分都是中年人和老人。应该都是覃可汐的亲戚。"
     $ persistent.tips43 = True
     "叶梓澄把拿的花束分给了我一半。然后带我到了房子的{a=showmenu:tips43}{color=#F18D7D}堂屋{/color}{/a}。"
     #词典
@@ -1724,11 +1738,12 @@ label nowatch:
      
 
 #词典
+    hide screen ame
     scene bg_kexi_syashin
     with dissolve
     $ persistent.cg15_unlocked = True
     play music sora fadeout 1.0 fadein 1.0
-    "房间正中央放着一座棺材。棺材前面则堆满了花束和花圈。"
+    "房间正中央放着覃可汐永远安息的地方：棺木。前面则堆满了花束和花圈。"
     "以及......覃可汐的遗像。是她暑假在河边拍摄的照片。"
     "照片上的她穿着白色连衣裙，笑得很灿烂。"
     "只是这笑容永远地定格了。"
@@ -1753,6 +1768,8 @@ label nowatch:
     "我和叶梓澄正打算坐着来的出租车离开。一个中年妇女拦住了我。"
     "林洛？你就是林洛对吧！"
     scene bg_kexihome
+    with dissolve
+    show screen ame
     with dissolve
     l "啊？"
     "回头一看。"
@@ -1788,6 +1805,7 @@ label nowatch:
     voice v3
     m "请你......把这个东西拿回去吧！"
     "我接过了游戏机。"
+    hide screen ame
     scene bg_none
     with fade
     play sound ame loop fadeout 1.0 fadein 1.0
@@ -1870,7 +1888,7 @@ label nowatch:
     "刚这样想着。"
     stop sound
     play sound "audio/kuruma.ogg"
-    play music "music/dead.ogg" fadeout 1.0 fadein 1.0
+    play music omou fadeout 1.0 fadein 1.0
     with vpunch
     "嘭！！！！！！！！！！！！"
     "！！！！！！！！！！！！！！！！！！！！！！"
@@ -1909,6 +1927,7 @@ label nowatch:
     "可以稍微......休息一会了......"
     ".............."
     "......."
+    stop sound
     play music "music/home.ogg" fadeout 1.0 fadein 1.0
     "呼！~"
     scene bg_byouin
@@ -1916,28 +1935,28 @@ label nowatch:
     "看着陌生的天花板。再次醒来时发现自己身处医院。"
     c "啊？林洛你醒了！"
     "旁边传来一阵女声。"
-    show zicheng_pose1 eyes4 mouth1 at jin
+    show zicheng_pose1 mono eyes4 mouth1 at jin
     with dissolve
     "是班长。"
     l "班长......我这是......"
-    show zicheng_pose1 mouth5 at jin
+    show zicheng_pose1 mono mouth5 at jin
     with dissolve
     voice v3
     c "你先躺下，慢慢来别急。"
-    show zicheng_pose1 mouth3 at jin
+    show zicheng_pose1 mono mouth3 at jin
     with dissolve
     voice v3
     c "你出车祸了。我是来看望你的。"
     l "是吗......医生怎么说？"
     hide zicheng_pose1
-    show zicheng_pose2 mouth1 other2 other1 at jin
+    show zicheng_pose2 mono mouth1 other2 other1 at jin
     with dissolve
     voice v1
     c "额...那个......"
     "有了不好的预感。"
     "大概已经猜到了。"
     hide zicheng_pose2
-    show zicheng_pose1 mouth3 eyes3 at jin
+    show zicheng_pose1 mono mouth3 eyes3 at jin
     with dissolve
     voice v3
     c "其他一切正常。就是你的腿...可能以后必须坐轮椅了......"
@@ -1945,24 +1964,24 @@ label nowatch:
     "为什么？为什么我会这么倒霉！？"
     "不过......至少捡回了一条命不是吗？"
     l "班长...我逐渐理解你了。"
-    show zicheng_pose1 mouth5 other2 at jin
+    show zicheng_pose1 mono mouth5 other2 at jin
     play audio odoro
     with vpunch
     c "？"
     l "接二连三的挫折。既然没有打倒我，那我就必须继续走下去，人生的这条道路。"
     l "班长你也是这么想的对吧！"
     hide zicheng_pose1
-    show zicheng_pose2 eyes2 mouth1 at jin
+    show zicheng_pose2 mono eyes2 mouth1 at jin
     with dissolve
     c "嗯..."
     "班长微微点了点头。"
     l "啊！那个...对了！"
     l "我大概躺了多久？"
     hide zicheng_pose2
-    show zicheng_pose1 eyes5 at jin
+    show zicheng_pose1 mono eyes5 at jin
     with dissolve
     c "已经两个星期了..."
-    show zicheng_pose1 mouth3 at jin
+    show zicheng_pose1 mono mouth3 at jin
     with dissolve
     voice v3
     c "林洛......那个......我有一事相求！"
@@ -1984,14 +2003,14 @@ label nowatch:
     "我大惑不解。"
     l "参考在沁野市的第一次投放是什么意思？"
     scene bg_byouin
-    show zicheng_pose1 eyes7 at jin
+    show zicheng_pose1 mono eyes7 at jin
     with dissolve
     play music speak fadeout 1.0 fadein 1.0
     voice v1
     c "字面意思！"
     "班长解释道。"
     hide zicheng_pose1
-    show zicheng_pose2 eyes2 at jin
+    show zicheng_pose2 mono eyes2 at jin
     with dissolve
     voice v3
     c "这个所谓的“武器”。会产生一种类似辐射的东西。并不会直接作用于人体。"
@@ -2001,7 +2020,7 @@ label nowatch:
     hide zicheng_pose2
     with dissolve
     "班长似乎也知道很晦涩难懂。又转身从包里拿出来一本被牛皮包裹的笔记本。"
-    show zicheng_pose1 eyes3 mouth3 at jin
+    show zicheng_pose1 mono eyes3 mouth3 at jin
     with dissolve
     show note:
       xcenter 0.2
@@ -2023,7 +2042,7 @@ label nowatch:
     hide note
     with dissolve
     voice v5
-    c "但是跟AADR不同。我父亲确确实实好几年前就已经成功实现了把物体的构成物质，原子进行拆分重组来构成了一种新的物质粒子，这种新的物质粒子，可以进行存储和还原，并且支持以光速进行运动。"
+    c "但是跟AADR不同。我父亲确确实实好几年前就已经成功实现了把物体再构成物质，原子进行拆分重组来构成了一种新的物质粒子，这种新的物质粒子，可以进行存储和还原，并且支持以光速进行运动。"
     $ persistent.tips45 = True
     voice v5
     c "我父亲将物质的原子分解成的这种新创造的物质粒子，命名为“{a=showmenu:tips45}{color=#F18D7D}零子{/color}{/a}”。由于零子的物理性质之一是具有吸收特定波长的能力，所以肉眼可以观测到其是一种黑白相间，呈漂浮碎屑状的物质。"
@@ -2037,7 +2056,7 @@ label nowatch:
 
 #词典
     hide zicheng_pose1
-    show zicheng_pose2 eyes2 at jin
+    show zicheng_pose2 mono eyes2 at jin
     with dissolve
     voice v3
     c "零子是一种梦幻般的物质，我父亲如此形容它。这个宇宙上，只要是由原子作为基本物质结构而构造而形成的物质，都能转换成零子。"
@@ -2100,7 +2119,7 @@ label nowatch:
     c "更高维度的零子对本维度的干涉可以比喻为蓄积水蒸气引发的降水，对海平面的干涉。"
     l "也就是说，这台时间刻校正仪的功能，就像是在海平面上修筑了一座可以把水蒸气蒸发到天空中的蒸发炉对吧！"
     scene bg_byouin
-    show zicheng_pose1 eyes3 mouth3 at jin
+    show zicheng_pose1 mono eyes3 mouth3 at jin
     with dissolve
     voice v5
     c "实际上这也是我看了父亲的笔记本以后才知道的。父亲秘密制造了这台仪器。但我找不到任何关于制造这台仪器有关的信息。"
@@ -2108,7 +2127,7 @@ label nowatch:
     c "也不知道这台机器的注入零子的具体运作原理，恐怕只有我父亲本人才知道了。"
     voice v3
     c "或许是有不得已的原因，父亲从来没有告诉过我。但或许已经告诉过我的母亲。"
-    show zicheng_pose1 eyes6 mouth4 at jin
+    show zicheng_pose1 mono eyes6 mouth4 at jin
     with dissolve
     voice v3
     c "你知道的吧。我父亲出事之前，是我的母亲先被杀害。"
@@ -2119,7 +2138,7 @@ label nowatch:
     nvle "班长显得非常冷静。这跟我内心深处的班长形象有所不同。"
     nvl clear
     hide zicheng_pose1
-    show zicheng_pose2 eyes2 at jin
+    show zicheng_pose2 mono eyes2 at jin
     with dissolve
     voice v3
     c "我怀疑是AADR趁我母亲独自在外的时候杀害了她。不管是意外还是一开始就动手。"
@@ -2130,16 +2149,21 @@ label nowatch:
     voice v3
     c "杀害方式很可能是....."
     "班长顿了一顿，继续说道。"
-    show zicheng_pose2 eyes2 mouth1 other2 at jin
+    show zicheng_pose2 mono eyes2 mouth1 other2 at jin
     with dissolve
     voice v5
     c "丢入了转换成零子的仪器，然后将我父亲转换成的零子注入了时间刻校正仪。"
     l "也就是将你父亲身体转换成的零子注入了更高维度是吧。"
     "我插话道。"
-    show zicheng_pose2 eyes2 mouth2 at jin
+    show zicheng_pose2 mono eyes2 mouth2 at jin
     with dissolve
     voice v5
     c "嗯！证据就是，我接到警察电话去领我父亲遗体的时候，只看到了一只手臂。手臂断口处残留着零子。"
+    l "我记得是找到手臂以后就举办了葬礼了对吧！"
+    l "但是为什么只找到手臂就断定你父亲已经遇害了呢？"
+    voice v3
+    c "是我父亲在留下了的笔记里写的：如果找不到我父亲，或者找到的只是身体的一部分，就默认已经去世了。"
+    l "是吗....."
     l "所以注入到更高维度的零子对我们所处纬度的干涉到底是什么？"
     voice v3
     c "我父亲并没有在我找到的这个笔记本里写出。但是我推测是："
@@ -2149,7 +2173,7 @@ label nowatch:
     c "因为，沁野市自从我父亲遇害以后。从覃可汐开始，意外事故不断发生。"
     voice v3
     c "覃可汐也好，你也好，都是受了这个影响。"
-    show zicheng_pose2 eyes2 mouth1 other2 at jin
+    show zicheng_pose2 mono eyes2 mouth1 other2 at jin
     with dissolve
     voice v5
     c "实际上在你住院以后两个星期之间，沁野市至少又发生了七起意外事故。涉及到车祸，火灾和楼房坍塌。"
@@ -2158,17 +2182,17 @@ label nowatch:
     voice v3
     c "再加上AADR亲口出面承认沁野市目前的处境是AADR所为。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes3 mouth3 at jin
+    show zicheng_pose1 mono eyes3 mouth3 at jin
     with dissolve
     voice v3
     c "更加坚定了我的说法！"
     l "如果是往更高维度注入零子影响我们所处的维度的话。那为什么只有沁野市受到了影响？不应该是全世界都受影响吗？"
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     voice v3
     c "不是这样的。我推测零子所注入的那层更高维度，平行浮于我们所处的维度之上。"
     hide zicheng_pose1
-    show zicheng_pose2 eyes2 at jin
+    show zicheng_pose2 mono eyes2 at jin
     with dissolve
     c "简要解释就是："
     voice v3
@@ -2180,7 +2204,7 @@ label nowatch:
     voice v3
     c "就像积雨云越大，降水的范围越大一样。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes4 mouth1 at jin
+    show zicheng_pose1 mono eyes4 mouth1 at jin
     with dissolve
     voice v3
     c "不过幸运的是。林洛你所在的这个医院似乎并不在所影响的范围内！"
@@ -2195,7 +2219,7 @@ label nowatch:
     l "你的父母已经被杀害了对吧！覃可汐也是，还有如今沁野市的处境。"
     l "所以怎么才能拯救？"
     l "难不成回溯时间？"
-    show zicheng_pose1 eyes4 at jin
+    show zicheng_pose1 mono eyes4 at jin
     play audio odoro
     with vpunch
     voice v1
@@ -2205,13 +2229,13 @@ label nowatch:
     l "怎么做？"
     "虽然感到很震惊。但我还是选择相信叶梓澄，以及她父亲的研究成果。"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "需要做两件事。"
     voice v3
     c "对抗AADR。以及。"
-    show zicheng_pose2 other2 at jin
+    show zicheng_pose2 mono other2 at jin
     with dissolve
     voice v3
     c "制造时间机器。"
@@ -2221,7 +2245,7 @@ label nowatch:
       xcenter 0.2
       ycenter 0.3
     with dissolve
-    show zicheng_pose2 eyes2 at jin
+    show zicheng_pose2 mono eyes2 at jin
     with dissolve
     voice v3
     c "没错！我父亲的这个笔记本里也记载了关于时间机器的构想。"
@@ -2257,14 +2281,14 @@ label nowatch:
     voice v3
     c "你可以理解成，我们所处纬度是一辆轿车，更高那层维度则是一辆货车..."
     hide zicheng_pose2
-    show zicheng_pose1 mouth5 other1 at jin
+    show zicheng_pose1 mono mouth5 other1 at jin
     play audio odoro
     with vpunch
     voice v3
     c "啊对不起......揭起你的伤疤了...我换一个比喻..."
     l "啊没事的......你继续说就行了..."
     hide zicheng_pose1
-    show zicheng_pose2 mouth3 at jin
+    show zicheng_pose2 mono mouth3 at jin
     with dissolve
     voice v3
     c "那好吧林洛，我继续了。"
@@ -2293,7 +2317,7 @@ label nowatch:
     c "但是这样的可以回到的过去的时间是不可控的。甚至可以说是只能固定回到某个时间段。但是如果进行光速运动的话。"
     c "就能找准时机不断拉开高纬度和我们所处维度的时间差距，然后实现精准地控制时间的回溯位置。"
     scene bg_byouin
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     l "但是怎么注入和抽出零子呢？"
     l "只有时间刻校正仪可以做到。但是机器已经被抢走了。"
@@ -2314,7 +2338,7 @@ label nowatch:
     voice v3
     c "阻止AADR拿到关于我父亲的研究数据！"
     hide zicheng_pose2
-    show zicheng_pose1 eyes2 mouth4 at jin
+    show zicheng_pose1 mono eyes2 mouth4 at jin
     with dissolve
     voice v3
     c "我只能想到这个方法了！林洛！你愿意帮我吗？"
@@ -2333,7 +2357,7 @@ label nowatch:
     nvle "这就当作是我的赎罪吧！"
     nvl clear
     l "我愿意帮你！！不仅是为了覃可汐，也是为了整个沁野市，整个世界的存亡！"
-    show zicheng_pose1 eyes2 mouth1 at jin
+    show zicheng_pose1 mono eyes2 mouth1 at jin
     with dissolve
     voice v1
     c "好！！！"
@@ -2445,7 +2469,7 @@ label nowatch:
     hide hold_watch
     with dissolve
     hide linluo_pose
-    show linluo_pose pose2 other2 at jin
+    show linluo_pose pose2 mono2 other2 at jin
     with dissolve
     voice v3
     l "老板这表多少钱？"
@@ -2458,13 +2482,13 @@ label nowatch:
     with vpunch
     "等等！"
     "还不可以！"
-    show linluo_pose eyes2 mouth1 other1 other2 at jin
+    show linluo_pose mono1 eyes2 mouth1 other1 other2 at jin
     play audio odoro
     with vpunch
     "我又上前抓住了他的手。"
     "去找叶梓澄！"
     "这是我最后的提示了。也是我最后能说出口的几个字了。"
-    show linluo_pose pose2 eyes2 mouth1 other2 at jin
+    show linluo_pose pose2 mono2 eyes2 mouth1 other2 at jin
     with dissolve
     voice v3
     l "叶梓澄......我认识他吗？"

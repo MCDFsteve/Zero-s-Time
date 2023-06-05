@@ -95,6 +95,12 @@ style frame:
 ##
 ## https://www.renpy.cn/doc/screen_special.html#say
 #手表
+transform watch_center2:
+         xcenter 0.1+0.82
+         ycenter 0.1
+         linear 1.0 alpha 0.5
+         linear 1.0 alpha 0.0
+         repeat
 transform watch_center:
          xcenter 0.1+0.82
          ycenter 0.1
@@ -138,6 +144,8 @@ screen watch:
 screen watch_loop1:
     imagebutton idle "gui/watch.webp" hover "gui/watch_on.webp" at watch_center hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
       action Jump("loop1_true")
+    add "gui/watch_kira.webp":
+        at watch_center2
     text "[years]" size 30 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
        at year
     text "{b}[times]{/b}" size 65 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
@@ -149,6 +157,8 @@ screen watch_loop1:
 screen watch_loop2:
     imagebutton idle "gui/watch.webp" hover "gui/watch_on.webp" at watch_center hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
       action Jump("loop2_true")
+    add "gui/watch_kira.webp":
+        at watch_center2
     text "[years]" size 30 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
        at year
     text "{b}[times]{/b}" size 65 font "Cubic-11-1.000-R-2.ttf" color "#ffffff":
@@ -176,6 +186,9 @@ screen watch_ui:
         imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action Return()
 screen loop1_screen:
+    add "gui/loop_bg.webp" at shake
+    add "gui/nvl.webp"
+    add "gui/watch_bg2.webp"
     add "gui/watch_bg.webp"
     add "loop_d":
        at year2
@@ -184,12 +197,26 @@ screen loop1_screen:
     add "loop_w":
        at week2
 screen loop2_screen:
+    add "gui/loop_bg.webp" at shake
+    add "gui/nvl.webp"
+    add "gui/watch_bg2.webp"
     add "gui/watch_bg.webp"
     add "loop2_d":
        at year2
     add "loop2_t":
        at _time2
     add "loop2_w":
+       at week2
+screen loop3_screen:
+    add "gui/loop_bg.webp" at shake
+    add "gui/nvl.webp"
+    add "gui/watch_bg2.webp"
+    add "gui/watch_bg.webp"
+    add "loop3_d":
+       at year2
+    add "loop3_t":
+       at _time2
+    add "loop3_w":
        at week2
 screen say(who, what):
     key "game_menu" action ShowMenu("game_menu")

@@ -448,6 +448,7 @@ label chapter2:
     nvle "也就是说，必须在今天就开始行动了。不然怎么都来不及了。"
     nvle "但是我除了知道叶梓澄的父亲会死以外，没有其他任何情报了。"
     nvle "得先找叶梓澄了解一下情况。"
+    nvl clear
     play sound suzu
     $ times = "15:00"
     scene bg_tukue
@@ -618,8 +619,9 @@ label chapter2:
     "叶梓澄用强硬的语气向我质问道。"
     "这种语气和我所认识的知书达理的叶梓澄完全不同。就像变了一个人一样。"
     l "呃！"
+    play sound odoro
     scene bg_zicheng_yaru
-    with dissolve
+    with vpunch
     "叶梓澄用双手抓住了我的左右手，将我推倒在墙上。"
     "强有力的手劲让我无法动弹。"
     with vpunch
@@ -735,16 +737,16 @@ label chapter2:
     "怀着各种疑惑，终于等到了放学。"
     scene bg_tukue2
     with dissolve
-    show zicheng_pose1 at jin
+    show zicheng_pose1 mono at jin
     with dissolve
     "叶梓澄主动走到我的座位旁边。"
     voice v3
     c "林洛！事情去校门口谈吧。我也有很多事情需要向你了解。"
     hide zicheng_pose1
-    show zicheng_pose1 at jin:
+    show zicheng_pose1 mono at jin:
         xcenter 0.3
     with dissolve
-    show kexi_pose eyes4 at jin:
+    show kexi_pose mono eyes4 at jin:
         xcenter 0.6
     play audio odoro
     $ times = "17:31"
@@ -754,14 +756,14 @@ label chapter2:
     voice v3
     x "哇哦！班长你这是要跟转校生去约会了吗？好快的进展！"
     hide kexi_pose
-    show kexi_pose2 mouth4 at jin:
+    show kexi_pose2 mono mouth4 at jin:
         xcenter 0.6
     with dissolve
     voice v3
     x "没看出来呢！原来班长是这么主动的人！"
     "旁边的覃可汐凑过来打岔了。"
     hide zichceng_pose1
-    show zicheng_pose1 eyes4 mouth5 other2 at jin:
+    show zicheng_pose1 mono eyes4 mouth5 other2 at jin:
         xcenter 0.3
     with dissolve
     hide zicheng1_shadow
@@ -770,7 +772,7 @@ label chapter2:
     voice v5
     c "覃可汐并不是你想的这样的！我和林洛是有事情要谈。嗯.......没错！要商量关于校内各种公共设施，以及校规的事情。"
     hide zicheng_pose1
-    show zicheng_pose2 mouth3 other1 at jin:
+    show zicheng_pose2 mono mouth3 other1 at jin:
         xcenter 0.3
     with dissolve
     voice v5
@@ -784,16 +786,16 @@ label chapter2:
     "覃可汐识趣地离开了，但总感觉她似乎误会了什么。"
     hide zicheng_pose2
     $ times = "17:32"
-    show zicheng_pose1 mouth3 at jin
+    show zicheng_pose1 mono mouth3 at jin
     with dissolve
     voice v1
     c "走吧！"
     $ times = "17:42"
-    scene bg_schoolmae
+    scene bg_schoolmae yubi
     with fade
     "出校门口的时候，天空已经渐渐被染上了橘红色。"
     play music speak fadein 1.0 fadeout 1.0
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     voice v3
     c "林洛。来继续之前的话题吧！"
@@ -808,7 +810,7 @@ label chapter2:
     "我在脑海中搜索着记忆。"
     "并没有过。毕竟这涉及到个人隐私，我不可能没有任何理由地开口询问，对方也没有任何理由要告诉我。"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     $ times = "17:43"
     voice v5
@@ -826,7 +828,7 @@ label chapter2:
     c "原子的数据化转换和传输。"
     $ times = "17:44"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     $ persistent.tips23 = True
     voice v3
@@ -879,7 +881,7 @@ label chapter2:
     l "这不就是AADR正在干的事吗？"
     l "在未来的某节物理课上，老师提到过这个组织！"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "没错！所以我怀疑正是AADR把我父亲抓走了。"
@@ -888,7 +890,7 @@ label chapter2:
     voice v3
     c "我去父亲的研究所查看的时候，发现大门都被撬开了。研究所里面的器材，要么消失了，要么被弄坏了。"
     hide zicheng_pose2
-    show zicheng_pose2 other2 at jin
+    show zicheng_pose2 mono other2 at jin
     with dissolve
     $ times = "17:45"
     voice v3
@@ -902,7 +904,7 @@ label chapter2:
     l "在未来，电视会报道AADR会在电视发表他们的最新研究成果。"
     l "这个研究成果，看来就是掠夺的你父亲的研究成果没跑了。"
     hide zicheng_pose2
-    show zicheng_pose1 mouth3 at jin
+    show zicheng_pose1 mono mouth3 at jin
     with dissolve
     voice v1
     c "我有考虑到过。"
@@ -910,7 +912,7 @@ label chapter2:
     c "问题是，我的父亲现在到底身在何方。"
     l "我记得AADR在全世界都有分部。你有调查过，AADR离这里最近的分部是哪儿吗？"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v1
     c "就在芷柚市。"
@@ -921,27 +923,27 @@ label chapter2:
     l "但是，在未来发现你父亲的遗体的地方应该是沁野市的警察才对。"
     "问题变得棘手了起来。"
     hide zicheng_pose2
-    show zicheng_pose1 at jin
+    show zicheng_pose1 mono at jin
     with dissolve
     voice v3
     c "林洛。你知道在未来，警察发现我父亲遗体的地方在哪吗？"
     "这个我确实不知道。"
     l "你父亲失踪前，没有在研究所内留下什么提示信息吗？"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "留下提示信息？这确实像我父亲的作风。"
     voice v1
     c "那............"
     hide zicheng_pose2
-    show zicheng_pose1 mouth1 at jin
+    show zicheng_pose1 mono mouth1 at jin
     play audio odoro
     with vpunch
     voice v3
     c "现在我带你去我父亲的研究所找找吧！"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v1
     c "但是在那之前。"
@@ -953,7 +955,8 @@ label chapter2:
     $ times = "17:47"
     voice v5
     c "如果是肉体移动的话，同一时间内绝对会有两个你。如果是精神移动的话，则只存在你一个。"
-    l "精神上的移动，其实更接近于游戏里的“读档”。"
+    voice v3
+    c "精神上的移动，其实更接近于游戏里的“读档”。"
     l "那我应该是精神上的移动吧。在我经历车祸以后，回到了刚入学进校门的那一刻。"
     voice v3
     c "问题就是，支持你进行时间移动的载体。是什么。"
@@ -969,13 +972,13 @@ label chapter2:
     c "我甚至怀疑，你的存在就是我父亲留的一手。"
     l "啊这不可能吧......你的意思是，我之所以可以从未来回到现在，都是得益于你父亲？"
     hide zicheng_pose2
-    show zicheng_pose1 mouth3 at jin
+    show zicheng_pose1 mono mouth3 at jin
     with dissolve
     $ times = "17:48"
     voice v1
     c "大概吧。"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "你身上，有没有什么可疑的物品？"
@@ -996,17 +999,17 @@ label chapter2:
     l "在我刚入学的时候，也就是今天上午。"
     l "校门口有个摆摊的残疾人，硬塞给了我这块手表。"
     hide zicheng_pose2
-    show zicheng_pose2 other2 at jin
+    show zicheng_pose2 mono other2 at jin
     with dissolve
     voice v1
     c "处处都很可疑呢......"
     l "难道这个摆摊的摊主就是你的父亲？"
     hide zicheng_pose2
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     play sound odoro
     with vpunch
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     voice v3
     c "啊......我不清楚。但是有这个可能。"
@@ -1015,7 +1018,7 @@ label chapter2:
     "说着，我指了指旁边的一块地方。"
     l "他就是在这里摆摊的。但是这个时候已经不见了。"
     $ times = "17:49"
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v1
     c "有监控吗？"
@@ -1105,7 +1108,7 @@ label chapter2:
     "没想到这个研究所的选址如此偏僻。从公路沿着一条小路分支一直爬到半山腰。"
     "研究所就掩藏在半山腰的山体下面。周围都是高大的树木。"
     l "这么隐蔽的吗？"
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "嗯。我父亲喜欢安静地进行研究。所以选在了这个远离喧嚣的地方。"
@@ -1120,7 +1123,7 @@ label chapter2:
     scene bg_kennkyuujya
     with dissolve
     l "所以AADR这个机构。这么暴力的吗？"
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     play music speak fadein 1.0 fadeout 1.0
@@ -1148,12 +1151,12 @@ label chapter2:
     "找找有什么可以提供帮助的线索。"
     "堆放研究资料的书架也侧翻在了地上。"
     "书架原本应该在的位置的墙后面，是一条像暗道一样的东西，楼梯直通地下。"
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v1
     c "完全被搜刮带走了呢。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 at jin
+    show zicheng_pose1 mono eyes7 at jin
     with dissolve
     voice v5
     c "这个书架上，原本是密密麻麻堆放着父亲的研究资料......以及......我最喜欢看的小说......"
@@ -1161,7 +1164,7 @@ label chapter2:
     c "全部被带走了。"
     l "这......"
     hide zicheng_pose1
-    show zicheng_pose2 at jin:
+    show zicheng_pose2 mono at jin:
         xcenter 0.35
     with dissolve
     voice v3
@@ -1178,7 +1181,7 @@ label chapter2:
     c "我查看的时候什么都没有，就算里面原本有什么，也肯定被AADR的人拿走了吧。"
     l "也对。但是进去看看或许可以有什么可以提供帮助的线索。"
     hide zicheng_pose2
-    show zicheng_pose1 mouth3 at jin
+    show zicheng_pose1 mono mouth3 at jin
     with dissolve
     voice v1
     c "那走吧。"
@@ -1201,7 +1204,7 @@ label chapter2:
     l "看来有价值的资料都被AADR带走了呢。"
     l "可能你的父亲，并没有来得及留下什么。"
     $ times = "18:42"
-    show zicheng_pose1 eyes7 at jin
+    show zicheng_pose1 mono eyes7 at jin
     with dissolve
     voice v1
     c "也许是吧。"
@@ -1218,7 +1221,7 @@ label chapter2:
     c "嗯。"
     l "这说明，AADR还是花了一番功夫才进到研究所内。"
     hide zicheng_pose1
-    show zicheng_pose2 mouth1 at jin
+    show zicheng_pose2 mono mouth1 at jin
     with dissolve
     voice v3
     c "我父亲一般在室内进行研究的时候，大门都不会锁，只会轻掩。"
@@ -1226,12 +1229,12 @@ label chapter2:
     with vpunch
     l "是因为你母亲的事情吧。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth5 at jin
+    show zicheng_pose1 mono eyes7 mouth5 at jin
     with vpunch
     c "你知道我母亲的事情？"
     l "一个星期前，你的母亲被人杀害了。对吧。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth4 at jin
+    show zicheng_pose1 mono eyes7 mouth4 at jin
     with dissolve
     "叶梓澄叹了口气。"
     voice v3
@@ -1242,7 +1245,7 @@ label chapter2:
     l "或许正是你母亲的去世，让你的父亲嗅到了一点风声。"
     $ times = "18:44"
     hide zicheng_pose1
-    show zicheng_pose2 eyes2 at jin
+    show zicheng_pose2 mono eyes2 at jin
     with dissolve
     voice v3
     c "我父亲平时都是准时回家的。但自从我母亲遇害以后，只到父亲失踪前，都整天只呆在实验室里面了。"
@@ -1250,19 +1253,19 @@ label chapter2:
     voice v3
     c "或许是。不，一定是！我父亲一定是想在AADR找上门前搏一搏。"
     hide zicheng_pose2
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     l "但是目前的情况，你父亲多年的研究成果似乎都被AADR拿走了呢。"
     l "如果你父亲要留下线索的话。你觉得会留在哪？"
     voice v3
     c "现在这个情况，室内已经被弄得一团糟了。就算线索留在里面，很可能也会被AADR发现。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes4 mouth3 at jin
+    show zicheng_pose1 mono eyes4 mouth3 at jin
     with vpunch
     voice v1
     c "！！"
     hide zicheng_pose1
-    show zicheng_pose1 eyes4 mouth1 at jin
+    show zicheng_pose1 mono eyes4 mouth1 at jin
     with dissolve
     voice v3
     c "我好像有头绪了！"
@@ -1301,7 +1304,7 @@ label chapter2:
     "叶梓澄说着，从草丛里拿出一个透明塑封袋。"
     scene bg_kennkyuujya
     with dissolve
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     show rejibukuro:
         xcenter 0.2
@@ -1372,15 +1375,25 @@ label chapter2:
     with tipsanime
 #词典
     l "还有......+1维度又是什么东西？零子又是什么？"
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     voice v3
     c "零子我听我父亲跟我说过！"
     voice v3
     c "是我父亲给“由原子再构成而来的可以进行光速运动的特殊粒子”取的名字。"
-    l "所以，这个零子，就是你父亲的研究成果吗？"
+    $ persistent.tips45 = True
+    l "所以，这个{a=showmenu:tips45}{color=#F18D7D}零子{/color}{/a}，就是你父亲的研究成果吗？"
+    #词典
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "对！但是有一点我比较不理解。"
@@ -1389,10 +1402,10 @@ label chapter2:
     voice v3
     c "但是我的父亲却一直没有公布研究成果。并且这几年的研究也没有再跟我说过了。"
     hide zicheng_pose2
-    show zicheng_pose2 eyes2 mouth1 other2 at jin
+    show zicheng_pose2 mono eyes2 mouth1 other2 at jin
     with dissolve
     voice v3
-    c "倒不如说，我父亲从三年前的某一天开始，就变得很奇怪，简直像换了一个人。"
+    c "倒不如说，我父亲从一年前的某一天开始，就变得很奇怪，简直像换了一个人。"
     l "或许答案就藏在这本研究笔记里吧！"
     $ times = "18:58"
     scene bg_none
@@ -1435,19 +1448,20 @@ label chapter2:
         ypos -290
         linear 1.0 ypos -290-290
     nvle "所以。如果某一天你无法联系到我了，请不要来找我了。"
+    nvle "如果在无法联系我很久以后,或者找到了我身体的一部分,请默认我已经遇害了吧!希望能给我办一场葬礼。"
     nvle "我爱你。我亲爱的女儿。"
-    nvle "所以我留下了这本笔记。希望你可以继承我的研究。从这页开始，记录的是关于制造对抗AADR的武器的理论方面的研究成果。"
     nvl clear
     $ times = "19:05"
     show bg_note_kami:
         ypos -290-290
         linear 1.0 ypos -290-290-500
+    nvle "所以我留下了这本笔记。希望你可以继承我的研究。从这页开始，记录的是关于制造对抗AADR的武器的理论方面的研究成果。"
     nvle "希望能对你有所帮助。"
     nvle "永远爱你的，爸爸。"
     nvl clear
     scene bg_kennkyuujya_naka
     with dissolve
-    show zicheng_pose1 eyes2 mouth4 at jin
+    show zicheng_pose1 mono eyes2 mouth4 at jin
     with dissolve
     voice v1
     c "父亲......"
@@ -1494,7 +1508,7 @@ label chapter2:
     with dissolve
     scene bg_kennkyuujya_naka
     with dissolve
-    show zicheng_pose1 eyes2 at jin
+    show zicheng_pose1 mono eyes2 at jin
     with dissolve
     voice v3
     c "这是？时间机器的制作原理？"
@@ -1502,14 +1516,14 @@ label chapter2:
     "我内心既是震惊也是害怕。但同时还有点莫名兴奋。"
     "心中的中二病之魂要燃烧了。"
     hide zicheng_pose1
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     voice v3
     c "父亲......原来您一直瞒着我们，一直在默默研究着这么伟大的东西吗？"
     "叶梓澄擦去了脸上的泪水。"
     l "所以，对抗AADR的武器，指的就是时间机器？"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "如果是因为我母亲被害，导致的我父亲的研究项目被泄露给AADR的话。"
@@ -1543,7 +1557,7 @@ label chapter2:
     l "但是那个摊主只给了我手表，什么指示都没有告诉我啊！"
     l "说是说了。但是只说了，让我去找叶梓澄！让我去找你！"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     voice v3
     c "那个摊主是这么说的吗？"
@@ -1557,7 +1571,7 @@ label chapter2:
     c "这种计划，也就只有提出时间机器原理的我父亲可以想到了。"
     l "那现在开始，我们需要做什么来改变未来。"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "我想想......现在这种情况......"
@@ -1570,7 +1584,7 @@ label chapter2:
     $ times = "19:24"
     l "这应该怎么调查手表？拆卸？"
     hide zicheng_pose2
-    show zicheng_pose2 mouth3 at jin
+    show zicheng_pose2 mono mouth3 at jin
     with dissolve
     "班长突然摆出了一脸嫌弃的表情。"
     voice v3
@@ -1579,13 +1593,13 @@ label chapter2:
     c "如果你认为我们现在的技术可以足够做到拆卸未来科技并组装回来的话，你可以试试。"
     l "这......感觉很难做到。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth4 at jin
+    show zicheng_pose1 mono eyes7 mouth4 at jin
     with dissolve
     voice v3
     c "如果真的把时间机器弄坏了。那就完蛋了。死局了。"
     "叶梓澄摆正了语气，说道。"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "我认为，既然是时间机器，就应该不是只能使用一次。"
@@ -1598,8 +1612,18 @@ label chapter2:
     c "可能是一直在检测某种数值，一旦发现数值异常就启动什么的。当然并不排除手表本身有一个倒计时。"
     voice v3
     c "你只是恰好在倒计时的时候出车祸了而已。"
+    $ persistent.tips90 = True
     voice v5
-    c "而且，单纯靠这块手表很难想象能在短时间内将整个身躯转换成零子。当然，未来的科技谁知道呢？说不定已经可以把完整的时间机器做到西卡之石的大小了。"
+    c "而且，单纯靠这块手表很难想象能在短时间内将整个身躯转换成零子。当然，未来的科技谁知道呢？说不定已经可以把完整的时间机器做到{a=showmenu:tips90}{color=#F18D7D}西卡之石{/color}{/a}的大小了。"
+    #词典
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     voice v5
     c "不过，在你出车祸的时候的那些伤痕，都消失了这一点来看，这个手表很可能只是传输了关键的信息。说不定是传输了你的意识送回过去的身体里了。"
     voice v3
@@ -1620,7 +1644,7 @@ label chapter2:
      
 #词典
     hide zicheng_pose2
-    show zicheng_pose1 mouth1 at jin
+    show zicheng_pose1 mono mouth1 at jin
     with dissolve
     $ persistent.tips64 = True
 
@@ -1639,14 +1663,24 @@ label chapter2:
     voice v3
     c "没想到你也是个很有趣的人呢~就像覃可汐一样。"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v5
     c "根据大致推测出来的结果。你的手表可能就是这个运行原理。但是究竟怎么样。很可能得再使用一次手表的机能才行了。"
     play music sora fadein 1.0 fadeout 1.0
     l "覃可汐......."
     l "是啊，我最初的目的就是想改变覃可汐死亡的未来。"
-    l "但是了解到了这么多东西以后。我开始担心。覃可汐会不会受到世界线收束的影响了。"
+    $ persistent.tips91 = True
+    l "但是了解到了这么多东西以后。我开始担心。覃可汐会不会受到{a=showmenu:tips91}{color=#F18D7D}世界线收束{/color}{/a}的影响了。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+#词典
     l "我想救覃可汐，但是......会受到世界线收束吗？"
     "叶梓澄认真思考了一会。"
     play music speak fadein 1.0 fadeout 1.0
@@ -1656,7 +1690,7 @@ label chapter2:
     voice v3
     c "你想拯救覃可汐的心情我可以理解。"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth4 at jin
+    show zicheng_pose1 mono eyes7 mouth4 at jin
     with dissolve
     play music sora fadein 1.0 fadeout 1.0
     $ times = "19:28"
@@ -1665,7 +1699,7 @@ label chapter2:
     voice v3
     c "但是现在，处于一个不上不下的境地。"
     hide zicheng_pose1
-    show zicheng_pose2 eyes2 mouth1 at jin
+    show zicheng_pose2 mono eyes2 mouth1 at jin
     with dissolve
     voice v3
     c "AADR已经带走了我的父亲。所以就算救了覃可汐。未来也不会有多大改变了。"
@@ -1676,7 +1710,7 @@ label chapter2:
     c "但是我觉得，既然AADR能在未来用我父亲的研究成果造福人类。那未来的人怎么会坚持造出时间机器回到现在，并给你一块能回到过去的手表呢？"
     "叶梓澄有条不紊地推理着。不愧是科研工作者的女儿啊~"
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 at jin
     with dissolve
     $ times = "19:30"
     voice v3
@@ -1685,7 +1719,7 @@ label chapter2:
     c "反正我是不相信一个靠武力绑架杀害科学家的人，会做对人类有利的事情！"
     l "那班长，你有什么能够破局的方法吗？"
     hide zicheng_pose1
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     with dissolve
     voice v3
     c "确实有，但是有风险。"
@@ -1727,7 +1761,7 @@ label chapter2:
     c "因为这都是为了保证未来时间的走向跟你经历过的一致，才能保证还原手表的回到过去的机能。如果覃可汐没有死，可能会由于各种蝴蝶效应，导致下周一的车祸不会出现。"
     l "这.........."
     hide zicheng_pose2
-    show zicheng_pose1 eyes7 at jin
+    show zicheng_pose1 mono eyes7 at jin
     with dissolve
     $ times = "19:33"
     voice v5
@@ -1763,7 +1797,17 @@ label chapter2:
     nvle "但是万一蝴蝶效应，导致最后未来朝着更坏的方向发展了。"
     nvle "从长远来看，避免叶梓澄的父亲被AADR抓走，比救覃可汐......更重要......似乎是这样的......"
     nvl clear
-    "啊！好复杂！大脑要宕机了！"
+    $ persistent.tips66 = True
+    "啊！好复杂！大脑要{a=showmenu:tips66}{color=#F18D7D}宕机{/color}{/a}了！"
+    #词典
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     play music sora fadein 1.0 fadeout 1.0
     $ times = "19:40"
     nvle "覃可汐做错了什么，而我又做错了什么，要再看一遍覃可汐的死去。"
@@ -1788,7 +1832,7 @@ label chapter2:
     with fade
     show screen watch
     with dissolve
-    show zicheng_pose1 at jin
+    show zicheng_pose1 mono at jin
     with dissolve
     voice v1
     c "林洛...你考虑好了吗？"
@@ -1810,14 +1854,14 @@ label disagree:
     l "至少，能让我心里图个安稳。"
     $ times = "19:45"
     hide zicheng_pose1
-    show zicheng_pose1 eyes2 mouth4 at jin
+    show zicheng_pose1 mono eyes2 mouth4 at jin
     with dissolve
     voice v1
     c "林洛......"
     voice v3
     c "你......跟我道歉个什么劲啊？......"
     hide zicheng_pose1
-    show zicheng_pose1 eyes4 mouth4 at jin
+    show zicheng_pose1 mono eyes4 mouth4 at jin
     with dissolve
     "叶梓澄擦了擦眼角。"
     voice v3
@@ -1868,6 +1912,7 @@ label disagree:
     nvle "但是这个办法或许有点带逃避的色彩了。"
     nvl clear
     nvle "如果调走了覃可汐，那周五的值日谁来做？花盆会不会最后砸在被交换的值日生身上？"
+    nvl clear
     $ times = "07:25"
     x "林洛！你来这么早！"
     x "真是个爱学习的好孩子呢？"
@@ -2609,9 +2654,9 @@ label disagree:
     $ times = "17:40"
     show screen watch
     with dissolve
-    scene bg_schoolmae
+    scene bg_schoolmae yubi
     with fade2
-    show zicheng_pose1 eyes2 mouth4 at jin
+    show zicheng_pose1 mono eyes2 mouth4 at jin
     with dissolve
     voice v3
     c "林洛...覃可汐她.....又...."
@@ -2625,14 +2670,14 @@ label disagree:
     voice v3
     c "林洛......"
     hide zicheng_pose1
-    show zicheng_pose1 eyes2 mouth5 other2 at jin
+    show zicheng_pose1 mono eyes2 mouth5 other2 at jin
     with dissolve
     voice v5
     c "林洛.......你先别责备自己......覃可汐只是被送往了医院......说不定......只是受了伤而已......"
     l "希望是这样......"
     $ times = "17:42"
     hide zicheng_pose1
-    show zicheng_pose1 eyes2 mouth1 other2 at jin
+    show zicheng_pose1 mono eyes2 mouth1 other2 at jin
     with dissolve
     voice v3
     c "那就这样吧！明天我们一起去医院看望覃可汐吧！顺便了解一下详细情况！"
@@ -3137,7 +3182,7 @@ label agree:
     play music school fadein 1.0 fadeout 1.0
     scene bg_tukue2
     with dissolve
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     with dissolve
     voice v3
     x "对了林洛！明天的ChieAnime你去吗？"
@@ -3260,10 +3305,10 @@ label agree:
     $ times = "17:44"
     show screen watch
     with dissolve
-    scene bg_schoolmae
+    scene bg_schoolmae yubi
     with fade
     "放学后和叶梓澄约好在校门口见面。"
-    show zicheng_pose1 eyes2 mouth4 at jin
+    show zicheng_pose1 mono eyes2 mouth4 at jin
     with dissolve
     voice v1
     c "林洛......"
@@ -3302,7 +3347,7 @@ label agree:
     l "怎么会呢？我坚信，这个世界是独一无二的。未来的我，将会和过去的你，再次相遇。"
     l "和过去的你相遇！不是别人！是独一无二的你啊！"
     hide zicheng_pose1
-    show zicheng_pose1 eyes2 mouth1 other2 at jin
+    show zicheng_pose1 mono eyes2 mouth1 other2 at jin
     with dissolve
     voice  v1
     c "林洛........"
@@ -3425,7 +3470,7 @@ label chapter2_5:
     play sound with1
     scene bg_kennkyuujya_naka
     with dissolve
-    show zicheng_pose2 at jin
+    show zicheng_pose2 mono at jin
     show noko
     voice v3
     c "所以，我希望你做的方法是："
@@ -3536,18 +3581,7 @@ label chapter2_5:
     play sound odoro
     with vpunch
     "什么.......这......"
-    $ persistent.tips66 = True
-    nvle "这个摊主突然的话，把我大脑搞{a=showmenu:tips66}{color=#F18D7D}宕机{/color}{/a}了。"
-    #词典
-     
-    play sound "audio/tips.ogg"
-    show screen tips_say
-    with dissolve
-    hide screen tips_say
-    with tipsanime
-     
-
-#词典
+    nvle "这个摊主突然的话，把我大脑搞宕机了。"
     nvl clear
     with vpunch
     l "等等.........你是..............我？"

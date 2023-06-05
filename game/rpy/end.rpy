@@ -5,7 +5,7 @@ transform end:
 image black = "#000"
 screen game_end():
        add "black"
-       zorder 102
+       #zorder 102
        vbox:
         ypos 0.0
         spacing 5
@@ -18,6 +18,11 @@ screen game_end():
           add "title/title2.webp":
             at end
           add "chapters/end2.webp":
+            at end
+        elif end == 0:
+          add "title/title2.webp":
+            at end
+          add "chapters/nise_end.webp":
             at end
         vbox:
           xcenter 0.5

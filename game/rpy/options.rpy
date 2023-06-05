@@ -1,4 +1,4 @@
-define config.version  = "alpha-v1.0.19.1"
+define config.version  = "alpha-v1.1.2"
 define audio.v1 = "voice/v1.ogg"
 define audio.v3 = "voice/v3.ogg"
 define audio.v5 = "voice/v5.ogg"
@@ -17,6 +17,7 @@ define audio.home = "music/home.ogg"
 define audio.title = "music/title.ogg"
 define audio.title2 = "music/title2.ogg"
 define audio.dead = "music/dead.ogg"
+define audio.omou = "music/omou.ogg"
 define audio.suzu = "audio/school_suzu.ogg"
 define audio.ketaisong = "audio/ketaisong.ogg"
 define audio.ketai3 = "audio/ketai3.ogg"
@@ -36,7 +37,14 @@ define audio.yousuru = "audio/yousuru.ogg"
 define audio.saku = "audio/saku.ogg"
 define audio.key = "audio/key.ogg"
 define audio.door = "audio/door.ogg"
+define audio.utusu = "audio/utusu.ogg"
 define audio.opendoor = "audio/opendoor.ogg"
+define audio.watch = "audio/watch.ogg"
+define audio.loop_bgm = "audio/loop_bgm.ogg"
+define audio.bilibili = "audio/bilibili.ogg"
+define audio.phone_ochiru = "audio/phone_ochiru.ogg"
+define audio.tatakai = "audio/tatakai.ogg"
+define audio.kamera = "audio/kamera.ogg"
 image zicheng1_shadow:
     "images/shadows/zicheng1_shadow.webp"
 image zicheng2_shadow:
@@ -45,6 +53,8 @@ image kexi1_shadow:
     "images/shadows/kexi1_shadow.webp"
 image kexi2_shadow:
     "images/shadows/kexi2_shadow.webp"
+image sensei1_shadow:
+    "images/shadows/sensei1_shadow.webp"
 image logo= At("title/logo.webp")
 image warning= Text("{b}本故事纯属虚构。\n与现实生活中任何个人或组织均无关联。\n游戏内包含的所有内容。\n均无存在影射任何现实事物的含义\n请勿主观带入。若由此带来不良后果，\n本游戏不承担任何连带责任。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
 image play= Text("{b}本游戏推荐外设设备：鼠标。\n使用鼠标游玩以获得最佳效果。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
@@ -705,6 +715,20 @@ image suduxian_:
         repeat
 screen suduxian:
     add "suduxian_"
+image ame_:
+        "anime/ame/1.webp"
+        0.05
+        "anime/ame/2.webp"
+        0.05
+        "anime/ame/3.webp"
+        0.05
+        "anime/ame/4.webp"
+        0.05
+        "anime/ame/5.webp"
+        0.05
+        repeat
+screen ame:
+    add "ame_" alpha 0.4
 label splashscreen:
     if persistent.chapter==1:
        $ config.main_menu_music = "music/title.ogg"

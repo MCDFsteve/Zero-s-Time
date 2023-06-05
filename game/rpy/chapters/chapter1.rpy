@@ -40,7 +40,7 @@ label chapter1:
     "公交车渐渐走远了，我的眩晕感也慢慢的减弱。我背着包，站在校门附近，四处端详我即将入学的这个新学校。"
     "沁野市高级中学。"
     "由于沁野市地方比较小，人口也不多，所以貌似公立高中就只有这一所。"
-    "虽然跟我之前读的那所学校比起来显得很小，但从外面看，篮球场和大屏幕公告板什么的至少还都有。就是不知道有没有游泳馆和室内羽毛球场。"
+    "虽然跟我之前读的那所学校比起来显得很小，但也还能接受。"
     "我是昨天才搬到这个城市来。实际上已经开学大概两个多星期了吧。"
     #image ceshi=At("images/测试.png")
     #scene ceshi
@@ -100,14 +100,13 @@ label havewatch:
     with dissolve
     "恶意揣测别人的好意是不对的。我就勉为其难的收下吧。特别是想到进入学校以后我的手机还得上缴。有一块手表也更方便看时间。"
     l "谢谢！"
-    show watch_off:
-      xcenter 0.2
-      ycenter 0.3
-    with dissolve
     "我接过了手表。是一块黑色的电子表。"
-    show watch_on:
-      xcenter 0.2
-      ycenter 0.3
+#手表
+    $ years = "2022.9.19"
+    $ times = "12:20"
+    $ weeks = _("周一")
+    #手表
+    show screen watch
     with dissolve
     "开机了。不过貌似仅仅只能显示时间。有点失望，还以为能玩玩俄罗斯方块什么的。虽然长得像个智能手表。但一点也不智能。"
     $ persistent.tips05 = True
@@ -123,8 +122,8 @@ label havewatch:
      
 #词典
 
-    hide watch_on
-    hide watch_off
+    hide screen watch
+    with dissolve
     l "老板这表多少钱？"
     "天上没有免费的午餐，有点担心老板是先交货后付款这类强买强卖。我还是试探性地问了问价钱。"
     voice v3
@@ -150,11 +149,7 @@ label havewatch:
     l "额？"
     "校门口保安不肯放我进去。最后打电话给我的新班主任确认了好半天以后才同意让我进学校。"
     "对这个学校的好感度-1。我在心里想着。"
-#手表
-    $ years = "2022.9.19"
     $ times = "12:27"
-    $ weeks = _("周一")
-    #手表
     show screen watch
     with dissolve
     "用刚得到的手表看了看时间。"
@@ -185,9 +180,9 @@ label havewatch:
     scene bg_school_soto
     with dissolve
     "还有一点比较好，可以透过一楼的窗户直接看到走廊外面的广场。"
-    "应该是叫广场吧。反正就是教学楼前面到大屏幕告示板之间的一块空地。走廊外面的人工种植的草地也可以直接看见。"
-    "大屏幕告示牌后面有一条人工河，通过桥梁连接着对岸的篮球场以及学校大门。"
-    "河对岸栽种的几颗桂花树也能看得清楚。只是这个季节已经没有桂花了。估计得明年春天才有的看了。"
+    "应该是叫广场吧。反正就是教学楼前面的一块空地。"
+    "风景还可以。"
+    "但是并不足让我能爱上上学。"
     scene bg_2_3
     with dissolve
     "学生都出去吃午饭了。上一节课的老师却还留在教室里。似乎还在整理教案。"
@@ -294,6 +289,7 @@ label havewatch:
     t "{cps=5}{size=50}去-找-叶-梓-澄！{/size}{/cps}"
     "叶梓澄跟校门口那位摊主是有什么关系吗？我计划着下课问问。"
     play music school fadeout 1.0 fadein 1.0
+    stop sound
     scene bg_tukue
     with fade
     $ times = "15:00"
@@ -324,10 +320,8 @@ label havewatch:
     l "哦对了。那个摊主给了我一块电子表。"
     hide screen watch
     with dissolve
-    show watch_look
-    with dissolve
     play music lanzhu fadeout 1.0 fadein 1.0
-    "我把手举起来把戴着的电子表展示给她看。"
+    "我把电子表展示给她看。"
     hide zicheng_pose1
     show zicheng_pose2 at jin
     with dissolve
@@ -343,8 +337,6 @@ label havewatch:
     "恐惧和不安涌上了心头。只有一个理由说得过去了。"
     "那位摊主可能是在等我出现。"
     "我看着我这块手表。愈发感到害怕。"
-    hide watch_look
-    with dissolve
     show screen watch
     with dissolve
     l "没事了。谢谢班长。"
@@ -413,14 +405,14 @@ label havewatch:
     "我心里这么想着。"
     scene bg_kinoshita
     with dissolve
-    show kexi_pose at jin
+    show kexi_pose mono at jin
     with dissolve
     play music kexi fadeout 1.0 fadein 1.0
     $ times = "17:41"
     voice v5
     x "那个...我就长话短说了。你，，，或者你的亲属。以前是否来过沁野市。"
     l "没有。"
-    show kexi_pose eyes2 mouth3 at jin
+    show kexi_pose mon mono eyes2 mouth3 at jin
     with dissolve
     "我果断否认。我一直是土生土长的芷柚市人。我的父母是。我的祖父母也是。"
     $ persistent.tips09 = True
@@ -438,7 +430,7 @@ label havewatch:
     l "怎么了？"
     "很奇怪为什么刚认识的同学会问我这种偏隐私的东西。"
     l "那个？我还不知道你的名字呢。"
-    show kexi_pose eyes1 mouth1 at jin
+    show kexi_pose mono eyes1 mouth1 at jin
     with dissolve
     "反正现在不问以后肯定也得问。我克服我的恐惧，礼貌性地问了一句。"
     voice v3
@@ -456,7 +448,7 @@ label havewatch:
     "不对。我为什么这么害怕被当成搭讪。桃花运这种东西不是越多越好吗？"
     "果然还是我的家里蹲之魂控制住了我的人格啊呜。"
     hide kexi_pose
-    show kexi_pose2 mouth1 at jin
+    show kexi_pose2 mono mouth1 at jin
     with dissolve
     voice v3
     x "嗯~明天见。真是不好意思占用了你很多时间..."
@@ -474,7 +466,8 @@ label havewatch:
     play music sora fadeout 1.0 fadein 1.0
     $ times = "17:45"
     "叶梓澄依然站在道路中间，仰望着天空。"
-    scene bg_schoolmae
+    play sound higurashi loop
+    scene bg_schoolmae yubi
     with fade
     play music lanzhu fadeout 1.0 fadein 1.0
     $ times = "17:47"
@@ -625,7 +618,7 @@ label havewatch:
     with tipsanime
      
 #词典
-    scene bg_gohan2
+    scene bg_gohan
     with dissolve
     $ times = "12:47"
     "无法推脱。于是我帮着买饭。看着班长排着队帮我办理饭卡。不由得有一丝心动。"
@@ -768,7 +761,7 @@ label havewatch:
     c "你同桌就是一个哦~"
     "什么？故事厨竟在我身边！"
     scene bg_kinoshita
-    show kexi_pose at jin
+    show kexi_pose mono at jin
     show noko
     "我的同桌，也就是开学那天放学后找我搭讪的那个女生......"
     "什么搭讪...呸！我太看得起我自己了。这叫质问才对。"
@@ -1149,12 +1142,12 @@ label havewatch:
     $ times = "17:41"
     play music richang fadeout 1.0 fadein 1.0
     "下午放学后。我和覃可汐约定好在校门口“交货”。"
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     with dissolve
     l "好好照顾它哟！"
     "我如此告诫道。除了家里的电脑以外，这台掌机就是我最珍贵的伙伴了。"
     hide kexi_pose
-    show kexi_pose2 mouth4 at jin
+    show kexi_pose2 mono mouth4 at jin
     with dissolve
     voice v3
     x "嗯！我今晚通宵了明天就还你。"
@@ -1171,7 +1164,7 @@ label havewatch:
     "伴随着上课铃。覃可汐背着书包匆忙地冲了进来。"
     scene bg_tukue2
     with dissolve
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     play audio odoro
     with vpunch
     $ times = "07:31"
@@ -1183,11 +1176,11 @@ label havewatch:
     nvle "我如此答道。感觉自己渐渐和其他人的距离变近了。"
     nvle "没有以前那样害怕和别人交谈了。这就是找到朋友的感觉吗？"
     nvl clear
-    show kexi_pose eyes3 mouth3 at jin
+    show kexi_pose mono eyes3 mouth3 at jin
     with dissolve
     voice v5
     x "啊啊啊谢谢！我跟你讲我昨天有个馆主一直打不过。克制我全队的属性。啊啊~"
-    show kexi_pose eyes5 at jin
+    show kexi_pose mono eyes5 at jin
     with dissolve
     voice v3
     x "打了几个小时都打不过！身上的钱全都输光啦！"
@@ -1197,7 +1190,7 @@ label havewatch:
     l "你还在上高中啊！你还要上学啊！"
     l "你这么搞，什么时候倒学校里了都不稀奇。"
     hide kexi_pose
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     with dissolve
     voice v3
     x "啊哈哈哈~对不起！下次不会了~"
@@ -1209,7 +1202,7 @@ label havewatch:
     "我突然想起了什么。"
     l "班长今天怎么没有来，你知道是什么原因吗？"
     hide kexi_pose2
-    show kexi_pose eyes2 at jin
+    show kexi_pose mono eyes2 at jin
     with dissolve
     "覃可汐一听。态度突然转变了。"
     "笑脸瞬间收了回去。"
@@ -1253,7 +1246,8 @@ label havewatch:
 
 #词典
     w "这个组织一直致力于研究原子的数据化转换，传输和还原。在全球各地都有分部。其中最近的分部位于......"
-    scene bg_schoolmae
+    play sound higurashi loop
+    scene bg_schoolmae yubi
     with fade
     $ times = "17:43"
     play music richang fadeout 1.0 fadein 1.0
@@ -1423,7 +1417,7 @@ label havewatch:
     "快上课的时候。班长终于来了。紧随其后的是覃可汐。"
     scene bg_tukue2
     with dissolve
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     play audio odoro
     with vpunch
     voice v1
@@ -1434,13 +1428,13 @@ label havewatch:
     x "那个......可不可以......"
     l "再让你玩一天对吧！"
     hide kexi_pose
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     with dissolve
     voice v1
     x "谢谢！"
     "果然是这样。"
     hide kexi_pose2
-    show kexi_pose at jin
+    show kexi_pose mono at jin
     with dissolve
     $ persistent.tips34 = True
     voice v3
@@ -1457,7 +1451,7 @@ label havewatch:
 #词典
     l "这是什么？"
     "第一次听到这个称谓。是什么活动的名字吗？"
-    show kexi_pose eyes3 mouth3 at jin
+    show kexi_pose mono eyes3 mouth3 at jin
     with dissolve
     $ persistent.tips35 = True
     voice v5
@@ -1473,7 +1467,7 @@ label havewatch:
 
 #词典
     hide kexi_pose
-    show kexi_pose2 mouth4 at jin
+    show kexi_pose2 mono mouth4 at jin
     with dissolve
     voice v5
     x "我打算去出cos！你也要来吗？来的话我就顺便把游戏机带了在漫展还给你吧！"
@@ -1492,7 +1486,7 @@ label havewatch:
      
 
 #词典
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     voice v3
     x "好！那......星期六我们在校门口集合吧!"
     voice v3
@@ -1513,10 +1507,10 @@ label havewatch:
 #词典
     l "但是。"
     l "我不知道我可以cos什么。而且明天的话我也来不及准备cos服了吧。"
-    show kexi_pose2 mouth2 at jin
+    show kexi_pose2 mono mouth2 at jin
     voice v3
     x "嗯......这确实是个问题......"
-    show kexi_pose2 mouth3 at jin
+    show kexi_pose2 mono mouth3 at jin
     voice v3
     x "不过没关系！你就来帮我提包.....你就来陪我们一起逛就行！"
     "喂！绝对是说漏嘴了什么对吧！"
@@ -1776,10 +1770,10 @@ label havewatch:
     scene bg_none
     with fade
     play sound "audio/hasai.ogg"
-    play music "music/dead.ogg" fadeout 1.0 fadein 1.0
+    play music omou fadeout 1.0 fadein 1.0
     $ times = "12:56"
     with vpunch
-    "嘭！"
+    nan "嘭！"
     "猛烈的一阵巨响！"
     "发生了什么？我猛地一抬头。"
     scene bg_kexi_shiru at shake:
@@ -1797,27 +1791,33 @@ label havewatch:
     "叶梓澄叫着。"
     c "覃可汐......"
     c "覃可汐她......"
-    "这一切发生的过于突然。"
-    "刚刚还生龙活虎的覃可汐..."
-    "头部被一个花盆砸中了。"
-    "倒在了地上。"
-    "身体开始淌出鲜红的血来......."
-    "我被吓得愣在了原地。"
-    "叶梓澄也是，直接呆在了原地。"
-    "路过的行人也停住了脚步，朝这边看过来。"
-    "办公室和教学楼里的同学也纷纷探出头来。"
-    "时间仿佛凝固了。"
-    "凝固了。"
-    "我脸上没有表情。因为我已经吓得不敢做出任何其他动作了。"
-    "手中的扫把不知道何时自己倒在了地上。是什么时候松手的也不知道了。"
-    "覃可汐...她......"
+    nvle "这一切发生的过于突然。"
+    nvle "刚刚还生龙活虎的覃可汐..."
+    nvl clear
+    nvle "头部被一个花盆砸中了。"
+    nvle "倒在了地上。"
+    nvle "身体开始淌出鲜红的血来......."
+    nvl clear
+    nvle "我被吓得愣在了原地。"
+    nvle "叶梓澄也是，直接呆在了原地。"
+    nvle "路过的行人也停住了脚步，朝这边看过来。"
+    nvl clear
+    nvle "办公室和教学楼里的同学也纷纷探出头来。"
+    nvle "时间仿佛凝固了。"
+    nvle "凝固了。"
+    nvl clear
+    nvle "我脸上没有表情。因为我已经吓得不敢做出任何其他动作了。"
+    nvle "手中的扫把不知道何时自己倒在了地上。是什么时候松手的也不知道了。"
+    nvle "覃可汐...她......"
+    nvl clear
     "一个离的最近的男老师穿过围观的人群走了过来。"
     s "大家！不要围观！不要围观！有序回到教室！"
     "然后拿出手机开始拨打急救电话。"
     c "林洛......覃可汐她......"
-    "叶梓澄带着哭腔朝着我喊道。"
-    "但我还是一动也不敢动。"
-    "再次想起来昨晚的梦境。"
+    nvle "叶梓澄带着哭腔朝着我喊道。"
+    nvle "但我还是一动也不敢动。"
+    nvle "再次想起来昨晚的梦境。"
+    nvl clear
     scene bg_mizu
     show noko
     with fade
@@ -1836,7 +1836,7 @@ label havewatch:
     "如果我没有准时到教室。是不是就不会这样了。"
     scene bg_none
     with fade2
-    play music "music/dead.ogg" fadeout 1.0 fadein 1.0
+    play music omou fadeout 1.0 fadein 1.0
     "我这样想着。周围视野逐渐没入黑暗。周围的喧闹声和叶梓澄的哭喊声也逐渐消失在我的脑海。"
     "都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错..."
     "都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错...都是我的错..."
@@ -1857,17 +1857,17 @@ label havewatch:
     "为什么......为什么刚好......"
     "回想着这一切的一切。"
     scene bg_tukue2
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     show noko
     with fade2
     "今天早上，覃可汐还在用着灿烂的笑容跟我在打招呼。"
     scene bg_tukue2
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     show noko
     with fade2
     "今天早上，覃可汐还在邀请我明天去参加ChieAnime。"
     scene bg_tukue2
-    show kexi_pose mouth1 at jin
+    show kexi_pose mono mouth1 at jin
     show noko
     with fade2
     "覃可汐借的游戏机也还没来得及亲手还我......"
@@ -1903,7 +1903,7 @@ label havewatch:
     $ times = "17:34"
     "我站在警戒线外面，看着地面上的血迹和粉笔画的线条。"
     "不知道看了多久。班长过来了。"
-    show zicheng_pose1 eyes2 mouth4 at jin
+    show zicheng_pose1 mono eyes2 mouth4 at jin
     with dissolve
     voice v3
     c "林洛......回去吧......"
@@ -2036,16 +2036,21 @@ label come:
     "家里只有我一个人。"
     scene bg_kuruma_matu
     with fade
+    show screen ame
+    with dissolve
     play sound ame loop fadeout 1.0 fadein 1.0
     "我拿着雨伞出了门。"
     "因为一醒来外面就一直下着大雨。"
     "连苍天都对覃可汐的死感到可惜吗......"
     "今天的公交车来的格外的慢。等了差不多半个小时才有车过来。"
+    hide screen ame
     scene bg_none
     with fade
     car "{color=#C1394F}尊敬的旅客您好！沁野市高级中学站到了！请各位旅客有序下车！谢谢！{/color}"
-    scene bg_schoolmae
+    scene bg_schoolmae ame
     with fade
+    show screen ame
+    with dissolve
     $ times = "08:58"
     "下车了。"
     show zicheng_2
@@ -2054,6 +2059,7 @@ label come:
     "手里拿着一把花束。"
     c "走吧~"
     "叶梓澄没有多说什么。只说了这两个字。"
+    hide screen ame
     scene bg_none
     with fade
     "我们拦了一辆出租车。目的地就是覃可汐的家。葬礼举办的地方。"
@@ -2065,16 +2071,13 @@ label come:
     "叶梓澄终于开口了。"
     scene bg_kexihome
     with fade
+    show screen ame
+    with dissolve
     $ times = "09:26"
     "我右脚踏出车外，目视着周围。"
     "覃可汐的房子是很古朴的红砖平房。这样来看其实家境并不是很好。"
     "可以理解为什么当初覃可汐会抱怨家里人不给她买游戏机了。"
-    "房子里外都很喧闹。来的人很多。大部分都是中年人和老人。应该都是覃可汐的亲戚。"
-    "由于还是白天，所以负责敲锣打鼓的仪仗队并没有来。"
-    "从二楼阳台拉到对面楼房二楼阳台的遮雨布，构成了一个很大的“帐篷”。"
-    "覃可汐的亲属们就是在这个“帐篷”底下布置桌椅，招揽宾客。"
-    "几个小孩已经开始等上菜了。"
-    "但我和叶梓澄此行目的并不是吃酒。"
+    "大概是因为还是白天，来的人很少。大部分都是中年人和老人。应该都是覃可汐的亲戚。"
     $ persistent.tips43 = True
     "叶梓澄把拿的花束分给了我一半。然后带我到了房子的{a=showmenu:tips43}{color=#F18D7D}堂屋{/color}{/a}。"
     #词典
@@ -2087,11 +2090,12 @@ label come:
      
 
 #词典
+    hide screen ame
     scene bg_kexi_syashin
     with dissolve
     $ persistent.cg15_unlocked = True
     play music sora fadeout 1.0 fadein 1.0
-    "房间正中央放着一座棺材。棺材前面则堆满了花束和花圈。"
+    "房间正中央放着覃可汐永远安息的地方：棺木。前面则堆满了花束和花圈。"
     "以及......覃可汐的遗像。是她暑假在河边拍摄的照片。"
     "照片上的她穿着白色连衣裙，笑得很灿烂。"
     "只是这笑容永远地定格了。"
@@ -2117,6 +2121,8 @@ label come:
     "我和叶梓澄正打算坐着来的出租车离开。一个中年妇女拦住了我。"
     "林洛？你就是林洛对吧！"
     scene bg_kexihome
+    with dissolve
+    show screen ame
     with dissolve
     $ times = "09:41"
     l "啊？"
@@ -2156,6 +2162,7 @@ label come:
     with dissolve
     scene bg_none
     with fade
+    hide screen ame
     play sound ame loop fadeout 1.0 fadein 1.0
     "回去的路上，我看着手里拿的游戏机。"
     "这是我和覃可汐最后的回忆了。"
@@ -2248,7 +2255,7 @@ label chapter1_5:
     "时间一分一秒地过去了。公交车终于再次发动。"
     stop sound
     play sound "audio/kuruma.ogg"
-    play music "music/dead.ogg" fadeout 1.0 fadein 1.0
+    play music omou fadeout 1.0 fadein 1.0
     with vpunch
     "嘭！！！！！！！！！！！！"
     "！！！！！！！！！！！！！！！！！！！！！！"

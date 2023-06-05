@@ -5,13 +5,15 @@
 
 
 init 1 python:
-    c_TimeBacker( "loop", [   9, 21,  15,  42,  3,
+    c_TimeBacker( "loop", [   9, 20,  12,  52,  2,
                                     9, 19, 12, 40, 1, ])
     c_TimeBacker( "loop2", [   9, 19,  12,  42,  1,
-                                    9, 9, 12, 42, 5, ])
+                                    9, 9, 12, 42, 2, ])
+    c_TimeBacker( "loop3", [   9, 19,  12,  32,  1,
+                                    9, 9, 12, 32, 2, ])
 
 init python:
-
+    import math
 
     def c_TimeBacker(name: str, list):
         ## 构造器
@@ -23,7 +25,7 @@ init python:
      
     class TimeBacker:
         ## 定义一个包含天日时分周的待迭函数类(24h制)，至少大于1小时，周为对应1~7数字，月为对应1~12数字，不支持跨年(跨年不如从天数开始倒计时)
-
+        
         month = {   '1': 31,  '2': 28,  '3': 31,  '4': 30, 
                     '5': 31,  '6': 30,  '7': 31,   '8': 31, 
                     '9': 30, '10': 31, '11': 30, '12': 31, }
@@ -100,6 +102,7 @@ init python:
             elif self.dt < self.dmin:
                 self.x = 1
                 self.speed = 0.5
+            
 
             self.dt += self.x
             
@@ -132,6 +135,9 @@ init python:
                 return d, None
 
             else:
+                if self.dt > self.dmin - 2:
+                    self.nth = self.oth
+                    self.ntm = self.otm
                 d = Text("{:0>2.0f}:{:0>2.0f}".format(self.nth, self.ntm),bold=True, size=340,font="Cubic-11-1.000-R-2.ttf",color="#ffffff")
                 return d, self.speed
 

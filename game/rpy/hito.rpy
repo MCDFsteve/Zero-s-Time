@@ -1,4 +1,260 @@
+init -1:
+    layeredimage kexi_pose:
+        always:
+            "images/hito/kexi/cengdie/zishi1/zhuqugan.webp"
+        group pose:
+            attribute pose1 default:
+                "kexi_pose_def"
+        group mono:
+            attribute mono:
+                "kaban1"
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "kexi1_moren"
+            attribute eyes2:
+                "kexi1_heihua"
+            attribute eyes3:
+                "kexi1_heihua2"
+            attribute eyes4:
+                "kexi1_yihuo"
+            attribute eyes5:
+                "kexi1_leishui"
+                
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "kexi1_kaixin"
+            attribute mouth2 default:
+                "kexi1_nanguo"
+            attribute mouth3:
+                "kexi1_duqi"   
+    layeredimage kexi_pose2:
+        always:
+            "images/hito/kexi/cengdie/zishi2/zhuqugan.webp"
+        group pose:
+            attribute pose1 default:
+                "kexi2_pose_def"
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "kexi2_moren"
+        group mono:
+            attribute mono:
+                "kaban2"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "kexi2_kaixin"
+            attribute mouth2 default:
+                "kexi2_nanguo"
+            attribute mouth3:
+                "kexi2_maozui"
+            attribute mouth4:
+                "kexi2_xiaomao"
+    layeredimage zicheng_pose1:
+        always:
+            "images/hito/zicheng/cengdie/zishi1/zhuqugan.webp"
+        group pose:
+            attribute pose1 default:
+                "zicheng1_pose_def"
+                
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "zicheng1_zhengchang"
+            attribute eyes2:
+                "zicheng1_liulei"
+            attribute eyes3:
+                "zicheng1_yingan"
+            attribute eyes4:
+                "zicheng1_gaoguang"
+            attribute eyes5:
+                "zicheng1_heihua"
+            attribute eyes6:
+                "zicheng1_heihua_yingan"
+            attribute eyes7:
+                "zicheng1_zhoumei"
+        group other1:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute other1:
+                "zicheng1_han"
+        group other2:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute other2:
+                "zicheng1_lianhong"
+        group mono:
+            attribute mono:
+                "kaban3"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "zicheng1_weixiao"
+            attribute mouth2 default:
+                "zicheng1_nanguo"
+            attribute mouth3:
+                "zicheng1_wukou"
+            attribute mouth4:
+                "zicheng1_wunai"
+            attribute mouth5:
+                "zicheng1_xianqi"
+    layeredimage zicheng_pose2:
+        always:
+            "images/hito/zicheng/cengdie/zishi2/zhuqugan.webp"
+        group pose:
+            attribute pose1 default:
+                "zicheng2_pose_def"
+                
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "zicheng2_zhengchang"
+            attribute eyes2:
+                "zicheng2_wushen"
+        group other1:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute other1:
+                "zicheng2_han"
+        group other2:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute other2:
+                "zicheng2_heihua"
+        group mono:
+            attribute mono:
+                "kaban4"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "zicheng2_nanguo"
+            attribute mouth2 default:
+                "zicheng2_wukou"
+            attribute mouth3:
+                "zicheng2_xianqi"
+    layeredimage linluo_pose:
 
+        group pose:
+            attribute pose1 default:
+                "linluo_pose_def"
+            attribute pose2:
+                "linluo_pose2_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "linluo_moren"
+            attribute eyes2:
+                "linluo_dayan"
+        group other1:
+            attribute other1:
+                "linluo_yinan"
+        group other2:
+            attribute other2:
+                "linluo_liuhan"
+        group mono1:
+            attribute mono1:
+                "watch1"
+        group mono2:
+            attribute mono2:
+                "watch2"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "linluo_liezui"
+            attribute mouth2 default:
+                "linluo_wukou"
+    layeredimage linluo_old_pose:
+
+        group pose:
+            attribute pose1 default:
+                "linluo_old_pose_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "linluo_old_yan"
+        group other1:
+            attribute other1:
+                "linluo_old_hat"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1 default:
+                "linluo_old"
+    layeredimage sensei1_pose:
+
+        group pose:
+            attribute pose1 default:
+                "sensei1_pose_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "sensei1_yan"
+            attribute eyes2 :
+                "sensei1_yan2"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1 default:
+                "sensei1_zui"
+    layeredimage kexihaha_pose:
+
+        group pose:
+            attribute pose1 default:
+                "kexihaha_pose_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "kexihaha_yan"
+            attribute eyes2 :
+                "kexihaha_yan2"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1 default:
+                "kexihaha_zui"
+
+
+
+
+
+init -1:
+    image kaban1:
+        "images/hito/mono/kaban1.webp"
+    image kaban2:
+        "images/hito/mono/kaban2.webp"
+    image kaban3:
+        "images/hito/mono/kaban3.webp"
+    image kaban4:
+        "images/hito/mono/kaban4.webp"
+    image watch1:
+        "images/hito/mono/watch1.webp"
+    image watch2:
+        "images/hito/mono/watch2.webp"                 
 #覃可汐
 init -1 python:
     def kexi1_kaixin_(st, at):
@@ -185,40 +441,7 @@ init -1:
         "images/hito/kexi/cengdie/zishi1/zhuqugan.webp"
     #image zicheng_face_asm:
     #    "images/hito/zicheng/zicheng_kuchi1.webp"
-        
-    layeredimage kexi_pose:
-        always:
-            "images/hito/kexi/cengdie/zishi1/zhuqugan.webp"
-        group pose:
-            attribute pose1 default:
-                "kexi_pose_def"
-                
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "kexi1_moren"
-            attribute eyes2:
-                "kexi1_heihua"
-            attribute eyes3:
-                "kexi1_heihua2"
-            attribute eyes4:
-                "kexi1_yihuo"
-            attribute eyes5:
-                "kexi1_leishui"
-                
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1:
-                "kexi1_kaixin"
-            attribute mouth2 default:
-                "kexi1_nanguo"
-            attribute mouth3:
-                "kexi1_duqi"#动态显示组件
+        #动态显示组件
             #attribute mouse2 default:
                 #"zicheng_talk2_rtn"#动态显示组件2
 #################################################
@@ -341,32 +564,7 @@ init -1:
     #image zicheng_face_asm:
     #    "images/hito/zicheng/zicheng_kuchi1.webp"
         
-    layeredimage kexi_pose2:
-        always:
-            "images/hito/kexi/cengdie/zishi2/zhuqugan.webp"
-        group pose:
-            attribute pose1 default:
-                "kexi2_pose_def"
-                
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "kexi2_moren"
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1:
-                "kexi2_kaixin"
-            attribute mouth2 default:
-                "kexi2_nanguo"
-            attribute mouth3:
-                "kexi2_maozui"
-            attribute mouth4:
-                "kexi2_xiaomao"
+    
 #覃可汐
 ######################################################################
 #叶梓澄
@@ -610,54 +808,7 @@ init -1:
     #image zicheng_face_asm:
     #    "images/hito/zicheng/zicheng_kuchi1.webp"
         
-    layeredimage zicheng_pose1:
-        always:
-            "images/hito/zicheng/cengdie/zishi1/zhuqugan.webp"
-        group pose:
-            attribute pose1 default:
-                "zicheng1_pose_def"
-                
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "zicheng1_zhengchang"
-            attribute eyes2:
-                "zicheng1_liulei"
-            attribute eyes3:
-                "zicheng1_yingan"
-            attribute eyes4:
-                "zicheng1_gaoguang"
-            attribute eyes5:
-                "zicheng1_heihua"
-            attribute eyes6:
-                "zicheng1_heihua_yingan"
-            attribute eyes7:
-                "zicheng1_zhoumei"
-        group other1:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute other1:
-                "zicheng1_han"
-        group other2:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute other2:
-                "zicheng1_lianhong"
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1:
-                "zicheng1_weixiao"
-            attribute mouth2 default:
-                "zicheng1_nanguo"
-            attribute mouth3:
-                "zicheng1_wukou"
-            attribute mouth4:
-                "zicheng1_wunai"
-            attribute mouth5:
-                "zicheng1_xianqi"
+    
 #叶梓澄
 init -1 python:
     def zicheng2_nanguo_(st, at):
@@ -769,40 +920,7 @@ init -1:
         0.1
         repeat
 #yan睛黑化
-    layeredimage zicheng_pose2:
-        always:
-            "images/hito/zicheng/cengdie/zishi2/zhuqugan.webp"
-        group pose:
-            attribute pose1 default:
-                "zicheng2_pose_def"
-                
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "zicheng2_zhengchang"
-            attribute eyes2:
-                "zicheng2_wushen"
-        group other1:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute other1:
-                "zicheng2_han"
-        group other2:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute other2:
-                "zicheng2_heihua"
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1:
-                "zicheng2_nanguo"
-            attribute mouth2 default:
-                "zicheng2_wukou"
-            attribute mouth3:
-                "zicheng2_xianqi"
+    
 #林洛
 init -1 python:
     def linluo_wukou_(st, at):
@@ -898,36 +1016,7 @@ init -1:
         "images/hito/linluo/cengdie/zhuqugan.webp"
     image linluo_pose2_def:
         "images/hito/linluo/cengdie/zhuqugan2.webp"
-    layeredimage linluo_pose:
-
-        group pose:
-            attribute pose1 default:
-                "linluo_pose_def"
-            attribute pose2:
-                "linluo_pose2_def"
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "linluo_moren"
-            attribute eyes2:
-                "linluo_dayan"
-        group other1:
-            attribute other1:
-                "linluo_yinan"
-        group other2:
-            attribute other2:
-                "linluo_liuhan"
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1:
-                "linluo_liezui"
-            attribute mouth2 default:
-                "linluo_wukou"
+    
 #林洛老
 init -1 python:
     def linluo_old_(st, at):
@@ -980,27 +1069,7 @@ init -1:
         "images/hito/linluo_old/cengdie/lingjian_hat.webp"
     image linluo_old_pose_def:
         "images/hito/linluo_old/cengdie/zhuqugan.webp"
-    layeredimage linluo_old_pose:
-
-        group pose:
-            attribute pose1 default:
-                "linluo_old_pose_def"
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "linluo_old_yan"
-        group other1:
-            attribute other1:
-                "linluo_old_hat"
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1 default:
-                "linluo_old"
+    
 #女老师
 init -1 python:
     def sensei1_zui_(st, at):
@@ -1066,26 +1135,7 @@ init -1:
 #yan睛正常
     image sensei1_pose_def:
         "images/hito/sensei1/cengdie/zhuqugan.webp"
-    layeredimage sensei1_pose:
-
-        group pose:
-            attribute pose1 default:
-                "sensei1_pose_def"
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "sensei1_yan"
-            attribute eyes2 :
-                "sensei1_yan2"
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1 default:
-                "sensei1_zui"
+    
 #可汐妈
 init -1 python:
     def kexihaha_zui_(st, at):
@@ -1155,23 +1205,4 @@ init -1:
 #yan睛正常
     image kexihaha_pose_def:
         "images/hito/kexi_haha/cengdie/zhuqugan.webp"
-    layeredimage kexihaha_pose:
-
-        group pose:
-            attribute pose1 default:
-                "kexihaha_pose_def"
-        #group face:
-        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-        #    attribute hajimaru default:
-        #        "zicheng_face_asm"
-                
-        group eyes:
-            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute eyes1 default:
-                "kexihaha_yan"
-            attribute eyes2 :
-                "kexihaha_yan2"
-        group mouth:
-            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
-            attribute mouth1 default:
-                "kexihaha_zui"
+    
