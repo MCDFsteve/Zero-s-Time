@@ -1,4 +1,4 @@
-define config.version  = "alpha-v1.1.2"
+define config.version  = "beta-v1.0.4"
 define audio.v1 = "voice/v1.ogg"
 define audio.v3 = "voice/v3.ogg"
 define audio.v5 = "voice/v5.ogg"
@@ -18,6 +18,7 @@ define audio.title = "music/title.ogg"
 define audio.title2 = "music/title2.ogg"
 define audio.dead = "music/dead.ogg"
 define audio.omou = "music/omou.ogg"
+
 define audio.suzu = "audio/school_suzu.ogg"
 define audio.ketaisong = "audio/ketaisong.ogg"
 define audio.ketai3 = "audio/ketai3.ogg"
@@ -45,6 +46,13 @@ define audio.bilibili = "audio/bilibili.ogg"
 define audio.phone_ochiru = "audio/phone_ochiru.ogg"
 define audio.tatakai = "audio/tatakai.ogg"
 define audio.kamera = "audio/kamera.ogg"
+define audio.enter = "audio/enter.ogg"
+define audio.shindou = "audio/shindou.ogg"
+define audio.run_kai = "audio/run_kai.ogg"
+define audio.opendoor2 = "audio/opendoor2.ogg"
+define audio.hakusyu = "audio/hakusyu.ogg"
+define audio.umineko = "audio/umineko.ogg"
+define audio.umi = "audio/umi.ogg"
 image zicheng1_shadow:
     "images/shadows/zicheng1_shadow.webp"
 image zicheng2_shadow:
@@ -56,8 +64,8 @@ image kexi2_shadow:
 image sensei1_shadow:
     "images/shadows/sensei1_shadow.webp"
 image logo= At("title/logo.webp")
-image warning= Text("{b}本故事纯属虚构。\n与现实生活中任何个人或组织均无关联。\n游戏内包含的所有内容。\n均无存在影射任何现实事物的含义\n请勿主观带入。若由此带来不良后果，\n本游戏不承担任何连带责任。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
-image play= Text("{b}本游戏推荐外设设备：鼠标。\n使用鼠标游玩以获得最佳效果。{/b}",font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
+image warning= Text(_("{b}本故事纯属虚构。\n与现实生活中任何个人或组织均无关联。\n游戏内包含的所有内容。\n均无存在影射任何现实事物的含义\n请勿主观带入。若由此带来不良后果，\n本游戏不承担任何连带责任。{/b}"),font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
+image play= Text(_("{b}本游戏推荐外设设备：鼠标。\n使用鼠标游玩以获得最佳效果。{/b}"),font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
 image start= Text("{b}START{/b}", size=45,color="#000000")
 image hito_kotoba= Text("{font=Cubic-11-1.000-R-2.ttf}』{/font}{image=kotoba}{alt}kotoba{/alt}", size=45,color="#ffffff")
 image kotoba:

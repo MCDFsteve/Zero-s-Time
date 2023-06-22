@@ -47,6 +47,9 @@ label nowatch:
     with fade
     "跑到了校门口过检测的地方。回头看着摊主一脸惊恐的神色。心里感慨逃过一劫。"
     play music richang fadeout 1.0 fadein 1.0
+    show baoan_pose at jin
+    with dissolve
+    voice v3
     b "没见过你啊？哪个班的？"
     l "额？"
     "校门口保安不肯放我进去。最后打电话给我的新班主任确认了好半天以后才同意让我进学校。"
@@ -186,7 +189,7 @@ label nowatch:
     scene bg_2_3
     with dissolve
     "想尽情欣赏一下新学校的风景。"
-    scene bg_school_soto
+    scene bg_school_soto yubi
     with dissolve
     "嗯？有一个人站在两边种满桂花树的那条路上。" 
     scene bg_sorawomiru
@@ -218,13 +221,13 @@ label nowatch:
     "我心里这么想着。"
     scene bg_kinoshita
     with dissolve
-    show kexi_pose mono at jin
+    show kexi_pose mono yubi at jin
     with dissolve
     play music kexi fadeout 1.0 fadein 1.0
     voice v5
     x "那个...我就长话短说了。你，，，或者你的亲属。以前是否来过沁野市。"
     l "没有。"
-    show kexi_pose mono eyes2 mouth3 at jin
+    show kexi_pose mono eyes2 mouth3 yubi at jin
     with dissolve
     "我果断否认。我一直是土生土长的芷柚市人。我的父母是。我的祖父母也是。"
     $ persistent.tips09 = True
@@ -241,7 +244,7 @@ label nowatch:
     l "怎么了？"
     "很奇怪为什么刚认识的同学会问我这种偏隐私的东西。"
     l "那个？我还不知道你的名字呢。"
-    show kexi_pose mono eyes1 mouth1 at jin
+    show kexi_pose mono eyes1 mouth1 yubi at jin
     with dissolve
     "反正现在不问以后肯定也得问。我克服我的恐惧，礼貌性地问了一句。"
     voice v3
@@ -259,7 +262,7 @@ label nowatch:
     "不对。我为什么这么害怕被当成搭讪。桃花运这种东西不是越多越好吗？"
     "果然还是我的家里蹲之魂控制住了我的人格啊呜。"
     hide kexi_pose
-    show kexi_pose2 mono mouth1 at jin
+    show kexi_pose2 mono mouth1 yubi at jin
     with dissolve
     voice v3
     x "嗯~明天见。真是不好意思占用了你很多时间..."
@@ -1459,8 +1462,8 @@ label nowatch:
     "覃可汐微笑着向我打气。"
     "其实不需要做到如此地步的。不就是扫个地。"
     "我心里想着。"
-    scene bg_school_hiroba
-    $ persistent.cg11_unlocked = True
+    scene bg_school_hiroba_naka
+    #$ persistent.cg11_unlocked = True
     with dissolve
     "广场上人群熙熙攘攘。基本都是刚吃完饭以后回来的。"
     "我打扫着广场左侧。覃可汐则负责右侧。"
@@ -1475,8 +1478,8 @@ label nowatch:
     voice v3
     c "呀！林洛在值日啊！加油！"
     "班长也吃完饭回来了。"
-    scene bg_school_hiroba2
-    $ persistent.cg12_unlocked = True
+    scene bg_school_hiroba_naka
+    #$ persistent.cg12_unlocked = True
     with dissolve
     "我抬起头看着班长叶梓澄。她正在一边和覃可汐交谈，一边慢慢靠近覃可汐。"
     $ persistent.tips44 = True
@@ -2505,6 +2508,7 @@ label nowatch:
     "但是你一定要坚持下来！"
     "不仅是为了你自己！更是为了打破AADR在未来的残暴统治！"
     "就这样吧。"
+    $ config.allow_skipping = False
     "准备收摊了，去哪都无所谓。死了也无所谓。如果过去的我真的改变了时间的轨迹，那我大概率会被再构成掉吧......"
     $ end = 1
     hide screen quick_menu_full
@@ -2526,4 +2530,5 @@ label nowatch:
     $ quick_menu = True
     $ quick_menu_full_= True
     call enable_shortcut from _call_enable_shortcut_1
+    $ config.allow_skipping = True
     return

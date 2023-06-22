@@ -191,11 +191,12 @@ define gui.quick_button_text_selected_color = "#000000"
 ## 游戏内菜单使用的选项按钮。
 define gui.choice_button_text_font = "Huayuan.Gothic.Regular.ttf"
 define gui.choice_button_width = 1185
-define gui.choice_button_height = 100
-define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(150, 20, 150, 20)
+define gui.choice_button_height = 150
+define gui.choice_button_tile = True
+define gui.choice_button_borders = Borders(200, 20, 200, 20)
 define gui.choice_button_text_size = 45
 define gui.choice_button_text_xcenter = 0.5
+define gui.choice_button_text_ycenter = 0.5
 define gui.choice_button_text_idle_color = "#ffffff"
 define gui.choice_button_text_hover_color = "#000000"
 define gui.choice_button_text_outlines = [(3,"#707070",1,1)]
@@ -355,10 +356,10 @@ define gui.nvl_height = None
 define gui.nvl_spacing = 2
 
 ## 所指定叙述角色的标签的坐标、宽度和对齐方式。
-define gui.nvl_name_xpos = 645
-define gui.nvl_name_ypos = 0
-define gui.nvl_name_width = 225
-define gui.nvl_name_xalign = 1.0
+define gui.nvl_name_xpos = 200
+define gui.nvl_name_ypos = 30
+define gui.nvl_name_width = 1500
+define gui.nvl_name_xalign = 0.0
 
 ## 对话文本的坐标、宽度和对齐方式。
 define gui.nvl_text_xpos = 200

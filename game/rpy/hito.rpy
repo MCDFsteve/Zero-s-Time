@@ -28,7 +28,11 @@ init -1:
             attribute mouth2 default:
                 "kexi1_nanguo"
             attribute mouth3:
-                "kexi1_duqi"   
+                "kexi1_duqi" 
+        group shadow:
+            attribute yubi:
+                "kexi1_yubi"  
+                blend "multiply"
     layeredimage kexi_pose2:
         always:
             "images/hito/kexi/cengdie/zishi2/zhuqugan.webp"
@@ -52,6 +56,10 @@ init -1:
                 "kexi2_maozui"
             attribute mouth4:
                 "kexi2_xiaomao"
+        group shadow:
+            attribute yubi:
+                "kexi2_yubi"
+                blend "multiply"
     layeredimage zicheng_pose1:
         always:
             "images/hito/zicheng/cengdie/zishi1/zhuqugan.webp"
@@ -103,6 +111,10 @@ init -1:
                 "zicheng1_wunai"
             attribute mouth5:
                 "zicheng1_xianqi"
+        group shadow:
+            attribute yubi:
+                "zicheng1_yubi"
+                blend "multiply"
     layeredimage zicheng_pose2:
         always:
             "images/hito/zicheng/cengdie/zishi2/zhuqugan.webp"
@@ -140,6 +152,10 @@ init -1:
                 "zicheng2_wukou"
             attribute mouth3:
                 "zicheng2_xianqi"
+        group shadow:
+            attribute yubi:
+                "zicheng2_yubi"
+                blend "multiply"
     layeredimage linluo_pose:
 
         group pose:
@@ -237,6 +253,25 @@ init -1:
             pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
             attribute mouth1 default:
                 "kexihaha_zui"
+    layeredimage baoan_pose:
+
+        group pose:
+            attribute pose1 default:
+                "baoan_pose_def"
+        #group face:
+        #    #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+        #    attribute hajimaru default:
+        #        "zicheng_face_asm"
+                
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "baoan_yan"
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1 default:
+                "baoan_zui"
+
 
 
 
@@ -1205,4 +1240,61 @@ init -1:
 #yan睛正常
     image kexihaha_pose_def:
         "images/hito/kexi_haha/cengdie/zhuqugan.webp"
+#保安
+init -1 python:
+    def baoan_zui_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="baoan":
+            return ("baoan_zui_shuohua", .1)#播放口型动画1
+        else:
+            return ("baoan_zui_bi", .1)
+init -1:
+#定义口型动画1
+    image baoan_zui_shuohua:
+        "images/hito/baoan/cengdie/zui_banbi.webp"
+        0.1
+        "images/hito/baoan/cengdie/zhangzui.webp"
+        0.1
+        "images/hito/baoan/cengdie/zui_banbi.webp"
+        0.1
+        "images/hito/baoan/cengdie/bizui.webp"
+        0.1
+        repeat
+    image baoan_zui_bi:
+        "images/hito/baoan/cengdie/bizui.webp"
+        0.2
+        repeat
+    image baoan_zui = DynamicDisplayable(baoan_zui_)
+#yan睛正常
+    image baoan_yan_bi:
+        "images/hito/baoan/cengdie/biyan.webp"
+    image baoan_yan_zhang:
+        "images/hito/baoan/cengdie/zhengyan.webp"
+    image baoan_yan_banzhang:
+        "images/hito/baoan/cengdie/yan_banbi.webp"
+
+    image baoan_yan:
+        "baoan_yan_zhang"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "baoan_yan_banzhang"
+        0.1
+        "baoan_yan_bi"
+        0.2
+        "baoan_yan_banzhang"
+        0.1
+        repeat
+    image baoan_pose_def:
+        "images/hito/baoan/cengdie/zhuqugan.webp"
+    image kexi1_yubi:
+        "images/hito/kexi/cengdie/zishi1/shadow_yubi.webp"
+    image kexi2_yubi:
+        "images/hito/kexi/cengdie/zishi2/shadow_yubi.webp"
+    image zicheng1_yubi:
+        "images/hito/zicheng/cengdie/zishi1/shadow_yubi.webp"
+    image zicheng2_yubi:
+        "images/hito/zicheng/cengdie/zishi2/shadow_yubi.webp"
     

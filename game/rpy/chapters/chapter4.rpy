@@ -9,7 +9,7 @@ label chapter4:
     play sound loop_bgm
     show screen loop3_screen nopredict
     with fade
-    $ renpy.pause(10, hard=True)
+    $ renpy.pause(20, hard=True)
     hide screen loop3_screen
     stop music
     scene bg_none
@@ -34,6 +34,7 @@ label chapter4:
     call enable_shortcut from _call_enable_shortcut_5
     $ save_name = "{font=Huayuan.Gothic.Bold.ttf}章节四：博弈棋盘的翻转{/font}"
     "....................."
+    $ config.allow_skipping = True
     with vpunch
     l "呼！"
     scene bg_oldschool
@@ -62,7 +63,19 @@ label chapter4:
     "准备迎接三天后的，改变世界的那个事件！"
     nvle "我去了附近的集市，想寻找看看有什么趁手的兵器。"
     nvle "趁手的适合制止凶手行凶的兵器。"
-    nvle "有没有球棍什么的啊~在这秋蝉鸣泣之时！"
+    $ persistent.tips93 = True
+    $ persistent.tips94 = True
+    nvle "有没有{a=showmenu:tips93}{color=#F18D7D}球棍{/color}{/a}什么的啊~在这{a=showmenu:tips94}{color=#F18D7D}蟋蟀鸣泣之时{/color}{/a}！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     nvl clear
     nvle "算了，这玩意不好带上火车吧！"
     nvle "当然我没有带过的经验，所以并不清楚能不能带。"
@@ -78,7 +91,18 @@ label chapter4:
     with vpunch
     "我在想什么？这种做法连想都不要想！太恶劣了！"
     nvle "只需要阻止叶梓澄母亲被杀就行了，如果对凶手的反击过重的话可能就把我自己给搭进去了。"
-    nvle "可不想进橘子喝茶。"
+    $ persistent.tips95 = True
+    nvle "可不想进{a=showmenu:tips95}{color=#F18D7D}橘子{/color}{/a}喝茶。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     nvle "但是又得让凶手丧失行动能力，以免被反扑。"
     nvl clear
     "嗯.........."
@@ -131,7 +155,7 @@ label chapter4:
     "呕~我收回我之前说的话。"
     nvle "好晕好想吐。"
     nvle "感觉喉咙里卡了长袜子。"
-    nvle "虽然如果是白袜的话也不是不可以。"
+    nvle "没洗的那种。"
     nvl clear
     nvle "我坐上了命运的长椅，开始审视着公路对面，小巷前方的这一切。"
     nvle "现在的时间是十二点多。"
@@ -480,7 +504,18 @@ label chapter4:
     with vpunch
     play music lanzhu fadein 1.0 fadeout 1.0
     voice v1
-    c "驳倒！！！"
+    $ persistent.tips96 = True
+    c "{a=showmenu:tips96}{color=#F18D7D}驳倒{/color}{/a}！！！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     voice v3
     c "我妈拍下照片的时间是星期一，这个日期你应该还在学校上课才对！怎么可能出来旅游？"
     with vpunch
@@ -491,9 +526,31 @@ label chapter4:
     play music school fadein 1.0 fadeout 1.0
     voice v3
     c "额......开个玩笑.....别见怪......"
+    $ persistent.tips97 = True
     voice v3
-    c "只是想模仿一下苗花诚......"
-    l "但是还没到学级裁判呢！！"
+    c "只是想模仿一下{a=showmenu:tips97}{color=#F18D7D}苗花诚{/color}{/a}......"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    $ persistent.tips98 = True
+    l "但是还没到{a=showmenu:tips98}{color=#F18D7D}学级裁判{/color}{/a}呢！！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     with vpunch
     voice v3
     c "啊哈哈哈哈哈哈哈......."
@@ -525,9 +582,31 @@ label chapter4:
     hide kexi_pose2
     show kexi_pose mouth1 at jin
     with dissolve
+    $ persistent.tips99 = True
     voice v3
-    x "然后......游戏机明天就还你！目前我也只差四大天王了！！"
-    l "那二周目不打了吗？"
+    x "然后......游戏机明天就还你！目前我也只差{a=showmenu:tips99}{color=#F18D7D}四大天王{/color}{/a}了！！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    $ persistent.tips100 = True
+    l "那{a=showmenu:tips100}{color=#F18D7D}二周目{/color}{/a}不打了吗？"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     hide kexi_pose
     show kexi_pose eyes3 mouth3 at jin:
       yoffset 0
@@ -550,8 +629,19 @@ label chapter4:
       linear 0.05 xoffset 1 yoffset 1
       linear 0.05 xoffset 0 yoffset 0
       repeat
+    $ persistent.tips101 = True
     voice v3
-    x "这游戏不是成为联盟冠军就算通关了吗？"
+    x "这游戏不是成为{a=showmenu:tips101}{color=#F18D7D}联盟冠军{/color}{/a}就算通关了吗？"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     l "不是啊！成为联盟冠军之后还有一堆剧情呢！"
     hide kexi_pose
     show kexi_pose2 at jin:
@@ -613,7 +703,18 @@ label chapter4:
     with dissolve
     voice v3
     x "现在只能等寒假了。"
-    l "所以你已经提前规划好了压岁钱的用途了吗？"
+    $ persistent.tips102 = True
+    l "所以你已经提前规划好了{a=showmenu:tips102}{color=#F18D7D}压岁钱{/color}{/a}的用途了吗？"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     hide kexi_pose
     show kexi_pose2 mouth1 at jin
     with vpunch
@@ -655,7 +756,18 @@ label chapter4:
     x "啊！？你不会生气了？"
     x "那好吧！我不会跟任何人说的！"
     x "我只是开个玩笑而已~"
-    "问题不在这里，我只是大脑处理器遇到了无法计算的，缺少相应板块的事件。"
+    $ persistent.tips103 = True
+    "问题不在这里，我只是大脑{a=showmenu:tips103}{color=#F18D7D}处理器{/color}{/a}遇到了无法计算的，缺少相应板块的事件。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     scene bg_none
     with fade2
     "不知过了多久，感觉风头已经过去了，我试探性地抬头。"
@@ -675,9 +787,31 @@ label chapter4:
     x "你也挺可爱呢~"
     scene bg_kexi_egao
     with dissolve
-    x "お可愛い子供~"
+    $ persistent.tips104 = True
+    x "{a=showmenu:tips104}{color=#F18D7D}お可愛い子供{/color}{/a}~"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    $ persistent.tips105 = True
     with vpunch
-    "！！！大脑服务器遭到了未见过的攻击，紧急宕机！！！"
+    "！！！大脑{a=showmenu:tips105}{color=#F18D7D}服务器{/color}{/a}遭到了未见过的攻击，紧急宕机！！！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     scene bg_none
     with fade
     "只得赶紧再将头埋进课桌。"
@@ -898,10 +1032,32 @@ label chapter4:
     show zicheng_cospose at jin:
       xcenter 0.3
     with dissolve
-    "覃可汐穿的是恨蜜莉雅的cos服，精致的简直像娃娃一样。"
+    $ persistent.tips106 = True
+    "覃可汐穿的是{a=showmenu:tips106}{color=#F18D7D}恨蜜莉雅{/color}{/a}的cos服，精致的简直像娃娃一样。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     nvle "真的太可爱了......但是这种思想仅限于脑海中。"
     nvl clear
-    "至于叶梓澄的这身cos服，则是二雷娜的，不能说是还原，只能说是就是本人。"
+    $ persistent.tips107 = True
+    "至于叶梓澄的这身cos服，则是{a=showmenu:tips107}{color=#F18D7D}二雷娜{/color}{/a}的，不能说是还原，只能说是就是本人。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     scene bg_anime
     with fade2
     show kexi_cospose at jin:
@@ -1013,8 +1169,19 @@ label chapter4:
     nvle "满头雾水。"
     nvl clear
     play sound odoro
+    $ persistent.tips108 = True
     with vpunch
-    x "这是倒霉星里面的名台词啊！！林洛你入宅看来还不够深啊！"
+    x "这是{a=showmenu:tips108}{color=#F18D7D}倒霉星{/color}{/a}里面的名台词啊！！林洛你入宅看来还不够深啊！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     play sound ame loop
     nvle "被叶梓澄批评了。"
     nvl clear
@@ -1030,7 +1197,18 @@ label chapter4:
     x "把你游戏存档里的材料全部卖掉！！"
     play sound ame loop
     l "啊！！可恶！绝对不能这样干！！"
-    l "虽然我有amido，可以再刷回来。"
+    $ persistent.tips109 = True
+    l "虽然我有{a=showmenu:tips109}{color=#F18D7D}amido{/color}{/a}，可以再刷回来。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     l "但是刷够这么多的材料还是要花很多时间的！"
     play sound odoro
     with vpunch
@@ -1156,40 +1334,13 @@ label chapter4:
     nvl clear
     scene bg_schoolmae yubi
     with fade2
+    $ config.allow_skipping = False
     nvle "我这样想着................慢慢走出了校门....................."
     $ end = 0
     hide screen quick_menu_full
+    $ nise_end = True
     $ quick_menu = False
     $ quick_menu_full_= False
     play music "music/end.ogg" fadeout 1.0 fadein 1.0
-    call disable_shortcut from _call_disable_shortcut_6
-    scene bg_none
-    show nise_end
-    with fade2
-    show endtext:
-       xpos 0.25
-       ypos 0.7
-    with dissolve
-    $ renpy.pause(4, hard=True)
-    show screen game_end
-    with fade2
-    $ renpy.pause(90, hard=True)
-    $ quick_menu = True
-    $ quick_menu_full_= True
-    call enable_shortcut from _call_enable_shortcut_6
-    play sound odoro
-    with vpunch
-    nan "你是林洛对吧！"
-    l "你是？"
-    nan "叶梓澄！来自十年后的，叶梓澄！"
-    with vpunch
-    l "！！！！！！！！！！"
-    stop music
-    scene bg_schoolmae yubi
-    with fade2
-    hide screen game_end
-    with dissolve
-    "！！！！"
-    return
-    $ persistent.chapter==5
-    $ persistent.chapter==6
+    jump chapter5
+    

@@ -1,34 +1,62 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/rpy/chapters/chapter1.rpy", line 415, in script
-    show kexi_pose mono eyes2 mouth3 at jin
-  File "renpy/common/00layeredimage.rpy", line 768, in _choose_attributes
-    raise Exception("The attributes for {} conflict: {}".format(tag, " ".join(both)))
-Exception: The attributes for kexi_pose conflict: eyes2 mono
+  File "game/rpy/chapters/chapter5_end4.rpy", line 164, in script
+    play audio umi loop fadein 1.0 fadeout 1.0
+  File "game/rpy/chapters/chapter5_end4.rpy", line 164, in script
+    play audio umi loop fadein 1.0 fadeout 1.0
+  File "renpy/common/00nvl_mode.rpy", line 377, in do_display
+    renpy.display_say(
+OSError: Couldn't find file 'audio/umineko.ogg'.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/rpy/chapters/chapter1.rpy", line 415, in script
-    show kexi_pose mono eyes2 mouth3 at jin
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1408, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 1371, in show_imspec
-    renpy.config.show(name,
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 683, in show
-    name, what = _find_image(layer, key, name, what)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 499, in _find_image
-    new_what = renpy.game.context().images.apply_attributes(layer, key, name)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 983, in apply_attributes
-    return self.choose_image(nametag, required, optional, name)
-  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\image.py", line 1003, in choose_image
-    newattrs = ca(tag, ca_required, ca_optional)
-  File "renpy/common/00layeredimage.rpy", line 768, in _choose_attributes
-    raise Exception("The attributes for {} conflict: {}".format(tag, " ".join(both)))
-Exception: The attributes for kexi_pose conflict: eyes2 mono
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\bootstrap.py", line 277, in bootstrap
+    renpy.main.main()
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\main.py", line 660, in main
+    run(restart)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\main.py", line 146, in run
+    renpy.execution.run_context(True)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\execution.py", line 938, in run_context
+    context.run()
+  File "game/rpy/chapters/chapter5_end4.rpy", line 164, in script
+    play audio umi loop fadein 1.0 fadeout 1.0
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/site-packages/future/utils/__init__.py", line 441, in raise_
+  File "game/rpy/chapters/chapter5_end4.rpy", line 164, in script
+    play audio umi loop fadein 1.0 fadeout 1.0
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ast.py", line 921, in execute
+    renpy.exports.say(who, what, *args, **kwargs)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\exports.py", line 1373, in say
+    who(what, *args, **kwargs)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\character.py", line 1266, in __call__
+    self.do_display(who, what, cb_args=self.cb_args, dtt=dtt, **display_args)
+  File "renpy/common/00nvl_mode.rpy", line 377, in do_display
+    renpy.display_say(
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\character.py", line 666, in display_say
+    rv = renpy.ui.interact(mouse='say', type=type, roll_forward=roll_forward)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\ui.py", line 299, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 3377, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\display\core.py", line 4103, in interact_core
+    renpy.audio.audio.periodic()
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\audio\audio.py", line 1166, in periodic
+    raise_(exc[0], exc[1], exc[2])
+  File "/home/tom/ab/renpy-build/tmp/install.linux-x86_64/lib/python3.9/site-packages/future/utils/__init__.py", line 441, in raise_
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\audio\audio.py", line 1144, in periodic_thread_main
+    periodic_pass()
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\audio\audio.py", line 1086, in periodic_pass
+    c.periodic()
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\audio\audio.py", line 517, in periodic
+    topf = load(filename)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\audio\audio.py", line 70, in load
+    rv = renpy.loader.load(fn)
+  File "D:\Renpy\renpy-8.0.3-sdk\renpy\loader.py", line 820, in load
+    raise IOError("Couldn't find file '%s'." % name)
+OSError: Couldn't find file 'audio/umineko.ogg'.
 
 Windows-10-10.0.22621 AMD64
 Ren'Py 8.0.3.22090809
-彼零之时 alpha-v1.0.26
-Tue May 30 17:19:55 2023
+彼零之时 beta-v1.0.3
+Thu Jun 22 23:18:46 2023

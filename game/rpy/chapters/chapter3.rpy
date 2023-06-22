@@ -24,6 +24,7 @@ label chapter3:
     scene bg_2_3
     with fade2
     "我走进教室的时候，里面已经空无一人了。"
+    $ config.allow_skipping = True
     scene bg_tukue
     with dissolve
     "我只好自己走到我的座位上坐着。"
@@ -2225,6 +2226,7 @@ label chapter3_6:
     c "准备好了吗？"
     voice v3
     c "准备好了那就启动你的这块手表的功能，回到过去吧！"
+    $ config.allow_skipping = False
     with vpunch
     l "嗯！"
     $ times = "12:52"
@@ -2251,6 +2253,7 @@ label chapter3_6:
     l "嗯......先启动手表再说吧......"
     "..................."
     "..................."
+    $ config.allow_skipping = True
     "..................."
     jump loop1_false
 label loop1_true:
@@ -2362,6 +2365,7 @@ label loop1_true:
     with vpunch
     voice v1
     t "开始吧！"
+    $ config.allow_skipping = False
     "我戴上手表，绘制图案。"
     hide screen watch
     with dissolve
@@ -2373,13 +2377,14 @@ label loop1_true:
     play sound loop_bgm
     show screen loop2_screen nopredict
     with fade
-    $ renpy.pause(10, hard=True)
+    $ renpy.pause(23, hard=True)
     hide screen loop2_screen
     $ quick_menu = True
     call enable_shortcut from _call_enable_shortcut_8
     scene bg_none
     with fade
     ".................."
+    $ config.allow_skipping = True
     with vpunch
     l "呼！！"
     "我惊醒过来，巡视着周围。"
@@ -2717,6 +2722,7 @@ label loop1_true:
     l "那！我开始了！"
     l "让这不幸的宿命，让这轮回的命运————"
     l "皆终结于此地吧！"
+    $ config.allow_skipping = False
     "我熟练地在手表上绘制了手势。"
     jump chapter4
    

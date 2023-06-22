@@ -18,6 +18,7 @@ label chapter2:
     with dissolve
     $ save_name = "{font=Huayuan.Gothic.Bold.ttf}章节二：死而又生的起始{/font}"
     "这！这是怎么回事？"
+    $ config.allow_skipping = True
     "我诧异地站在原地。"
     play sound suzu
     play sound "audio/yakamashii.ogg"
@@ -188,17 +189,17 @@ label chapter2:
     "我顺着覃可汐遇难地点的垂直坐标一层层地进行着排查。"
     play sound "audio/run.ogg"
     $ times = "12:59"
-    scene bg_kai
+    scene bg_kai kai2
     with fade
     "二楼。没有。"
     play sound "audio/run.ogg"
     $ times = "13:01"
-    scene bg_kai2
+    scene bg_kai kai3
     with fade
     "三楼。没有。"
     play sound "audio/run.ogg"
     $ times = "13:03"
-    scene bg_kai3
+    scene bg_kai kai4
     with fade
     "四楼。没有。"
     "只剩最后两个楼层了。肇事所在的花盆一定在上面。"
@@ -227,7 +228,7 @@ label chapter2:
     with dissolve
     scene bg_none
     with fade
-    scene bg_kai4
+    scene bg_kai kai5
     with dissolve
     s "诶！？你跑什么？"
     "男老师在后面追了上来。"
@@ -737,16 +738,16 @@ label chapter2:
     "怀着各种疑惑，终于等到了放学。"
     scene bg_tukue2
     with dissolve
-    show zicheng_pose1 mono at jin
+    show zicheng_pose1 mono yubi at jin
     with dissolve
     "叶梓澄主动走到我的座位旁边。"
     voice v3
     c "林洛！事情去校门口谈吧。我也有很多事情需要向你了解。"
     hide zicheng_pose1
-    show zicheng_pose1 mono at jin:
+    show zicheng_pose1 mono yubi at jin:
         xcenter 0.3
     with dissolve
-    show kexi_pose mono eyes4 at jin:
+    show kexi_pose mono yubi eyes4 at jin:
         xcenter 0.6
     play audio odoro
     $ times = "17:31"
@@ -756,14 +757,14 @@ label chapter2:
     voice v3
     x "哇哦！班长你这是要跟转校生去约会了吗？好快的进展！"
     hide kexi_pose
-    show kexi_pose2 mono mouth4 at jin:
+    show kexi_pose2 mono mouth4 yubi at jin:
         xcenter 0.6
     with dissolve
     voice v3
     x "没看出来呢！原来班长是这么主动的人！"
     "旁边的覃可汐凑过来打岔了。"
     hide zichceng_pose1
-    show zicheng_pose1 mono eyes4 mouth5 other2 at jin:
+    show zicheng_pose1 mono eyes4 mouth5 other2 yubi at jin:
         xcenter 0.3
     with dissolve
     hide zicheng1_shadow
@@ -772,21 +773,24 @@ label chapter2:
     voice v5
     c "覃可汐并不是你想的这样的！我和林洛是有事情要谈。嗯.......没错！要商量关于校内各种公共设施，以及校规的事情。"
     hide zicheng_pose1
-    show zicheng_pose2 mono mouth3 other1 at jin:
+    show zicheng_pose2 mono mouth3 other1 yubi at jin:
         xcenter 0.3
     with dissolve
     voice v5
     c "毕竟是第一天来我们学校嘛。万一以后违反了什么校规，然后又反过来说是因为我没告诉他，那最后被处罚的可能就有我了。"
     "这口吻，说的我仿佛是个坏学生一样。"
     hide kexi2_shadow
+    show zicheng2_shadow at jin:
+        xcenter 0.3
     voice v3
     x "行吧！总之班长你要加油哦！"
     hide kexi_pose2
     with dissolve
+    hide zicheng2_shadow
     "覃可汐识趣地离开了，但总感觉她似乎误会了什么。"
     hide zicheng_pose2
     $ times = "17:32"
-    show zicheng_pose1 mono mouth3 at jin
+    show zicheng_pose1 mono mouth3 yubi at jin
     with dissolve
     voice v1
     c "走吧！"
@@ -795,7 +799,7 @@ label chapter2:
     with fade
     "出校门口的时候，天空已经渐渐被染上了橘红色。"
     play music speak fadein 1.0 fadeout 1.0
-    show zicheng_pose1 mono eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 yubi at jin
     with dissolve
     voice v3
     c "林洛。来继续之前的话题吧！"
@@ -810,7 +814,7 @@ label chapter2:
     "我在脑海中搜索着记忆。"
     "并没有过。毕竟这涉及到个人隐私，我不可能没有任何理由地开口询问，对方也没有任何理由要告诉我。"
     hide zicheng_pose1
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     $ times = "17:43"
     voice v5
@@ -828,7 +832,7 @@ label chapter2:
     c "原子的数据化转换和传输。"
     $ times = "17:44"
     hide zicheng_pose2
-    show zicheng_pose1 mono eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 yubi at jin
     with dissolve
     $ persistent.tips23 = True
     voice v3
@@ -881,7 +885,7 @@ label chapter2:
     l "这不就是AADR正在干的事吗？"
     l "在未来的某节物理课上，老师提到过这个组织！"
     hide zicheng_pose1
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v3
     c "没错！所以我怀疑正是AADR把我父亲抓走了。"
@@ -890,7 +894,7 @@ label chapter2:
     voice v3
     c "我去父亲的研究所查看的时候，发现大门都被撬开了。研究所里面的器材，要么消失了，要么被弄坏了。"
     hide zicheng_pose2
-    show zicheng_pose2 mono other2 at jin
+    show zicheng_pose2 mono other2 yubi at jin
     with dissolve
     $ times = "17:45"
     voice v3
@@ -904,7 +908,7 @@ label chapter2:
     l "在未来，电视会报道AADR会在电视发表他们的最新研究成果。"
     l "这个研究成果，看来就是掠夺的你父亲的研究成果没跑了。"
     hide zicheng_pose2
-    show zicheng_pose1 mono mouth3 at jin
+    show zicheng_pose1 mono mouth3 yubi at jin
     with dissolve
     voice v1
     c "我有考虑到过。"
@@ -912,7 +916,7 @@ label chapter2:
     c "问题是，我的父亲现在到底身在何方。"
     l "我记得AADR在全世界都有分部。你有调查过，AADR离这里最近的分部是哪儿吗？"
     hide zicheng_pose1
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v1
     c "就在芷柚市。"
@@ -930,20 +934,20 @@ label chapter2:
     "这个我确实不知道。"
     l "你父亲失踪前，没有在研究所内留下什么提示信息吗？"
     hide zicheng_pose1
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v3
     c "留下提示信息？这确实像我父亲的作风。"
     voice v1
     c "那............"
     hide zicheng_pose2
-    show zicheng_pose1 mono mouth1 at jin
+    show zicheng_pose1 mono mouth1 yubi at jin
     play audio odoro
     with vpunch
     voice v3
     c "现在我带你去我父亲的研究所找找吧！"
     hide zicheng_pose1
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v1
     c "但是在那之前。"
@@ -972,13 +976,13 @@ label chapter2:
     c "我甚至怀疑，你的存在就是我父亲留的一手。"
     l "啊这不可能吧......你的意思是，我之所以可以从未来回到现在，都是得益于你父亲？"
     hide zicheng_pose2
-    show zicheng_pose1 mono mouth3 at jin
+    show zicheng_pose1 mono mouth3 yubi at jin
     with dissolve
     $ times = "17:48"
     voice v1
     c "大概吧。"
     hide zicheng_pose1
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v3
     c "你身上，有没有什么可疑的物品？"
@@ -999,17 +1003,17 @@ label chapter2:
     l "在我刚入学的时候，也就是今天上午。"
     l "校门口有个摆摊的残疾人，硬塞给了我这块手表。"
     hide zicheng_pose2
-    show zicheng_pose2 mono other2 at jin
+    show zicheng_pose2 mono other2 yubi at jin
     with dissolve
     voice v1
     c "处处都很可疑呢......"
     l "难道这个摆摊的摊主就是你的父亲？"
     hide zicheng_pose2
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     play sound odoro
     with vpunch
     hide zicheng_pose2
-    show zicheng_pose1 mono eyes7 mouth3 at jin
+    show zicheng_pose1 mono eyes7 mouth3 yubi at jin
     with dissolve
     voice v3
     c "啊......我不清楚。但是有这个可能。"
@@ -1018,7 +1022,7 @@ label chapter2:
     "说着，我指了指旁边的一块地方。"
     l "他就是在这里摆摊的。但是这个时候已经不见了。"
     $ times = "17:49"
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v1
     c "有监控吗？"
@@ -1040,21 +1044,32 @@ label chapter2:
     l "我可以看看校门口今天上午的监控吗？拜托了！"
     "临阵磨枪现编了个理由，希望有用。"
     "啊！我感觉被我自己说话的语气恶心到了~"
+    show baoan_pose at jin
+    with dissolve
+    voice v3
     b "啊？身份证？我今天上午没在外面地上看到有谁掉了身份证啊？"
     l "可能是你去看的时候被别人捡走了吧。"
     l "看看监控，可以吗？"
     with vpunch
     play music lanzhu fadein 1.0 fadeout 1.0
+    play sound odoro
+    with vpunch
+    voice v1
     b "不行！"
+    voice v3
     b "如果身份证丢了，就去挂失。就算给你看了监控，又有什么用？"
+    voice v3
     b "这外面人来人往的，你就算看到谁捡了身份证，你还能再次找到他？"
     c "也不一定是被人捡了。说不定是掉到了哪个犄角旮旯。但是不看监控很难确定掉到了哪里。"
     "叶梓澄帮我圆场了。"
     c "而且，他报了一个游泳竞赛，就在明天要去到场。而且必须手持身份证才让进赛场。"
     c "挂失的话根本，来不及了。保安叔叔。"
     c "让我们看看监控吧！真的只看校门口今天上午的监控。"
+    voice v3
     b "嗯......那好吧！"
+    voice v3
     b "看你们面相，不像是坏孩子。那就给你们看看吧。"
+    voice v3
     b "先说好！如果找到身份证了，就不能看了。"
     c "行！谢谢叔叔。"
     "计划居然成功了。"
@@ -1090,6 +1105,9 @@ label chapter2:
     with dissolve
     play music richang fadein 1.0 fadeout 1.0
     l "谢谢保安！我找到身份证掉在哪了！总之谢谢您允许我们看监控！"
+    show baoan_pose at jin
+    with dissolve
+    voice v3
     b "找到了就好啊！以后注意不要再弄丢了！"
     l "嗯！！"
     hide screen watch
@@ -1100,7 +1118,7 @@ label chapter2:
     "由于摊主一点可追溯的线索都没有了。只能先去实验室调查叶梓澄父亲是否有留下什么线索。"
     stop music
     $ times = "18:32"
-    scene bg_kennkyuujya
+    scene bg_kennkyuujya yubi2
     with dissolve
     play sound higurashi loop fadeout 1.0 fadein 1.0
     play music kexi fadein 1.0 fadeout 1.0
@@ -1108,22 +1126,24 @@ label chapter2:
     "没想到这个研究所的选址如此偏僻。从公路沿着一条小路分支一直爬到半山腰。"
     "研究所就掩藏在半山腰的山体下面。周围都是高大的树木。"
     l "这么隐蔽的吗？"
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v3
     c "嗯。我父亲喜欢安静地进行研究。所以选在了这个远离喧嚣的地方。"
     voice v5
     c "也许就是因为研究所周围没有其他住户，所以......才会导致即使AADR来了也没其他人知道吧......唉~"
     hide zicheng_pose2
+    with dissolve
     $ times = "18:34"
-    show bg_kennkyuujya:
+    show bg_kennkyuujya yubi2:
         xzoom 1.0  yzoom 1.0
-        linear 1.0 xcenter 0.7 ycenter 0.55 xzoom 1.5 yzoom 1.5 
+        linear 1.0 xcenter 0.65 ycenter 0.11 xzoom 1.9 yzoom 1.9
     "研究所大门的锁已经被撬开了。"
-    scene bg_kennkyuujya
+    nvl clear
+    scene bg_kennkyuujya yubi2
     with dissolve
     l "所以AADR这个机构。这么暴力的吗？"
-    show zicheng_pose2 mono at jin
+    show zicheng_pose2 mono yubi at jin
     with dissolve
     voice v3
     play music speak fadein 1.0 fadeout 1.0
@@ -1274,7 +1294,7 @@ label chapter2:
     "叶梓澄说完。便向着地下室入口跑去。"
     l "呼~呼~"
     $ times = "18:47"
-    scene bg_kennkyuujya
+    scene bg_kennkyuujya yoru
     with fade
     "我跟随叶梓澄出了研究所门口。"
     l "叶梓澄。难道说？"
@@ -1302,7 +1322,7 @@ label chapter2:
     with vpunch
     c "果然有！"
     "叶梓澄说着，从草丛里拿出一个透明塑封袋。"
-    scene bg_kennkyuujya
+    scene bg_kennkyuujya yoru
     with dissolve
     show zicheng_pose2 mono at jin
     with dissolve
@@ -1828,7 +1848,7 @@ label chapter2:
     ".............."
     "...................."
     $ times = "19:43"
-    scene bg_kennkyuujya
+    scene bg_kennkyuujya_naka
     with fade
     show screen watch
     with dissolve
@@ -2360,7 +2380,7 @@ label disagree:
     "和覃可汐约好了12：50在教室见面。"
     stop sound
     $ times = "12:38"
-    scene bg_kai4
+    scene bg_kai kai5
     with dissolve
     play sound run
     "我也假装去吃饭了。实际上我在各个楼层之间考察花盆的摆放情况。"
@@ -2421,7 +2441,7 @@ label disagree:
     with fade
     "我跑进了教学楼。"
     play sound run
-    scene bg_kai4
+    scene bg_kai kai5
     with fade
     "并不是去了厕所。而是跑到了五楼。"
     play sound run
@@ -3261,8 +3281,8 @@ label agree:
     voice v3
     x "不过我相信你可以的。"
     "覃可汐微笑着向我打气。"
-    scene bg_school_hiroba
-    $ persistent.cg11_unlocked = True
+    scene bg_school_hiroba_naka
+    #$ persistent.cg11_unlocked = True
     with dissolve
     $ times = "12:52"
     "广场上依旧是很多的人。都是吃完饭以后回来的。"
@@ -3530,11 +3550,16 @@ label chapter2_5:
     play sound suzu
     "我转身走到了校门口保安室。与此同时，下课铃声响了起来。"
     play music lanzhu fadein 1.0 fadeout 1.0
+    show baoan_pose at jin
+    with dissolve
+    voice v3
     b "这位同学，你怎么刚进去就往回走了？"
     "那个，我在外面买东西的时候，把钱包落下了。"
     "我得去把找回来。"
     "意外发现我在说谎方面有不错的天赋。一旦正儿八经撒起谎来，就可以做到面不改色。"
+    voice v1
     b "嗯......"
+    voice v1
     b "快去找吧！"
     play sound saku
     play music richang fadein 1.0 fadeout 1.0
@@ -4055,6 +4080,7 @@ label chapter2_6:
     with dissolve
     "12点41了，我大步走进了校门。"
     nvle "我手上戴的，不是手表，而是未来！"
+    $ config.allow_skipping = False
     nvle "AADR！我会打碎你们的阴谋的！！"
     nvl clear
     jump chapter3

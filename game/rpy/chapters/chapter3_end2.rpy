@@ -745,6 +745,7 @@ label loop1_false:
     "永远地............................"
     "消失了.................................................."
     stop sound
+    $ config.allow_skipping = False
     "......................................................................................"
     $ end = 2
     $ quick_menu = False
@@ -767,4 +768,5 @@ label loop1_false:
     $ quick_menu = True
     $ quick_menu_full_= True
     call enable_shortcut from _call_enable_shortcut_4
+    $ config.allow_skipping = True
     return

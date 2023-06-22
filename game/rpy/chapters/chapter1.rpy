@@ -10,7 +10,7 @@ label chapter1:
     show chapter1
     with fade2
     $ renpy.pause(5, hard=False)
-    hide chapter2
+    hide chapter1
     with fade2
     scene bg_none
     $ quick_menu = True
@@ -26,6 +26,7 @@ label chapter1:
     $ persistent.music_richang = True
     play sound "audio/car_stop.ogg"
     car "{color=#C1394F}尊敬的旅客您好！沁野市高级中学站到了！请各位旅客有序下车！谢谢！{/color}"
+    $ config.allow_skipping = True
     "呼，终于到了。"
     "现在满脑子只想着赶快脱离汽车这个“恶魔”。"
     "明明是开学的日子却运气不佳，坐的这趟车，靠窗的座位全都被占了。"
@@ -145,6 +146,9 @@ label havewatch:
     scene bg_school_door
     with fade
     play music richang fadeout 1.0 fadein 1.0
+    show baoan_pose at jin
+    with dissolve
+    voice v3
     b "没见过你啊？哪个班的？"
     l "额？"
     "校门口保安不肯放我进去。最后打电话给我的新班主任确认了好半天以后才同意让我进学校。"
@@ -281,7 +285,7 @@ label havewatch:
     "是一个紫色头发的女孩子，梳着单马尾。本来是面无表情的，被老师点名以后看向了我，脸上挤出了一副营业式笑容。"
     "等等？叶梓澄？"
     scene bg_schoolmae
-    show storer
+    show linluo_old_pose other1 at jin
     show noko
     with fade
     play music lanzhu fadeout 1.0 fadein 1.0
@@ -370,7 +374,7 @@ label havewatch:
     with dissolve
     "得去看一下给我手表的摊主还在不在那个地方。"
     $ times = "17:35"
-    scene bg_school_soto
+    scene bg_school_soto yubi
     with dissolve
     "嗯？有一个人站在两边种满桂花树的那条路上。" 
     scene bg_sorawomiru
@@ -405,14 +409,14 @@ label havewatch:
     "我心里这么想着。"
     scene bg_kinoshita
     with dissolve
-    show kexi_pose mono at jin
+    show kexi_pose mono yubi at jin
     with dissolve
     play music kexi fadeout 1.0 fadein 1.0
     $ times = "17:41"
     voice v5
     x "那个...我就长话短说了。你，，，或者你的亲属。以前是否来过沁野市。"
     l "没有。"
-    show kexi_pose mon mono eyes2 mouth3 at jin
+    show kexi_pose mono eyes2 mouth3 yubi at jin
     with dissolve
     "我果断否认。我一直是土生土长的芷柚市人。我的父母是。我的祖父母也是。"
     $ persistent.tips09 = True
@@ -430,7 +434,7 @@ label havewatch:
     l "怎么了？"
     "很奇怪为什么刚认识的同学会问我这种偏隐私的东西。"
     l "那个？我还不知道你的名字呢。"
-    show kexi_pose mono eyes1 mouth1 at jin
+    show kexi_pose mono eyes1 mouth1 yubi at jin
     with dissolve
     "反正现在不问以后肯定也得问。我克服我的恐惧，礼貌性地问了一句。"
     voice v3
@@ -448,7 +452,7 @@ label havewatch:
     "不对。我为什么这么害怕被当成搭讪。桃花运这种东西不是越多越好吗？"
     "果然还是我的家里蹲之魂控制住了我的人格啊呜。"
     hide kexi_pose
-    show kexi_pose2 mono mouth1 at jin
+    show kexi_pose2 mono mouth1 yubi at jin
     with dissolve
     voice v3
     x "嗯~明天见。真是不好意思占用了你很多时间..."
@@ -1730,8 +1734,8 @@ label havewatch:
     "覃可汐微笑着向我打气。"
     "其实不需要做到如此地步的。不就是扫个地。"
     "我心里想着。"
-    scene bg_school_hiroba
-    $ persistent.cg11_unlocked = True
+    scene bg_school_hiroba_naka
+    #$ persistent.cg11_unlocked = True
     with dissolve
     $ times = "12:52"
     "广场上人群熙熙攘攘。基本都是刚吃完饭以后回来的。"
@@ -1747,8 +1751,8 @@ label havewatch:
     voice v3
     c "呀！林洛在值日啊！加油！"
     "班长也吃完饭回来了。"
-    scene bg_school_hiroba2
-    $ persistent.cg12_unlocked = True
+    scene bg_school_hiroba_naka
+    #$ persistent.cg12_unlocked = True
     with dissolve
     $ times = "12:54"
     "我抬起头看着班长叶梓澄。她正在一边和覃可汐交谈，一边慢慢靠近覃可汐。"
@@ -2303,6 +2307,7 @@ label chapter1_5:
     show screen watch
     with dissolve
     "看了看手表的时间。是："
+    $ config.allow_skipping = False
     "{b}{size=50}{cps=5}2022年9月19日  12：27  星期一！！！{/cps}{/size}{/b}"
     hide screen watch
     hide screen quick_menu_full

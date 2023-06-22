@@ -1,0 +1,19 @@
+label chapter6:
+    hide screen quick_menu_full
+    call disable_shortcut
+    $ persistent.chapter6 = True
+    $ persistent.chapter==6
+    $ persistent.extra_chapter6 = True
+    $ persistent.achievement_chapter5 = True
+    image chapter3 ="chapters/chapter6.webp"
+    scene bg_none
+    $ quick_menu = False
+    show chapter6
+    with fade2
+    $ renpy.pause(5, hard=False)
+    hide chapter6
+    with fade2
+    scene bg_none
+    $ quick_menu = True
+    call enable_shortcut
+    $ save_name = "{font=Huayuan.Gothic.Bold.ttf}章节六：衔尾蛇缠的终末{/font}"

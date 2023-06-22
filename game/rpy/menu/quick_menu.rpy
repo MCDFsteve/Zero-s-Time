@@ -42,6 +42,7 @@ screen quick_menu_full():
             ypos 0.1
     zorder 100
     tag menu
+    use say_option_hide
 
 ## 此代码确保只要用户没有主动隐藏界面，就会在游戏中显示 quick_menu 界面。
 init python:

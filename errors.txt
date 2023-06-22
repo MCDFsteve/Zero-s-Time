@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/rpy/chapters/chapter4.rpy", line 552: expected statement.
-    repeat
-          ^
+File "game/rpy/end.rpy", line 87: vbox expects a non-empty block.
+    if nise_end:
+                ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Thu Jun  1 16:48:44 2023
+Sun Jun 11 22:54:40 2023

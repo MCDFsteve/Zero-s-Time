@@ -141,6 +141,7 @@ screen watch:
        at week
     add "gui/watch_light.webp":
        at watch_center
+    use watch_option
 screen watch_loop1:
     imagebutton idle "gui/watch.webp" hover "gui/watch_on.webp" at watch_center hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
       action Jump("loop1_true")
@@ -154,6 +155,7 @@ screen watch_loop1:
        at week
     add "gui/watch_light.webp":
        at watch_center
+    use watch_option1
 screen watch_loop2:
     imagebutton idle "gui/watch.webp" hover "gui/watch_on.webp" at watch_center hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
       action Jump("loop2_true")
@@ -167,6 +169,7 @@ screen watch_loop2:
        at week
     add "gui/watch_light.webp":
        at watch_center
+    use watch_option2
 screen watch_ui:
     add "gui/background.webp"
     add "gui/watch_bg2.webp"
@@ -185,6 +188,7 @@ screen watch_ui:
         spacing 15
         imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action Return()
+    use watch_option_hide
 screen loop1_screen:
     add "gui/loop_bg.webp" at shake
     add "gui/nvl.webp"
@@ -218,10 +222,22 @@ screen loop3_screen:
        at _time2
     add "loop3_w":
        at week2
+screen say_option:
+    key ["q", "pad_back_press"] action ToggleScreen("quick_menu_full")
+screen say_option_hide:
+    key ["q", "pad_back_press"] action Hide("quick_menu_full")
+screen watch_option:
+    key ["w", "pad_b_press"] action ShowMenu("watch_ui")
+screen watch_option_hide:
+    key ["w", "pad_b_press"] action Return()
+screen watch_option1:
+    key ["w", "pad_b_press"] action Jump("loop1_true")
+screen watch_option2:
+    key ["w", "pad_b_press"] action Jump("loop2_true")
 screen say(who, what):
     key "game_menu" action ShowMenu("game_menu")
     style_prefix "say"
-
+    use say_option
     window:
         id "window"
 
@@ -432,7 +448,7 @@ screen title3():
     add "title/title3.webp" at titlepos
 screen title4():
     add "title/title4.webp" at titlepos
-image copyright= Text("Copyright © 2023 DFsteve",font="Aldrich-Regular.ttf", size=40,color="#000000",outlines = [(3,"#FFFFFF",1,2)])
+image copyright= Text("Copyright © 2022-2023 DFsteve",font="Aldrich-Regular.ttf", size=40,color="#000000",outlines = [(3,"#FFFFFF",1,2)])
 screen menu:
     use title_main
     modal True
@@ -851,6 +867,7 @@ style about_label_text:
 ## screen_special.html#load
 screen save():
     use save_menu
+    use tips_option
     modal True
     tag menu
     hbox:
@@ -967,6 +984,7 @@ screen save_menu():
 
 screen load():
     use save_menu
+    use tips_option
     modal True
     tag menu
     hbox:
@@ -1099,6 +1117,7 @@ screen preferences():
     modal True
     add "gui/option.webp"
     add "gui/nvl.webp"
+    use tips_option
     on "hide" action Hide("quick_menu_full")
     key "game_menu" action Return()
     hbox:
@@ -1645,6 +1664,7 @@ style notify_text:
 
 screen nvl(dialogue, items=None):
     key "game_menu" action ShowMenu("game_menu")
+    use say_option
     window:
         style "nvl_window"
 

@@ -2,10 +2,12 @@ $ persistent.quickswitch = True
 label start:
 #序章
     $ save_name = "{font=Huayuan.Gothic.Bold.ttf}序章{/font}"
+    $ nise_end = False
     scene bg_none
     with fade
     play music lanzhu fadein 1.0 fadeout 1.0
     with vpunch
+    $ config.allow_skipping = True
     nan "呜呜~"
     with vpunch
     nan "救.....救..."
@@ -46,5 +48,6 @@ label start:
     "这样的话......一切都结束了......"
     "我努力到现在....终于......"
     "时间过的真快啊......回想起我第一次被牵扯进这个事件的时候....."
+    $ config.allow_skipping = False
     "那个注定我永生难忘的九月......"
     jump chapter1
