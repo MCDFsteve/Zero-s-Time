@@ -502,14 +502,18 @@ screen menu:
         imagebutton idle "ui_exit" hover "ui_exit_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           at main_menu_show_btn(0.6)
           action Quit(confirm=True)
-    hbox:
-        
-        xpos 0.638
-        ypos 0.9
-        spacing 15
-        
-        imagebutton idle "ui_extra" hover "ui_extra_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action ShowMenu("Extra")
+    if persistent.hajimari_end:
+        hbox:
+            xpos 0.638
+            ypos 0.9
+            spacing 15
+            imagebutton idle "ui_extra" hover "ui_extra_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+              action ShowMenu("Extra")
+    else:
+        hbox:
+            xpos 0.638
+            ypos 0.9
+            spacing 15
     imagebutton idle "ui_option" hover "ui_option_on" xpos 0.615 ypos 0.01 hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("preferences")
 transform gear2:
      rotate 0
@@ -548,7 +552,6 @@ screen title_main():
     #frame:
         #style "main_menu_frame"
 
-
     ## use 语句将其他的界面包含进此界面。标题界面的实际内容在导航界面中。
     #use navigation
 
@@ -572,14 +575,19 @@ screen main_menu():
 #换标题
     if persistent.chapter==1:
        use title1
+       $ main_menu_music = "music/title.ogg"
     elif persistent.chapter==2:
        use title2
+       $ main_menu_music = "music/title.ogg"
     elif persistent.chapter==5:
        use title3
+       $ main_menu_music = "music/title2.ogg"
     elif persistent.chapter==6:
        use title4
+       $ main_menu_music = "music/title.ogg"
     else:
-        use title1
+       use title1
+       $ main_menu_music = "music/title.ogg"
 #换标题
     hbox: 
       xalign 0.0 
@@ -592,6 +600,7 @@ screen main_menu():
         xcenter 0.5
         ycenter 0.8
         at start
+    on "show" action Play("music",main_menu_music)
 image press_start= Text("PRESS ANY KEY TO START",font="Aldrich-Regular.ttf", size=50,color="#ffffff",outlines = [(3,"#000000",2,2)])
 style main_menu_frame is empty
 style main_menu_vbox is vbox
@@ -662,6 +671,7 @@ screen game_menu():
         imagebutton idle "ui_exit" hover "ui_exit_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           at main_menu_show_btn(0.5)
           action Quit(confirm=True)
+        
 ## 游戏菜单界面 ######################################################################
 ##
 ## 此界面列出了游戏菜单的基本共同结构。可使用界面标题调用，并显示背景、标题和导
@@ -812,45 +822,54 @@ screen about():
         if main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
         if not main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
+          key "game_menu" action Return()
+          key "pad_b_press" action Return()
     vbox:
         spacing -4
         xpos 0.2
         ypos 0.0
-        if persistent.chapter==1:
-          add "title/title1.webp":
+        hbox:
+          ypos 0.0
+          xcenter 0.5
+          spacing 5
+          if persistent.chapter==1:
+           add "title/title1.webp":
             zoom 0.5
             xpos 0.0
-        elif persistent.chapter==2:
-          add "title/title2.webp":
+          elif persistent.chapter==2:
+           add "title/title2.webp":
             zoom 0.5
             xpos 0.0
-        elif persistent.chapter==5:
-          add "title/title3.webp":
+          elif persistent.chapter==5:
+           add "title/title3.webp":
             zoom 0.5
             xpos 0.0
-        elif persistent.chapter==6:
-          add "title/title4.webp":
+          elif persistent.chapter==6:
+           add "title/title4.webp":
             zoom 0.5
             xpos 0.0
-        else:
-          add "title/title1.webp":
+          else:
+           add "title/title1.webp":
             zoom 0.5
             xpos 0.0
+          add "gui/logo2.webp":
+            zoom 0.4
+            xpos 0
+            ypos 0.3
         text _("版本 [config.version]\n")
 
             ## gui.about 通常在 options.rpy 中设置。
         if gui.about:
             text "[gui.about!t]\n"
-
+        text _("{a=showmenu:end_title}{outlinecolor=#ffffff}{color=#000000}制作人员名单{/color}{/outlinecolor}{/a}\n")
         text _("引擎：{a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only]\n\n[renpy.license!t]")
         text "    "
-        add "gui/logo2.webp":
-            zoom 0.5
-        key "game_menu" action Return()
-        key "pad_b_press" action Return()
+
             
 style about_label is gui_label
 style about_label_text is gui_label_text
@@ -878,21 +897,23 @@ screen save():
         if main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
         if not main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
+          key "game_menu" action Return()
+          key "pad_b_press" action Return()
 screen save_menu():
     add "game_menu/save_bg.webp"
     add "gui/nvl.webp"
     add "gui/save_menu.webp"
     tag menu
-    key "game_menu" action FileDelete(None, confirm=True, page=None)
-    key "pad_b_press" action Return()
     default page_name_value = FilePageNameInputValue(pattern=_("第 {} 页"), auto=_("自动存档"), quick=_("快速存档"))
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.27
     hbox:
         
         xpos 0.0
@@ -932,6 +953,10 @@ screen save_menu():
           action FilePage(8)
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action FilePage(9)
+        imagebutton idle "ui_pageauto" hover "ui_pageauto_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage("auto")
+        imagebutton idle "ui_pagequick" hover "ui_pagequick_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action FilePage("quick")
     
 
     
@@ -995,9 +1020,13 @@ screen load():
         if main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
         if not main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
+          key "game_menu" action Return()
+          key "pad_b_press" action Return()
 screen file_slots(title):
 
     default page_name_value = FilePageNameInputValue(pattern=_("第 {} 页"), auto=_("自动存档"), quick=_("快速存档"))
@@ -1128,9 +1157,13 @@ screen preferences():
         if main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action ShowMenu("menu")
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
         if not main_menu:
           imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
             action Return()
+          key "game_menu" action Return()
+          key "pad_b_press" action Return()
         
     vbox:
         xpos 0
@@ -1418,84 +1451,7 @@ style history_label_text:
 ##
 ## 提供有关键盘和鼠标映射信息的界面。它使用其它界面（keyboard_help、mouse_help
 ## 和 gamepad_help）来显示实际的帮助内容。
-screen help_keyboard():
-    add "gui/main_menu.webp"
-    add "gui/nvl.webp"
-    hbox:
-        
-        xpos 0.05
-        ypos 0.175
-        spacing 15
-        
-        imagebutton idle "help/keyboard_help.webp" hover "help/keyboard_help_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action NullAction()
-    hbox:
-        
-        xpos 0.638
-        ypos 0.9
-        spacing 15
-        if main_menu:
-          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action ShowMenu("menu")
-        if not main_menu:
-          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action Return()
-    default device = "keyboard"
-    vbox:
-        spacing 0
-        xpos 0
-        ypos 0
-        imagebutton idle "help/keyboard.webp" hover "help/keyboard_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn()
-          action ShowMenu("help")
-        imagebutton idle "help/gamepad.webp" hover "help/gamepad_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn()
-          action ShowMenu("help2")
-screen help_gamepad():
-    add "gui/main_menu.webp"
-    add "gui/nvl.webp"
-    hbox:
-        
-        xpos 0.05
-        ypos 0.175
-        spacing 15
-        
-        imagebutton idle "help/gamepad_help.webp" hover "help/gamepad_help_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          action NullAction()
-    hbox:
-        
-        xpos 0.638
-        ypos 0.9
-        spacing 15
-        if main_menu:
-          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action ShowMenu("menu")
-        if not main_menu:
-          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action Return()
-    default device = "gamepad"
-    vbox:
-        spacing 0
-        xpos 0
-        ypos 0
-        imagebutton idle "help/keyboard.webp" hover "help/keyboard_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn()
-          action ShowMenu("help")
-        imagebutton idle "help/gamepad.webp" hover "help/gamepad_on.webp" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-          at main_menu_show_btn()
-          action ShowMenu("help2")
-screen help():
-    key "game_menu" action Return()
-    key "pad_b_press" action Return()
-    modal True
-    tag menu
-    use help_keyboard
-screen help2():
-    key "game_menu" action Return()
-    key "pad_b_press" action Return()
-    modal True
-    tag menu
-    use help_gamepad
+
 
 ################################################################################
 ## 其他界面
@@ -1507,6 +1463,33 @@ screen help2():
 ## 当 Ren'Py 需要询问用户有关确定或取消的问题时，会调用确认界面。
 ##
 ## https://www.renpy.cn/doc/screen_special.html#confirm
+screen extraconfirm(message2, yes_action):
+
+    ## 显示此界面时，确保其他界面无法输入。
+    modal True
+
+    zorder 200
+
+    style_prefix "confirm"
+
+    add "gui/overlay/confirm.webp"
+
+    frame:
+
+        vbox:
+            xalign .5
+            yalign .5
+            spacing 45
+
+            label _(message2):
+                style "confirm_prompt"
+                xalign 0.5
+
+            hbox:
+                xalign 0.5
+                spacing 150
+
+                textbutton _("确定") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action yes_action
 
 screen confirm(message, yes_action, no_action):
 
@@ -1534,8 +1517,8 @@ screen confirm(message, yes_action, no_action):
                 xalign 0.5
                 spacing 150
 
-                textbutton _("确定") action yes_action
-                textbutton _("取消") action no_action
+                textbutton _("确定") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action yes_action
+                textbutton _("取消") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action no_action
 
     ## 右键点击退出并答复 no（取消）。
     key "game_menu" action no_action

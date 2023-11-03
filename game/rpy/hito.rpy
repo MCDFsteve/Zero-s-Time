@@ -272,6 +272,37 @@ init -1:
             attribute mouth1 default:
                 "baoan_zui"
 
+    layeredimage zicheng_mirai_pose1:
+        always:
+            "images/hito/zicheng_mirai/cengdie/zishi1/zhuqugan.webp"
+        group pose:
+            attribute pose1 default:
+                "zicheng_mirai1_pose_def"
+        group eyes:
+            #pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute eyes1 default:
+                "zicheng_mirai1_yan_moren"
+            attribute eyes2:
+                "zicheng_mirai1_yan_zhoumei"
+                
+        group mouth:
+            pos (0,0)#此为相对坐标，为该动画组件在整个cengdie式图片上的坐标
+            attribute mouth1:
+                "zicheng_mirai1_weixiao"
+            attribute mouth2 default:
+                "zicheng_mirai1_nanguo"
+        group other1:
+            attribute namida1:
+                "zicheng_mirai1_namida1"
+            attribute namida2:
+                "zicheng_mirai1_namida2"
+        group other2:
+            attribute heihua:
+                "zicheng_mirai1_heihua"
+        group shadow:
+            attribute yubi:
+                "zicheng_mirai1_shadow"  
+                blend "multiply"
 
 
 
@@ -1289,6 +1320,107 @@ init -1:
         repeat
     image baoan_pose_def:
         "images/hito/baoan/cengdie/zhuqugan.webp"
+
+#未来-梓澄
+init -1 python:
+    def zicheng_mirai1_kaixin_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="zicheng":
+            return ("zicheng_mirai1_kaixin_shuohua", .1)#播放口型动画1
+        else:
+            return ("zicheng_mirai1_kaixin_bi", .1)
+    def zicheng_mirai1_nanguo_(st, at):
+        if renpy.music.is_playing(channel='voice') and _get_voice_info().tag=="zicheng":
+            return ("zicheng_mirai1_nanguo_shuohua", .1)#播放口型动画1
+        else:
+            return ("zicheng_mirai1_nanguo_bi", .1)
+init -1:
+#定义口型动画1
+    image zicheng_mirai1_kaixin_shuohua:
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-zhang.webp"
+        0.1
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-weixiao.webp"
+        0.1
+        repeat
+    image zicheng_mirai1_kaixin_bi:
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-weixiao.webp"
+        0.2
+        repeat
+#定义口型动画2
+    image zicheng_mirai1_nanguo_shuohua:
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-zhang.webp"
+        0.1
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-banzhang.webp"
+        0.1
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-nanguo.webp"
+        0.1
+        repeat
+    image zicheng_mirai1_nanguo_bi:
+        "images/hito/zicheng_mirai/cengdie/zishi1/zui-nanguo.webp"
+        0.2
+        repeat
+    image zicheng_mirai1_weixiao = DynamicDisplayable(zicheng_mirai1_kaixin_)
+    image zicheng_mirai1_nanguo = DynamicDisplayable(zicheng_mirai1_nanguo_)
+#yan睛正常
+    image zicheng_mirai1_yan_moren_bi:
+        "images/hito/zicheng_mirai/cengdie/zishi1/yan-bi.webp"
+    image zicheng_mirai1_yan_moren_banzhang:
+        "images/hito/zicheng_mirai/cengdie/zishi1/yan-banzhang.webp"
+    image zicheng_mirai1_yan_moren_zhangkai:
+        "images/hito/zicheng_mirai/cengdie/zishi1/yan-zhangkai.webp"
+
+    image zicheng_mirai1_yan_moren:
+        "zicheng_mirai1_yan_moren_zhangkai"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "zicheng_mirai1_yan_moren_banzhang"
+        0.1
+        "zicheng_mirai1_yan_moren_bi"
+        0.2
+        "zicheng_mirai1_yan_moren_banzhang"
+        0.1
+        repeat
+#yan睛皱眉
+    image zicheng_mirai1_yan_zhoumei_bi:
+        "images/hito/zicheng_mirai/cengdie/zishi1/yan-zhoumei-bi.webp"
+    image zicheng_mirai1_yan_zhoumei_banzhang:
+        "images/hito/zicheng_mirai/cengdie/zishi1/yan-zhoumei-banzhang.webp"
+    image zicheng_mirai1_yan_zhoumei_zhangkai:
+        "images/hito/zicheng_mirai/cengdie/zishi1/yan-zhoumei-zhangkai.webp"
+
+    image zicheng_mirai1_yan_zhoumei:
+        "zicheng_mirai1_yan_zhoumei_zhangkai"
+        choice 5:
+            5.0
+        choice 4:
+            3.0
+        choice 1:
+            1.0
+        "zicheng_mirai1_yan_zhoumei_banzhang"
+        0.1
+        "zicheng_mirai1_yan_zhoumei_bi"
+        0.2
+        "zicheng_mirai1_yan_zhoumei_banzhang"
+        0.1
+        repeat
+    image zicheng_mirai1_namida1:
+        "images/hito/zicheng_mirai/cengdie/zishi1/other-yanlei-1.webp"
+    image zicheng_mirai1_namida2:
+        "images/hito/zicheng_mirai/cengdie/zishi1/other-yanlei-2.webp"
+    image zicheng_mirai1_heihua:
+        "images/hito/zicheng_mirai/cengdie/zishi1/other-heihua.webp"
+
+
+
     image kexi1_yubi:
         "images/hito/kexi/cengdie/zishi1/shadow_yubi.webp"
     image kexi2_yubi:
@@ -1297,4 +1429,6 @@ init -1:
         "images/hito/zicheng/cengdie/zishi1/shadow_yubi.webp"
     image zicheng2_yubi:
         "images/hito/zicheng/cengdie/zishi2/shadow_yubi.webp"
+    image zicheng_mirai1_shadow:
+        "images/hito/zicheng_mirai/cengdie/zishi1/shadow_yubi.webp"
     

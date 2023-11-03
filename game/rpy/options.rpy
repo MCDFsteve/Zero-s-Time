@@ -1,10 +1,12 @@
-define config.version  = "beta-v1.0.4"
+define config.version  = "beta-v1.2.4.3"
+define endsay  = _("{color=#ffffff}用于鉴赏立绘、音乐和结局、章节的Extra板块\n已解锁。请在游戏主菜单内查看。{/color}")
 define audio.v1 = "voice/v1.ogg"
 define audio.v3 = "voice/v3.ogg"
 define audio.v5 = "voice/v5.ogg"
 define audio.v7 = "voice/v7.ogg"
 define audio.v9 = "voice/v9.ogg"
 define audio.v11 = "voice/v11.ogg"
+define config.steam_appid = 2520710
 define audio.school = "music/school.ogg"
 define audio.sora = "music/sora.ogg"
 define audio.speak = "music/speak.ogg"
@@ -53,6 +55,9 @@ define audio.opendoor2 = "audio/opendoor2.ogg"
 define audio.hakusyu = "audio/hakusyu.ogg"
 define audio.umineko = "audio/umineko.ogg"
 define audio.umi = "audio/umi.ogg"
+define audio.kawa = "audio/kawa.ogg"
+define audio.yowa = "audio/yowa.ogg"
+define audio.tips = "audio/tips.ogg"
 image zicheng1_shadow:
     "images/shadows/zicheng1_shadow.webp"
 image zicheng2_shadow:
@@ -63,6 +68,157 @@ image kexi2_shadow:
     "images/shadows/kexi2_shadow.webp"
 image sensei1_shadow:
     "images/shadows/sensei1_shadow.webp"
+
+image quickmenu_roll2= Text(_("回退"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_roll_on:
+        always:
+            "gui/quickmenu/roll2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_roll2" xpos 0.025
+image quickmenu_roll= Text(_("回退"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_roll:
+        always:
+            "gui/quickmenu/roll.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_roll" xpos 0.025
+
+image quickmenu_history2= Text(_("历史"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_history_on:
+        always:
+            "gui/quickmenu/history2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_history2" xpos 0.025
+image quickmenu_history= Text(_("历史"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_history:
+        always:
+            "gui/quickmenu/history.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_history" xpos 0.025
+
+image quickmenu_tips2= Text(_("提示"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_tips_on:
+        always:
+            "gui/quickmenu/tips2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_tips2" xpos 0.025
+image quickmenu_tips= Text(_("提示"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_tips:
+        always:
+            "gui/quickmenu/tips.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_tips" xpos 0.025
+
+image quickmenu_quicksave2= Text(_("快存"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_quicksave_on:
+        always:
+            "gui/quickmenu/quicksave2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_quicksave2" xpos 0.025
+image quickmenu_quicksave= Text(_("快存"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_quicksave:
+        always:
+            "gui/quickmenu/quicksave.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_quicksave" xpos 0.025
+
+image quickmenu_quick2= Text(_("快进"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_quick_on:
+        always:
+            "gui/quickmenu/quick2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_quick2" xpos 0.025
+image quickmenu_quick= Text(_("快进"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_quick:
+        always:
+            "gui/quickmenu/quick.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_quick" xpos 0.025
+
+image quickmenu_auto2= Text(_("自动"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_auto_on:
+        always:
+            "gui/quickmenu/auto2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_auto2" xpos 0.025
+image quickmenu_auto= Text(_("自动"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_auto:
+        always:
+            "gui/quickmenu/auto.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_auto" xpos 0.025
+
+image quickmenu_load2= Text(_("读取"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_load_on:
+        always:
+            "gui/quickmenu/load2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_load2" xpos 0.025
+image quickmenu_load= Text(_("读取"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_load:
+        always:
+            "gui/quickmenu/load.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_load" xpos 0.025
+
+image quickmenu_quickload2= Text(_("快读"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_quickload_on:
+        always:
+            "gui/quickmenu/quickload2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_quickload2" xpos 0.025
+image quickmenu_quickload= Text(_("快读"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_quickload:
+        always:
+            "gui/quickmenu/quickload.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_quickload" xpos 0.025
+
+image quickmenu_menu2= Text(_("菜单"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_menu_on:
+        always:
+            "gui/quickmenu/menu2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_menu2" xpos 0.025
+image quickmenu_menu= Text(_("菜单"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_menu:
+        always:
+            "gui/quickmenu/menu.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_menu" xpos 0.025
+
+image quickmenu_save2= Text(_("保存"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#000000",outlines = [(2,"#ffffff",1,1)])
+layeredimage ui_quickmenu_save_on:
+        always:
+            "gui/quickmenu/save2.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_save2" xpos 0.025
+image quickmenu_save= Text(_("保存"),font="Huayuan.Gothic.Bold.ttf", size=40,color="#ffffff",outlines = [(2,"#000000",1,1)])
+layeredimage ui_quickmenu_save:
+        always:
+            "gui/quickmenu/save.webp" zoom 1.2 xpos 0.005 ypos 0.005
+        group pose:
+            attribute title default:
+                "quickmenu_save" xpos 0.025
+
 image logo= At("title/logo.webp")
 image warning= Text(_("{b}本故事纯属虚构。\n与现实生活中任何个人或组织均无关联。\n游戏内包含的所有内容。\n均无存在影射任何现实事物的含义\n请勿主观带入。若由此带来不良后果，\n本游戏不承担任何连带责任。{/b}"),font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
 image play= Text(_("{b}本游戏推荐外设设备：鼠标。\n使用鼠标游玩以获得最佳效果。{/b}"),font="Cubic-11-1.000-R-2.ttf", size=45,color="#ffffff")
@@ -348,6 +504,286 @@ layeredimage cg_16_on:
             attribute title default:
                 "images/bg_zicheng_te2.webp"
 ##
+layeredimage end_locked_on:
+        always:
+            "gui/locked.webp"
+        group pose:
+            attribute title default:
+                "end_lockedtext" xcenter 0.5 ycenter 1.18
+image end_lockedtext= Text("???",font="Aldrich-Regular.ttf", size=180,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image end_lockedtext2= Text("???",font="Aldrich-Regular.ttf", size=180,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage end_locked:
+        always:
+            "gui/locked.webp"
+        group pose:
+            attribute title default:
+                "end_lockedtext2" xcenter 0.5 ycenter 1.18
+##
+layeredimage extraend1:
+        always:
+            "chapters/end1.webp"
+        group pose:
+            attribute title default:
+                "chapters/end1.webp"
+        group end:
+            attribute title default:
+                "end1_text" xcenter 0.5 ycenter 1.16
+layeredimage extraend1_on:
+        always:
+            "chapters/end1_menu.webp"
+        group pose:
+            attribute title default:
+                "end1_f" zoom 0.5 ycenter 0.5 xpos 0.5
+        group end:
+            attribute title default:
+                "end1_text2" xcenter 0.5 ycenter 1.16
+image end1_f=im.MatrixColor("chapters/end1.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image end1_text= Text(_("结局一：无限命运的重叠"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image end1_text2= Text(_("结局一：无限命运的重叠"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+layeredimage extraend2:
+        always:
+            "chapters/end2.webp"
+        group pose:
+            attribute title default:
+                "chapters/end2.webp"
+        group end:
+            attribute title default:
+                "end2_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extraend2_on:
+        always:
+            "chapters/end2_menu.webp"
+        group pose:
+            attribute title default:
+                "end2_f" zoom 0.5 ycenter 0.5 xpos 0.5
+        group end:
+            attribute title default:
+                "end2_text2" xcenter 0.5 ycenter 1.16
+##
+image end2_f=im.MatrixColor("chapters/end2.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image end2_text= Text(_("结局二：逃避延拖的恶终"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image end2_text2= Text(_("结局二：逃避延拖的恶终"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+layeredimage extraend3:
+        always:
+            "chapters/end3.webp"
+        group pose:
+            attribute title default:
+                "chapters/end3.webp"
+        group end:
+            attribute title default:
+                "end3_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extraend3_on:
+        always:
+            "chapters/end3.webp"
+        group pose:
+            attribute title default:
+                "chapters/end3.webp"
+        group end:
+            attribute title default:
+                "end3_text2" xcenter 0.5 ycenter 1.16
+##
+image end3_text= Text(_("结局三：明了曲折的抱憾"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image end3_text2= Text(_("结局三：明了曲折的抱憾"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+layeredimage extraend4:
+        always:
+            "chapters/end4.webp"
+        group pose:
+            attribute title default:
+                "chapters/end4.webp"
+        group end:
+            attribute title default:
+                "end4_text" xcenter 0.5 ycenter 1.16
+##
+image end4_f=im.MatrixColor("chapters/end4.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image end4_text= Text(_("结局四：志存高远的破釜"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image end4_text2= Text(_("结局四：志存高远的破釜"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage extraend4_on:
+        always:
+            "chapters/end4_menu.webp"
+        group pose:
+            attribute title default:
+                "end4_f" zoom 0.5 ycenter 0.5 xpos 0.5
+        group end:
+            attribute title default:
+                "end4_text2" xcenter 0.5 ycenter 1.16
+##
+layeredimage extraend5:
+        always:
+            "chapters/end5.webp"
+        group pose:
+            attribute title default:
+                "chapters/end5.webp"
+        group end:
+            attribute title default:
+                "end5_text" xcenter 0.5 ycenter 1.16
+##
+image end5_f=im.MatrixColor("chapters/end5.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image end5_text= Text(_("结局五：取义断念的决绝"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image end5_text2= Text(_("结局五：取义断念的决绝"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+layeredimage extraend5_on:
+        always:
+            "chapters/end5_menu.webp"
+        group pose:
+            attribute title default:
+                "end5_f" zoom 0.5 ycenter 0.5 xpos 0.5
+        group end:
+            attribute title default:
+                "end5_text2" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extraend6:
+        always:
+            "chapters/end6.webp"
+        group pose:
+            attribute title default:
+                "chapters/end6.webp"
+        group end:
+            attribute title default:
+                "end6_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extraend6_on:
+        always:
+            "chapters/end6_menu.webp"
+        group pose:
+            attribute title default:
+                "end6_f" zoom 0.5 ycenter 0.5 xpos 0.5
+        group end:
+            attribute title default:
+                "end6_text2" xcenter 0.5 ycenter 1.16
+##
+image end6_f=im.MatrixColor("chapters/end6.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image end6_text= Text(_("结局六：时间刻环的补缺"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image end6_text2= Text(_("结局六：时间刻环的补缺"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+layeredimage extrachapter1:
+        always:
+            "chapters/chapter1.webp"
+        group chapter:
+            attribute title default:
+                "chapter1_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extrachapter1_on:
+        always:
+            "chapter1_f"
+        group end:
+            attribute title default:
+                "chapter1_text2" xcenter 0.5 ycenter 1.16
+##
+image chapter1_f=im.MatrixColor("chapters/chapter1.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image chapter1_text= Text(_("章节一：莫比乌斯的始段"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image chapter1_text2= Text(_("章节一：莫比乌斯的始段"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage extrachapter2:
+        always:
+            "chapters/chapter2.webp"
+        group chapter:
+            attribute title default:
+                "chapter2_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extrachapter2_on:
+        always:
+            "chapter2_f"
+        group end:
+            attribute title default:
+                "chapter2_text2" xcenter 0.5 ycenter 1.16
+##
+image chapter2_f=im.MatrixColor("chapters/chapter2.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image chapter2_text= Text(_("章节二：死而又生的起始"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image chapter2_text2= Text(_("章节二：死而又生的起始"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage extrachapter3:
+        always:
+            "chapters/chapter3.webp"
+        group chapter:
+            attribute title default:
+                "chapter3_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extrachapter3_on:
+        always:
+            "chapter3_f"
+        group end:
+            attribute title default:
+                "chapter3_text2" xcenter 0.5 ycenter 1.16
+##
+image chapter3_f=im.MatrixColor("chapters/chapter3.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image chapter3_text= Text(_("章节三：收束迷宫的展露"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image chapter3_text2= Text(_("章节三：收束迷宫的展露"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage extrachapter4:
+        always:
+            "chapters/chapter4.webp"
+        group chapter:
+            attribute title default:
+                "chapter4_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extrachapter4_on:
+        always:
+            "chapter4_f"
+        group end:
+            attribute title default:
+                "chapter4_text2" xcenter 0.5 ycenter 1.16
+##
+image chapter4_f=im.MatrixColor("chapters/chapter4.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image chapter4_text= Text(_("章节四：博弈棋盘的翻转"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image chapter4_text2= Text(_("章节四：博弈棋盘的翻转"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage extrachapter5:
+        always:
+            "chapters/chapter5.webp"
+        group chapter:
+            attribute title default:
+                "chapter5_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extrachapter5_on:
+        always:
+            "chapter5_f"
+        group end:
+            attribute title default:
+                "chapter5_text2" xcenter 0.5 ycenter 1.16
+##
+image chapter5_f=im.MatrixColor("chapters/chapter5.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image chapter5_text= Text(_("章节五：真正终点的寻觅"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image chapter5_text2= Text(_("章节五：真正终点的寻觅"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
+##
+layeredimage extrachapter6:
+        always:
+            "chapters/chapter6.webp"
+        group chapter:
+            attribute title default:
+                "chapter6_text" xcenter 0.5 ycenter 1.16
+##
+##
+layeredimage extrachapter6_on:
+        always:
+            "chapter6_f"
+        group end:
+            attribute title default:
+                "chapter6_text2" xcenter 0.5 ycenter 1.16
+##
+image chapter6_f=im.MatrixColor("chapters/chapter6.webp", im.matrix.colorize("#FFFFFF", "#000000"))
+image chapter6_text= Text(_("章节六：衔尾蛇缠的终末"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image chapter6_text2= Text(_("章节六：衔尾蛇缠的终末"),font="Huayuan.Gothic.Bold.ttf", size=150,color="#000000",outlines = [(3,"#ffffff",1,1)])
+##
 layeredimage ui_page1_on:
         always:
                 "title_page1_2"
@@ -444,6 +880,40 @@ layeredimage ui_page9:
                 "title_page9"
 image title_page9= Text("9",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
 image title_page9_2= Text("9",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+
+##
+##
+layeredimage ui_page10_on:
+        always:
+                "title_page10_2"
+layeredimage ui_page10:
+        always:
+                "title_page10"
+image title_page10= Text("10",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_page10_2= Text("10",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+
+##
+##
+layeredimage ui_pageauto_on:
+        always:
+                "title_pageauto_2"
+layeredimage ui_pageauto:
+        always:
+                "title_pageauto"
+image title_pageauto= Text("A",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_pageauto_2= Text("A",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+
+##
+##
+layeredimage ui_pagequick_on:
+        always:
+                "title_pagequick_2"
+layeredimage ui_pagequick:
+        always:
+                "title_pagequick"
+image title_pagequick= Text("Q",font="Aldrich-Regular.ttf", size=60,color="#ffffff",outlines = [(3,"#000000",1,1)])
+image title_pagequick_2= Text("Q",font="Aldrich-Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+
 ##
 image title_page= Text("PAGE",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
 layeredimage ui_page:
@@ -455,7 +925,7 @@ layeredimage ui_page:
 ##
 ##
 image title_other= Text("OTHER",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
-image title_other_zhcn= Text("其他",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_other_zhcn= Text(_("其他"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_other:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.0
@@ -467,7 +937,7 @@ layeredimage ui_other:
 ##
 ##
 image title_display= Text("DISPLAY",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
-image title_display_zhcn= Text("显示",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_display_zhcn= Text(_("显示"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_display:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -479,7 +949,7 @@ layeredimage ui_display:
 ##
 ##
 image title_skip= Text("SKIP",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
-image title_skip_zhcn= Text("快进",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_skip_zhcn= Text(_("快进"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_skip:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -490,7 +960,7 @@ layeredimage ui_skip:
                 "title_skip_zhcn" ypos 0.026 xpos 0.145
 ##
 image title_start2= Text("START",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_start_zhcn= Text("新游戏",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_start_zhcn= Text(_("新游戏"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_start_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -510,7 +980,7 @@ layeredimage ui_start:
 ##
 ##
 image title_quick2= Text("QUICK",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_quick_zhcn= Text("快速读取",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_quick_zhcn= Text(_("快速读取"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_quick_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -530,7 +1000,7 @@ layeredimage ui_quick:
 ##
 ##
 image title_tips2= Text("TIPS",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_tips_zhcn= Text("提示",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_tips_zhcn= Text(_("提示"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_tips_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -549,7 +1019,7 @@ layeredimage ui_tips:
                 "title_tips"
 ##
 image title_save2= Text("SAVE",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_save_zhcn= Text("保存",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_save_zhcn= Text(_("保存"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_save_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -567,7 +1037,7 @@ layeredimage ui_save:
             attribute title default:
                 "title_save"
 image title_load2= Text("LOAD",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_load_zhcn= Text("读取",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_load_zhcn= Text(_("读取"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_load_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -585,7 +1055,7 @@ layeredimage ui_load:
             attribute title default:
                 "title_load"
 image title_help2= Text("HELP",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_help_zhcn= Text("帮助",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_help_zhcn= Text(_("帮助"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_help_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -603,7 +1073,7 @@ layeredimage ui_help:
             attribute title default:
                 "title_help"
 image title_about2= Text("ABOUT",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_about_zhcn= Text("关于",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_about_zhcn= Text(_("关于"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_about_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -621,7 +1091,7 @@ layeredimage ui_about:
             attribute title default:
                 "title_about"
 image title_title2= Text("TITLE",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_title_zhcn= Text("主菜单",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_title_zhcn= Text(_("主菜单"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_title_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -639,7 +1109,7 @@ layeredimage ui_title:
             attribute title default:
                 "title_title"
 image title_exit2= Text("EXIT",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_exit_zhcn= Text("退出",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_exit_zhcn= Text(_("退出"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_exit_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos 0.01
@@ -657,7 +1127,7 @@ layeredimage ui_exit:
             attribute title default:
                 "title_exit"
 image title_return2= Text("RETURN",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_return_zhcn= Text("返回",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_return_zhcn= Text(_("返回"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_return_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos -0.06
@@ -675,7 +1145,7 @@ layeredimage ui_return:
             attribute title default:
                 "title_return" xpos 0.096
 image title_option2= Text("OPTIONS",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_option_zhcn= Text("选项",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_option_zhcn= Text(_("选项"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_option_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos -0.04
@@ -694,7 +1164,7 @@ layeredimage ui_option:
                 "title_option" xpos 0.096
 ##
 image title_extra2= Text("EXTRA",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
-image title_extra_zhcn= Text("鉴赏",font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_extra_zhcn= Text(_("鉴赏"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
 layeredimage ui_extra_on:
         always:
             "gui/ui_white.webp" ypos 0.06 xpos -0.06
@@ -711,6 +1181,126 @@ layeredimage ui_extra:
         group pose:
             attribute title default:
                 "title_extra" xpos 0.096+0.053
+###
+image title_cg2= Text("CG-ROOM",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_cg_zhcn= Text(_("立绘鉴赏"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_cg_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01 xzoom 2.2
+        group pose:
+            attribute title default:
+                "title_cg2"
+        group lang:
+            attribute title default:
+                "title_cg_zhcn" ypos 0.026 xpos 0.323
+image title_cg= Text("CG-ROOM",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_cg:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_cg"
+###
+###
+image title_music2= Text("MUSIC-ROOM",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_music_zhcn= Text(_("音乐鉴赏"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_music_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01 xzoom 2.2
+        group pose:
+            attribute title default:
+                "title_music2"
+        group lang:
+            attribute title default:
+                "title_music_zhcn" ypos 0.026 xpos 0.445
+image title_music= Text("MUSIC-ROOM",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_music:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_music"
+###
+###
+image title_end2= Text("END-UNLOCKED",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_end_zhcn= Text(_("已解锁结局"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_end_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01 xzoom 2.2
+        group pose:
+            attribute title default:
+                "title_end2"
+        group lang:
+            attribute title default:
+                "title_end_zhcn" ypos 0.026 xpos 0.527
+image title_end= Text("END-UNLOCKED",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_end:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_end"
+###
+###
+image title_chapter2= Text("CHAPTER-UNLOCKED",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_chapter_zhcn= Text(_("已解锁章节"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_chapter_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01 xzoom 2.2
+        group pose:
+            attribute title default:
+                "title_chapter2"
+        group lang:
+            attribute title default:
+                "title_chapter_zhcn" ypos 0.026 xpos 0.695
+image title_chapter= Text("CHAPTER-UNLOCKED",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_chapter:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_chapter"
+###
+###
+image title_keyboard2= Text("KEYBOARD",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_keyboard_zhcn= Text(_("键鼠"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_keyboard_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01 xzoom 1.2
+        group pose:
+            attribute title default:
+                "title_keyboard2"
+        group lang:
+            attribute title default:
+                "title_keyboard_zhcn" ypos 0.026 xpos 0.359
+image title_keyboard= Text("KEYBOARD",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_keyboard:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_keyboard"
+###
+###
+image title_gamepad2= Text("GAMEPAD",font="Aldrich-Regular.ttf", size=120,color="#000000",outlines = [(3,"#ffffff",1,1)])
+image title_gamepad_zhcn= Text(_("手柄"),font="Huayuan.Gothic.Regular.ttf", size=60,color="#000000",outlines = [(3,"#ffffff",1,1)])
+layeredimage ui_gamepad_on:
+        always:
+            "gui/ui_white.webp" ypos 0.06 xpos 0.01 xzoom 1.2
+        group pose:
+            attribute title default:
+                "title_gamepad2"
+        group lang:
+            attribute title default:
+                "title_gamepad_zhcn" ypos 0.026 xpos 0.325
+image title_gamepad= Text("GAMEPAD",font="Aldrich-Regular.ttf", size=120,color="#ffffff",outlines = [(3,"#000000",1,1)])
+layeredimage ui_gamepad:
+        always:
+            "gui/ui_black.webp" ypos 0.06 xpos 0.01
+        group pose:
+            attribute title default:
+                "title_gamepad"
+###
 image suduxian_:
         "anime/suduxian/1.webp"
         0.1
@@ -737,28 +1327,23 @@ image ame_:
         repeat
 screen ame:
     add "ame_" alpha 0.4
+image logo2=At("gui/logowhite_bg.webp")
 label splashscreen:
-    if persistent.chapter==1:
-       $ config.main_menu_music = "music/title.ogg"
-    elif persistent.chapter==5:
-       $ config.main_menu_music = "music/title2.ogg"
-    elif persistent.chapter==6:
-       $ config.main_menu_music = "music/title.ogg"
-    else:
-       $ config.main_menu_music = "music/title.ogg"
-    scene bg_none 
+    show logo2
     with fade
+    $ renpy.pause(2, hard=False)
+    hide logo2 with dissolve
     show logo:
       xcenter 0.5
       ycenter 0.5
-    with dissolve
+    with fade
     $ renpy.pause(2, hard=False)
     hide logo with dissolve
     show warning:
       xcenter 0.5
       ycenter 0.5
     with dissolve
-    $ renpy.pause(3, hard=False)
+    $ renpy.pause(4, hard=False)
     hide warning with dissolve
     with fade
     return

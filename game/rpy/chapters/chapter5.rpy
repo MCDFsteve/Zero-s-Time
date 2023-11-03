@@ -39,6 +39,7 @@ label chapter5:
     scene bg_none
     $ quick_menu = True
     $ persistent.chapter5 = True
+    $ persistent.extra_chapter5 = True
     $ save_name = "{font=Huayuan.Gothic.Bold.ttf}章节五：真正终点的寻觅{/font}"
     play music title2 fadein 1.0 fadeout 1.0
     scene bg_schoolmae yubi
@@ -49,7 +50,7 @@ label chapter5:
     $ config.allow_skipping = True
     nvle "我现在除了惊讶还是惊讶。"
     nvl clear
-    show zicheng_mirai
+    show zicheng_mirai_pose1 yubi at jin
     with dissolve
     nvle "面前这位穿着白大褂，顶着一头蓬松短发的中年女性，自称自己是来自十年后的叶梓澄。"
     nvle "但是有未来的自己的前车之鉴，我内心倒是深信不疑的。"
@@ -70,6 +71,9 @@ label chapter5:
     "覃可汐并不是被神抛弃的孩子，而是被神眷顾的孩子才对。"
     play music speak fadein 1.0 fadeout 1.0
     l "又是AADR统治了世界吗？"
+    hide zicheng_mirai_pose1
+    show zicheng_mirai_pose1 eyes2 yubi at jin
+    with dissolve
     voice v3
     c "没错！AADR的人在十年前，也就是今年，通过卧底调查的方式，获取到了我父母的研究项目，然后派人掠夺了我父母的研究成果。"
     voice v3
@@ -279,7 +283,7 @@ label chapter5:
     show linluo_mirai:
         xcenter 0.6
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     voice v3
@@ -331,7 +335,18 @@ label chapter5:
     nvle "见叶梓澄在屏幕的聊天框里打入了“将我们送到一年前的这个时间段和这个相对坐标点位置。”。"
     nvl clear
     l "十年后的科技都这么高级了吗？我以为需要操作很复杂的指令。"
-    c "这就是未来的AI技术的力量，你可以通过对话的方式让AI帮你处理很复杂的工作。"
+    $ persistent.tips110 = True
+    c "这就是未来的{a=showmenu:tips110}{color=#F18D7D}AI{/color}{/a}技术的力量，你可以通过对话的方式让AI帮你处理很复杂的工作。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     "我也想体验到这种东西，所以必须更努力地为了未来而战了！"
     nvle "随着指令输入几秒钟后，显示屏上出现了几个窗口，里面有各种图表和数据。"
     nvle "心里很激动，实打实地坐进了来自未来的时间机器里，体验到了未来的科技。虽然之前的手表也是时间机器的一种，但是完全没什么实感。"
@@ -433,7 +448,7 @@ label chapter5:
     "外面的场景....跟乘坐时间机器之前并没有什么变化。唯一的变化就是从傍晚变成了正午，应该是正午吧，这晃人的太阳光。"
     "也算正常，首先是荒郊野外，人迹罕至的树林，其次是一年时间还是太短了。"
     l "等会要怎么进行交涉呢？"
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -480,7 +495,7 @@ label chapter5:
     nvl clear
     "到了。这存在于我记忆中的...........叶梓澄父亲的研究所。"
     "与记忆中不同的地方是，门是正常关闭着的，地上也没有杂乱的痕迹。"
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -505,7 +520,7 @@ label chapter5:
     stop sound
     scene bg_kennkyuujya hare
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -529,7 +544,7 @@ label chapter5:
     "................."
     scene bg_kennkyuujya hare
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -559,7 +574,7 @@ label chapter5:
     c "找到了！"
     scene bg_kennkyuujya hare
     with dissolve
-    show zicheng_mirai
+    show zicheng_mirai_pose1 at jin
     with dissolve
     show key:
         xcenter 0.2
@@ -641,7 +656,7 @@ label chapter5:
     l "这...........什么意思？"
     hide zicheng_chichi
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -729,8 +744,30 @@ label chapter5:
     cbnvl "不知道零之石会随着时间慢慢生长的特性，我是否有在笔记本中写到。"
     cnvl "这个没有。"
     nvl clear
-    cbnvl "零之石会像水晶一样“出芽”，慢慢地长出细小的零之石，不过生长的极为缓慢。"
-    cbnvl "从发现的金属球体的物质的衰变计算出的时间来看，金属球体至少在河底埋藏了五十万年以上。"
+    $ persistent.tips111 = True
+    cbnvl "零之石会像水晶一样“{a=showmenu:tips111}{color=#F18D7D}出芽{/color}{/a}”，慢慢地长出细小的零之石，不过生长的极为缓慢。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
+    $ persistent.tips112 = True
+    cbnvl "从发现的金属球体的物质的{a=showmenu:tips112}{color=#F18D7D}衰变{/color}{/a}计算出的时间来看，金属球体至少在河底埋藏了五十万年以上。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     cbnvl "也就是说零之石的存在时间也至少在这个数字之上。"
     nvl clear
     cbnvl "这么长的时间，零之石表面也只是长出了几厘米的长度。"
@@ -746,7 +783,16 @@ label chapter5:
     cbnvl "在后续的研究中，我发现不止是可以注入零子，而且可以抽出零子。"
     nvl clear
     cbnvl "注入抽出零子的数量不同，对我们所处世界的干涉也都不一样。"
-    cbnvl "在两年前我根据所研究的成果，造出了一个简单的装置：时间刻校正仪！"
+    $ persistent.time = 5
+    cbnvl "在两年前我根据所研究的成果，造出了一个简单的装置：{a=showmenu:tips49}{color=#BFBFFF}时间刻校正仪{/color}{/a}！"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say2
+    with dissolve
+    hide screen tips_say2
+    with tipsanime
+#词典
     cbnvl "本体就是一个电路板上带着零之石以及负责注入和抽出的通道，和一个观测注入抽出值的显示数字的表盘。"
     nvl clear
     cbnvl "我将注入到更高维度的零子量用数字来表示，例如+1，+2，+3................."
@@ -787,7 +833,18 @@ label chapter5:
     nvl clear
     cbnvl "我也没办法论证这些东西，只能凭我启动时间刻校正仪时的直觉告诉我，这是世界在再构成，而不是说穿越到了平行世界，因为时间刻校正仪的简易构造，凭机器本身很难想象具有这种机能。"
     cbnvl "但是再构成世界这种机能不是更难想象吗？"
-    cbnvl "如果将时间刻校正仪看作一个客户端，+1时间刻维度看作一个服务器的话就不难解释了，再构成世界的工作是在+1时间刻维度执行的，时间刻校正仪只是负责发送指令而已。"
+    $ persistent.tips113 = True
+    cbnvl "如果将时间刻校正仪看作一个{a=showmenu:tips113}{color=#F18D7D}客户端{/color}{/a}，+1时间刻维度看作一个服务器的话就不难解释了，再构成世界的工作是在+1时间刻维度执行的，时间刻校正仪只是负责发送指令而已。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     nvl clear
     lnvl "所以.........我们所处的这个世界.........处在被更高层的世界的管辖之下？"
     nvle "脑中莫名想到了各种神创世学说。"
@@ -816,11 +873,22 @@ label chapter5:
     with dissolve
     cbnvl "0时间刻维度抽出的零子，就相当于把-1层的海洋翻转到了海平面，海是同一片海，不是其他的海，但是位于海平面的海水，却发生了改变，大概就是这种类似的东西了。"
     nvl clear
-    cbnvl "为表区分，就把我最开始的世界叫做原初时间刻吧，跟现在所处的-1时间刻区分。"
+    $ persistent.tips114 = True
+    cbnvl "为表区分，就把我最开始的世界叫做{a=showmenu:tips114}{color=#F18D7D}原初时间刻{/color}{/a}吧，跟现在所处的-1时间刻区分。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     nvl clear
     scene bg_kennkyuujya_naka2
     with fade
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -855,7 +923,7 @@ label chapter5:
     play music lanzhu fadein 1.0 fadeout 1.0
     scene bg_kennkyuujya_naka2
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -905,7 +973,7 @@ label chapter5:
     cb "就像你们根据我的研究成果造出时间机器一样！时间机器的核心不就是一台更大号的时间刻校正仪！你们都能做到的事情.....有着几千位科学家的AADR做不到？"
     scene bg_kennkyuujya_naka2
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -941,7 +1009,7 @@ label chapter5:
     l "如果覃可汐会死于九年前的夏天.....那乘坐时间机器回到那个时间把覃可汐救下来呢？"
     scene bg_kennkyuujya_naka2
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -1012,7 +1080,7 @@ label chapter5:
     "是未曾设想过的方法！"
     scene bg_kennkyuujya_naka2
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -1039,7 +1107,7 @@ label chapter5:
     cb "回去老老实实做老本行，当大学老师吧......."
     scene bg_kennkyuujya_naka2
     with dissolve
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
@@ -1114,7 +1182,7 @@ label chapter5:
     "叶梓澄的父亲则坐在一旁沉思。"
     play sound run
     "见我进来了，未来的叶梓澄和我放下了手边的资料，往我这边过来了。"
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:

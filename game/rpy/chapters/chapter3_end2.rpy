@@ -4,6 +4,7 @@ label loop1_false:
     show screen watch
     with vpunch
     "果然还是不行！"
+    $ config.allow_skipping = True
     $ times = "12:54"
     "让我主动，抹除这几天的珍贵时光，我反而做不到了。"
     "而且这次需要做的事情的风险...一旦我失误了......"
@@ -344,6 +345,7 @@ label loop1_false:
     with vpunch
     l "是谁！！"
     nvle "我本来打算呼喊，但是嘴里被一块布堵住了。"
+    nvl clear
     scene bg_none
     with fade
     nvle "身体也变得昏昏沉沉......眼睛也快睁不开了......"
@@ -588,7 +590,7 @@ label loop1_false:
     nvle "到底是哪里出了差错？"
     nvl clear
     play music ruins fadein 1.0 fadeout 1.0
-    show zicheng_pose2 at jin
+    show zicheng_pose2 eyes2 other2 mouth1 at jin
     with dissolve
     "叶梓澄还在缜密思考。"
     hide zicheng_pose2
@@ -748,6 +750,8 @@ label loop1_false:
     $ config.allow_skipping = False
     "......................................................................................"
     $ end = 2
+    $ persistent.end2 = True
+    $ nise_end = False
     $ quick_menu = False
     $ quick_menu_full_= False
     hide screen quick_menu_full
@@ -769,4 +773,11 @@ label loop1_false:
     $ quick_menu_full_= True
     call enable_shortcut from _call_enable_shortcut_4
     $ config.allow_skipping = True
-    return
+    if persistent.hajimari_end:
+        return
+    else:
+        $ persistent.hajimari_end = True
+        play sound tips
+        show screen extraconfirm("[endsay]",MainMenu(confirm=False))
+        pause
+        return

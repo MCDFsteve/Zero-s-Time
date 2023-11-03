@@ -1715,7 +1715,7 @@ label chapter3:
     c "我父母也是经常带着覃可汐一块，出去玩~"
     c "毕竟覃可汐家里的条件不太好，她父母没空也没财力带给覃可汐这些..."
     c "我和覃可汐一起，升学到了同一所初中，再又考上了同一所高中......"
-    c "可以说.....覃可汐就是我最重要的朋友了.....也是我的青梅竹马....."
+    c "可以说.....覃可汐就是我最重要的朋友了.........."
     c "比起朋友，更像是我的家人一样......"
     nvle "我总算可以理解一点了......."
     nvl clear
@@ -2280,6 +2280,7 @@ label loop1_true:
     play music title2 fadein 1.0 fadeout 1.0
     with vpunch
     l "啊。"
+    $ config.allow_skipping = True
     l "呼~呼~呼~呼~"
     scene bg_schoolmae
     show eye

@@ -1,6 +1,7 @@
 label chapter5_end3:
     play music title2 fadein 1.0 fadeout 1.0
     l "方案一：用时间刻校正仪将-1时间刻变为原初时间刻！"
+    $ config.allow_skipping = True
     l "这是低风险的方案.....又或者说....根本没有风险。"
     l "毕竟AADR这个组织一开始就没有出现。"
     l "虽然不知道原因是什么。"
@@ -174,6 +175,7 @@ label chapter5_badend:
     nvl clear
     stop sound
     $ end = 3
+    $ persistent.end3 = True
     $ nise_end = False
     $ quick_menu = False
     $ quick_menu_full_= False
@@ -196,5 +198,12 @@ label chapter5_badend:
     $ quick_menu_full_= True
     call enable_shortcut from _call_enable_shortcut_9
     $ config.allow_skipping = True
-    return
+    if persistent.hajimari_end:
+        return
+    else:
+        $ persistent.hajimari_end = True
+        play sound tips
+        show screen extraconfirm("[endsay]",MainMenu(confirm=False))
+        pause
+        return
     

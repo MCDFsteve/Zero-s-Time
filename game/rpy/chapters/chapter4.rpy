@@ -1336,6 +1336,7 @@ label chapter4:
     with fade2
     $ config.allow_skipping = False
     nvle "我这样想着................慢慢走出了校门....................."
+    nvl clear
     $ end = 0
     hide screen quick_menu_full
     $ nise_end = True

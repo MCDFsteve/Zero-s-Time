@@ -63,6 +63,26 @@ init -1:
                 "bg_2_3_hare"
             attribute yubi :
                 "bg_2_3_yubi"
+    layeredimage bg_school_nakato:
+
+        group pose:
+            attribute pose1 default:
+                "bg_school_nakato_hare"
+        group tenki:
+            attribute hare default:
+                "bg_school_nakato_hare"
+            attribute yubi :
+                "bg_school_nakato_yubi"
+    layeredimage bg_school_door:
+
+        group pose:
+            attribute pose1 default:
+                "bg_school_door_hare"
+        group tenki:
+            attribute hare default:
+                "bg_school_door_hare"
+            attribute yubi :
+                "bg_school_door_yubi"
     image bg_schoolmae_hare:
         "images/bg/schoolmae_hare.webp"
     image bg_schoolmae_ame:
@@ -109,3 +129,13 @@ init -1:
         "images/bg/bg_2_3_hare.webp"
     image bg_2_3_yubi:
         "images/bg/bg_2_3_yubi.webp"
+    image bg_school_nakato_hare:
+        "images/bg/bg_school_nakato_hare.webp"
+    image bg_school_nakato_yubi:
+        "images/bg/bg_school_nakato_yubi.webp"
+    image bg_school_door_hare:
+        "images/bg/bg_school_door_hare.webp"
+    image bg_school_door_yubi:
+        "images/bg/bg_school_door_yubi.webp"
+    image bg_kainogo:
+        "images/bg/bg_kainogo.webp"

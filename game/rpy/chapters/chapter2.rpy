@@ -1206,10 +1206,12 @@ label chapter2:
     voice v1
     c "那走吧。"
     $ times = "18:40"
-    scene bg_kaite
+    play sound run_kai loop 
+    scene bg_kaite at kai_
     with fade
     "我掏出手机打开了照明灯，顺着密道一直往下走，叶梓澄紧随其后。"
     $ times = "18:41"
+    stop sound fadeout 1.0
     scene bg_chikashitu
     with dissolve
     "到达了一个地下室。"

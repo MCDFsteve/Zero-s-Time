@@ -2511,6 +2511,8 @@ label nowatch:
     $ config.allow_skipping = False
     "准备收摊了，去哪都无所谓。死了也无所谓。如果过去的我真的改变了时间的轨迹，那我大概率会被再构成掉吧......"
     $ end = 1
+    $ persistent.end1 = True
+    $ nise_end = False
     hide screen quick_menu_full
     $ quick_menu = False
     $ quick_menu_full_= False
@@ -2531,4 +2533,12 @@ label nowatch:
     $ quick_menu_full_= True
     call enable_shortcut from _call_enable_shortcut_1
     $ config.allow_skipping = True
-    return
+    stop music
+    if persistent.hajimari_end:
+        return
+    else:
+        $ persistent.hajimari_end = True
+        play sound tips
+        show screen extraconfirm("[endsay]",MainMenu(confirm=False))
+        pause
+        return

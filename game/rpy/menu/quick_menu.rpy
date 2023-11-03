@@ -26,16 +26,17 @@ screen quick_menu_full():
         vbox:
             xpos 0.007
             ypos 0.12
-
-            textbutton _("回退")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn() action Rollback()
-            textbutton _("历史") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.03) action ShowMenu('history')
-            textbutton _("提示") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.06) action ShowMenu('Tips')
-            textbutton _("快进") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.09) action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("自动") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.12) action Preference("auto-forward", "toggle")
-            textbutton _("保存") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.15) action ShowMenu('save')
-            textbutton _("快存") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.18) action QuickSave()
-            textbutton _("快读") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.21) action QuickLoad()
-            textbutton _("菜单") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.24) action ShowMenu('game_menu')
+            spacing 5
+            imagebutton idle "ui_quickmenu_roll" hover "ui_quickmenu_roll_on"  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn() action Rollback()
+            imagebutton idle "ui_quickmenu_history" hover "ui_quickmenu_history_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.03) action ShowMenu('history')
+            imagebutton idle "ui_quickmenu_tips" hover "ui_quickmenu_tips_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.06) action ShowMenu('Tips')
+            imagebutton idle "ui_quickmenu_quick" hover "ui_quickmenu_quick_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.09) action Skip() alternate Skip(fast=True, confirm=True)
+            imagebutton idle "ui_quickmenu_auto" hover "ui_quickmenu_auto_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.12) action Preference("auto-forward", "toggle")
+            imagebutton idle "ui_quickmenu_save" hover "ui_quickmenu_save_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.15) action ShowMenu('save')
+            imagebutton idle "ui_quickmenu_load" hover "ui_quickmenu_load_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.21) action ShowMenu('load')
+            imagebutton idle "ui_quickmenu_quicksave" hover "ui_quickmenu_quicksave_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.18) action QuickSave()
+            imagebutton idle "ui_quickmenu_quickload" hover "ui_quickmenu_quickload_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.21) action QuickLoad()
+            imagebutton idle "ui_quickmenu_menu" hover "ui_quickmenu_menu_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" at main_menu_show_btn(0.24) action ShowMenu('game_menu')
     else:
         vbox:
             xpos 0.005

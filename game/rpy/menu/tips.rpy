@@ -13,7 +13,7 @@ screen Tips():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -54,63 +54,72 @@ screen Tips():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips01:
-          textbutton _("{size=50}{b}pbb{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips01")
+          textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}pbb{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips01")
         else:
-          textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+          textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips02:
-          textbutton _("{size=50}{b}本子{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips02")
+          textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}本子{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips02")
         else:
-          textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+          textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips03:
-            textbutton _("{size=50}{b}d站{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips03")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}d站{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips03")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips04:
-            textbutton _("{size=50}{b}鬼畜{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips04")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}鬼畜{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips04")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips05:
-            textbutton _("{size=50}{b}cq{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips05")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}cq{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips05")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips06:
-            textbutton _("{size=50}{b}番剧{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips06")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}番剧{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips06")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips07:
-            textbutton _("{size=50}{b}NPC{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips07")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}NPC{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips07")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips08:
-            textbutton _("{size=50}{b}地球online{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips08")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}地球online{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips08")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips09:
-            textbutton _("{size=50}{b}家里蹲{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips09")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}家里蹲{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips09")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips10:
-            textbutton _("{size=50}{b}油陷{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips10")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}油陷{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips10")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips11:
-            textbutton _("{size=50}{b}希望之草{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips11")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}希望之草{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips11")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips12:
-            textbutton _("{size=50}{b}现充{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips12")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}现充{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips12")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips13:
-            textbutton _("{size=50}{b}战场原白仪{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips13")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}战场原白仪{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips13")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
         
 screen Tips2():
@@ -124,7 +133,7 @@ screen Tips2():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -165,63 +174,72 @@ screen Tips2():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips14:
-            textbutton _("{size=50}{b}斧乃木正弦{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips14")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}斧乃木正弦{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips14")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips15:
-            textbutton _("{size=50}{b}故事系列{/b}{/size}")hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips15")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}故事系列{/font}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips15")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips16:
-            textbutton _("{size=50}{b}厨{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips16")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}厨{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips16")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips17:
-            textbutton _("{size=50}{b}这是禁止事项{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips17")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}这是禁止事项{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips17")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips18:
-            textbutton _("{size=50}{b}•福杰{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips18")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}•福杰{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips18")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips19:
-            textbutton _("{size=50}{b}社牛{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips19")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}社牛{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips19")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips20:
-            textbutton _("{size=50}{b}再上映{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips20")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}再上映{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips20")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips21:
-            textbutton _("{size=50}{b}二次元{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips21")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}二次元{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips21")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips22:
-            textbutton _("{size=50}{b}中二{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips22")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}中二{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips22")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips23:
-            textbutton _("{size=50}{b}也儿夕传说{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips23")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}也儿夕传说{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips23")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips24:
-            textbutton _("{size=50}{b}也儿夕传说:旷野之炊{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips24")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}也儿夕传说:旷野之炊{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips24")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips25:
-            textbutton _("{size=50}{b}林库{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips25")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}林库{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips25")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips26:
-            textbutton _("{size=50}{b}抖乐{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips26")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}抖乐{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips26")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen Tips3():
 
@@ -234,7 +252,7 @@ screen Tips3():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -275,63 +293,72 @@ screen Tips3():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips27:
-            textbutton _("{size=50}{b}腹黑{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips27")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}腹黑{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips27")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips28:
-            textbutton _("{size=50}{b}宝可魔{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips28")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}宝可魔{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips28")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips29:
-            textbutton _("{size=50}{b}任地堂{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips29")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}任地堂{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips29")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips30:
-            textbutton _("{size=50}{b}witch{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips30")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}witch{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips30")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips31:
-            textbutton _("{size=50}{b}泥可泥丝{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips31")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}泥可泥丝{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips31")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips32:
-            textbutton _("{size=50}{b}蒸汽朋克：边缘行者{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips32")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}蒸汽朋克：边缘行者{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips32")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips33:
-            textbutton _("{size=50}{b}AADR{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips33")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}AADR{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips33")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips34:
-            textbutton _("{size=50}{b}ChieAnime{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips34")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}ChieAnime{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips34")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips35:
-            textbutton _("{size=50}{b}漫展{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips35")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}漫展{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips35")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips36:
-            textbutton _("{size=50}{b}cosplay{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips36")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}cosplay{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips36")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips37:
-            textbutton _("{size=50}{b}coser{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips37")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}coser{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips37")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips38:
-            textbutton _("{size=50}{b}低德地图{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips38")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}低德地图{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips38")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips39:
-            textbutton _("{size=50}{b}高塔{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips39")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}高塔{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips39")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen Tips4():
 
@@ -344,7 +371,7 @@ screen Tips4():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -385,63 +412,72 @@ screen Tips4():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips40:
-            textbutton _("{size=50}{b}颜文字{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips40")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}颜文字{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips40")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips41:
-            textbutton _("{size=50}{b}神庙{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips41")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}神庙{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips41")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips42:
-            textbutton _("{size=50}{b}撒旦的结合{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips42")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}撒旦的结合{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips42")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips43:
-            textbutton _("{size=50}{b}堂屋{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips43")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}堂屋{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips43")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips44:
-            textbutton _("{size=50}{b}橘外人{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips44")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}橘外人{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips44")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips45:
-            textbutton _("{size=50}{b}零子{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips45")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}零子{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips45")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips46:
-            textbutton _("{size=50}{b}皮带炖肉{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips46")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}皮带炖肉{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips46")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips47:
-            textbutton _("{size=50}{b}海马体{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips47")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}海马体{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips47")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips48:
-            textbutton _("{size=50}{b}时间悖论{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips48")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}时间悖论{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips48")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips49:
-            textbutton _("{size=50}{b}时间刻校正仪{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips49")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}时间刻校正仪{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips49")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips51:
-            textbutton _("{size=50}{b}影子{/b}{/size}") hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips51")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}影子{/font}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips51")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips52:
-            textbutton _("{size=50}{b}端锅{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips52")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}端锅{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips52")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips50:
-            textbutton _("{size=50}{b}死亡回归{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips50")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}死亡回归{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips50")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen Tips5():
 
@@ -454,7 +490,7 @@ screen Tips5():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -495,63 +531,72 @@ screen Tips5():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips53:
-            textbutton _("{size=50}{b}原子匹配分布表{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips53")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}原子匹配分布表{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips53")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips54:
-            textbutton _("{size=50}{b}蓝图{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips54")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}蓝图{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips54")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips55:
-            textbutton _("{size=50}{b}黑化{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips55")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}黑化{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips55")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips56:
-            textbutton _("{size=50}{b}沙皇{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips56")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}沙皇{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips56")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips57:
-            textbutton _("{size=50}{b}原地tp{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips57")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}原地tp{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips57")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips58:
-            textbutton _("{size=50}{b}时间刻{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips58")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}时间刻{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips58")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips59:
-            textbutton _("{size=50}{b}鸡嘴火龙{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips59")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}鸡嘴火龙{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips59")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips60:
-            textbutton _("{size=50}{b}鸡嘴火兽{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips60")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}鸡嘴火兽{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips60")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips61:
-            textbutton _("{size=50}{b}抖M{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips61")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}抖M{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips61")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips62:
-            textbutton _("{size=50}{b}平行宇宙{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips62")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}平行宇宙{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips62")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips63:
-            textbutton _("{size=50}{b}电话电磁炉{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips63")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}电话电磁炉{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips63")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips64:
-            textbutton _("{size=50}{b}斯坦因之窗{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips64")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}斯坦因之窗{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips64")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips65:
-            textbutton _("{size=50}{b}蝴蝶效应{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips65")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}蝴蝶效应{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips65")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen Tips6():
 
@@ -564,7 +609,7 @@ screen Tips6():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -605,63 +650,72 @@ screen Tips6():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips66:
-            textbutton _("{size=50}{b}宕机{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips66")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}宕机{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips66")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips67:
-            textbutton _("{size=50}{b}零之石{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips67")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}零之石{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips67")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips68:
-            textbutton _("{size=50}{b}NC{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips68")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}NC{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips68")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips69:
-            textbutton _("{size=50}{b}上界传送门{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips69")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}上界传送门{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips69")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips70:
-            textbutton _("{size=50}{b}未地传送门{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips70")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}未地传送门{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips70")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips71:
-            textbutton _("{size=50}{b}传送门方块{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips71")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}传送门方块{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips71")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips72:
-            textbutton _("{size=50}{b}排异反应{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips72")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}排异反应{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips72")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips73:
-            textbutton _("{size=50}{b}共鸣{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips73")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}共鸣{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips73")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips74:
-            textbutton _("{size=50}{b}计划C{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips74")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}计划C{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips74")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips75:
-            textbutton _("{size=50}{b}哈希值{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips75")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}哈希值{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips75")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips76:
-            textbutton _("{size=50}{b}忒修斯之船{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips76")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}忒修斯之船{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips76")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips77:
-            textbutton _("{size=50}{b}肌肉记忆{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips77")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}肌肉记忆{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips77")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips78:
-            textbutton _("{size=50}{b}正转裁判{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips78")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}正转裁判{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips78")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen Tips7():
 
@@ -674,7 +728,7 @@ screen Tips7():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -715,63 +769,72 @@ screen Tips7():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips79:
-            textbutton _("{size=50}{b}炮丸论破{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips79")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}炮丸论破{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips79")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips80:
-            textbutton _("{size=50}{b}名侦探柯北{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips80")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}名侦探柯北{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips80")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips81:
-            textbutton _("{size=50}{b}复活笔记{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips81")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}复活笔记{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips81")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips82:
-            textbutton _("{size=50}{b}火菓{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips82")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}火菓{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips82")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips83:
-            textbutton _("{size=50}{b}人材{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips83")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}人材{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips83")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips84:
-            textbutton _("{size=50}{b}生理测量者{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips84")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}生理测量者{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips84")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips85:
-            textbutton _("{size=50}{b}犯罪参数{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips85")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}犯罪参数{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips85")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips86:
-            textbutton _("{size=50}{b}百脑汇{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips86")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}百脑汇{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips86")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips87:
-            textbutton _("{size=50}{b}麻将{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips87")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}麻将{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips87")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips88:
-            textbutton _("{size=50}{b}苏打水{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips88")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}苏打水{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips88")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips89:
-            textbutton _("{size=50}{b}经典地图{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips89")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}经典地图{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips89")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips90:
-            textbutton _("{size=50}{b}西卡之石{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips90")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}西卡之石{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips90")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips91:
-            textbutton _("{size=50}{b}世界线收束{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips91")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}世界线收束{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips91")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen Tips8():
 
@@ -784,7 +847,7 @@ screen Tips8():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -825,63 +888,72 @@ screen Tips8():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips92:
-            textbutton _("{size=50}{b}京西{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips92")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}京西{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips92")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips93:
-            textbutton _("{size=50}{b}球棍{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips93")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}球棍{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips93")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips94:
-            textbutton _("{size=50}{b}蟋蟀鸣泣之时{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips94")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}蟋蟀鸣泣之时{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips94")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips95:
-            textbutton _("{size=50}{b}橘子{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips95")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}橘子{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips95")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips96:
-            textbutton _("{size=50}{b}驳倒{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips96")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}驳倒{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips96")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips97:
-            textbutton _("{size=50}{b}苗花诚{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips97")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}苗花诚{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips97")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips98:
-            textbutton _("{size=50}{b}学级裁判{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips98")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}学级裁判{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips98")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips99:
-            textbutton _("{size=50}{b}四大天王{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips99")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}四大天王{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips99")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips100:
-            textbutton _("{size=50}{b}二周目{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips100")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}二周目{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips100")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips101:
-            textbutton _("{size=50}{b}联盟冠军{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips101")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}联盟冠军{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips101")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips102:
-            textbutton _("{size=50}{b}压岁钱{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips102")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}压岁钱{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips102")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips103:
-            textbutton _("{size=50}{b}处理器{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips103")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}处理器{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips103")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips104:
-            textbutton _("{size=50}{b}お可愛い子供{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips104")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}お可愛い子供{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips104")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen Tips9():
 
@@ -894,7 +966,7 @@ screen Tips9():
     add "gui/ui_white.webp":
         ycenter 0.97
         xpos 0.01
-        xzoom 1.1
+        xzoom 1.21
     hbox:
         
         xpos 0.0
@@ -935,63 +1007,191 @@ screen Tips9():
           action ShowMenu("Tips8")
         imagebutton idle "ui_page9_on" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
           action ShowMenu("Tips9")
-    key "game_menu" action Return() #设置右键返回，方便使用
+        imagebutton idle "ui_page10" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
     vbox:
         xpos 0.05
         ypos 0.04
         spacing 0
         if persistent.tips105:
-            textbutton _("{size=50}{b}服务器{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips105")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}服务器{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips105")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips106:
-            textbutton _("{size=50}{b}恨蜜莉雅{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips106")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}恨蜜莉雅{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips106")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips107:
-            textbutton _("{size=50}{b}二雷娜{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips107")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}二雷娜{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips107")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips108:
-            textbutton _("{size=50}{b}倒霉星{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips108")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}倒霉星{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips108")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips109:
-            textbutton _("{size=50}{b}amido{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips109")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}amido{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips109")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips110:
-            textbutton _("{size=50}{b}苗花诚{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips110")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}AI{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips110")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips111:
-            textbutton _("{size=50}{b}学级裁判{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips111")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}出芽{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips111")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips112:
-            textbutton _("{size=50}{b}四大天王{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips112")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}衰变{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips112")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips113:
-            textbutton _("{size=50}{b}二周目{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips113")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}客户端{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips113")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips114:
-            textbutton _("{size=50}{b}联盟冠军{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips114")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}原初时间刻{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips114")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips115:
-            textbutton _("{size=50}{b}压岁钱{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips115")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}五分钟创世说{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips115")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips116:
-            textbutton _("{size=50}{b}处理器{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips116")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}十四机兵防卫圈{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips116")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
         if persistent.tips117:
-            textbutton _("{size=50}{b}お可愛い子供{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips117")
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}DNA序列{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips117")
         else:
-            textbutton _("{size=50}{b}？？？{/b}{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    add "gui/tips_menu.webp"
+screen Tips10():
+
+    tag menu
+    modal True
+    add "gui/tips.webp"
+    add "gui/nvl.webp"
+    use tips_option
+
+    add "gui/ui_white.webp":
+        ycenter 0.97
+        xpos 0.01
+        xzoom 1.21
+    hbox:
+        
+        xpos 0.0
+        ypos 0.9
+        spacing 15
+        
+        add "ui_page"
+    hbox:
+        
+        xpos 0.638
+        ypos 0.9
+        spacing 15
+        if main_menu:
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+            action ShowMenu("menu")
+        if not main_menu:
+          imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+            action Return()
+    hbox:
+        xpos 0.18
+        ypos 0.93
+        spacing 15
+        imagebutton idle "ui_page1" hover "ui_page1_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips")
+        imagebutton idle "ui_page2" hover "ui_page2_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips2")
+        imagebutton idle "ui_page3" hover "ui_page3_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips3")
+        imagebutton idle "ui_page4" hover "ui_page4_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips4")
+        imagebutton idle "ui_page5" hover "ui_page5_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips5")
+        imagebutton idle "ui_page6" hover "ui_page6_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips6")
+        imagebutton idle "ui_page7" hover "ui_page7_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips7")
+        imagebutton idle "ui_page8" hover "ui_page8_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips8")
+        imagebutton idle "ui_page9" hover "ui_page9_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips9")
+        imagebutton idle "ui_page10_on" hover "ui_page10_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("Tips10")
+    if main_menu:
+          
+          key "game_menu" action ShowMenu("menu")
+          key "pad_b_press" action ShowMenu("menu")
+    if not main_menu:
+          
+          key "game_menu" action Return()
+          key "pad_b_press" action Return() #设置右键返回，方便使用
+    vbox:
+        xpos 0.05
+        ypos 0.04
+        spacing 0
+        if persistent.tips118:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}2012世界末日{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips118")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips119:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}沼泽人{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips119")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips120:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}数字生命{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips120")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips121:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}数字灵魂{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips121")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips122:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}蒸汽朋克1877{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips122")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips123:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}黄斑三郎{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips123")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips124:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}出芽{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips124")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips125:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}衰变{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips125")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips126:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}客户端{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips126")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips127:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}原初时间刻{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips127")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips128:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}五分钟创世说{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips128")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips129:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}十四机兵防卫圈{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips129")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+        if persistent.tips130:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}DNA序列{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action ShowMenu("tips130")
+        else:
+            textbutton _("{size=50}{font=Huayuan.Gothic.Bold.ttf}？？？{/font}{/size}")   hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
     add "gui/tips_menu.webp"
 screen tips01:
     use Tips
@@ -1300,7 +1500,7 @@ screen tips44:
     zorder 100
     tag menu
     key "game_menu" action ShowMenu('Tips4')
-    text _("{size=50}“橘”出自知名百合番{a=http://citrus-anime.com}《柑橘味香气》{/a}。用来调侃ACG女角色之间的亲密关系已经接近恋爱的程度了，可谓“大橘已定”，冒出个男的来则称为“橘外人”。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+    text _("{size=50}（架空）“橘”出自知名百合番《柑橘味香水》。用来调侃ACG女角色之间的亲密关系已经接近恋爱的程度了，可谓“大橘已定”，冒出个男的来则称为“橘外人”。{/size}") xpos 0.35 ypos 0.05 xsize 1160
 screen tips45:
     use Tips4
     modal True
@@ -1345,6 +1545,8 @@ screen tips49:
         text _("{size=50}（架空）由叶梓澄之父开发出的跟零子有关的科学仪器。具有危险性，可以向+1维度注入零子以及从+1维度抽出零子到人类所处的0维度，是+1维度和0维度之间进行数据交换的桥梁。{/size}") xpos 0.35 ypos 0.05 xsize 1160
     elif persistent.time == 4:
         text _("{size=50}（架空）由叶梓澄之父开发出的跟零子有关的科学仪器。具有危险性，可以向+1维度注入零子以及从+1维度抽出零子到人类所处的0维度，是+1维度和0维度之间进行数据交换的桥梁。抽出和注入均会导致+1时间刻维度对0时间刻维度产生干涉。抽出之前注入的零子可终止干涉。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+    elif persistent.time == 5:
+        text _("{size=50}（架空）由叶梓澄之父开发出的跟零子有关的科学仪器。具有危险性，可以向+1维度注入零子以及从+1维度抽出零子到人类所处的0维度，是+1维度和0维度之间进行数据交换的桥梁。抽出和注入均会导致+1时间刻维度对0时间刻维度产生干涉。抽出之前注入的零子可终止干涉。本体是一个电路板上带着零之石以及负责注入和抽出的通道，和一个观测注入抽出值的显示数字的表盘。{/size}") xpos 0.35 ypos 0.05 xsize 1160
     else:
         text _("{size=50}（架空）由叶梓澄之父开发出的跟零子有关的科学仪器。{/size}") xpos 0.35 ypos 0.05 xsize 1160
 screen tips50:
@@ -1767,3 +1969,101 @@ screen tips109:
     tag menu
     key "game_menu" action ShowMenu('Tips9')
     text _("{size=50}（架空）任地堂推出的一种互动玩具和游戏配件。以小型塑料人物或卡片的形式出现，每个代表了不同的角色或游戏。它们具有内置的射频识别芯片，可以通过与兼容的游戏主机或设备（Witch、Mii U和3BS）进行交互，以获得游戏内的道具。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips110:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}即人工智能，是一种计算机科学领域的技术。它使计算机系统能够模拟人类的智能行为和决策过程。AI通过学习、理解和执行任务，可以自动化任务、处理复杂的数据，并做出决策。它的应用范围广泛，包括语音识别、图像处理、自然语言处理等。AI是目前科技领域的重要发展方向之一。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips111:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}是指在水晶的表面或内部形成新的小水晶。当水晶处于适当的环境条件下，溶解的矿物质会重新结晶并沉积在现有的水晶上，形成一个小的、与原水晶相连的新晶体。这个过程类似于植物的出芽，因此被称为水晶的出芽。出芽使水晶的结构逐渐扩展，并形成更复杂的形态和纹理。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips112:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}是指原子核或粒子发生变化，转变为不同的原子核或粒子的过程。这种转变可以是自发的，也可以是受到外界的刺激而发生。衰变可能导致原子核的放射性衰变，释放出射线或粒子，同时伴随着能量的释放。这个过程会改变原子核的质量数和原子序数，从而使物质的性质和组成发生变化。物质的衰变是自然界中普遍存在的现象，也是核能和放射治疗等领域的重要基础。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips113:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}是指与服务器或主机进行通信的计算机或设备。它通常是指用户使用的设备，如个人电脑、手机、平板电脑等。在客户端-服务器模型中，客户端发送请求给服务器，并接收服务器返回的响应。客户端负责向用户提供界面和功能，使用户能够与服务器进行交互和访问网络服务。客户端通过网络连接到服务器，发送请求并接收数据，完成特定的任务或获取所需的信息。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips114:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}（架空）即在时间刻校正仪进行抽出零子操作导致世界发生改变之前的世界。标志性的事件有覃可汐在小学溺亡，以及不存在名为AADR的组织。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips115:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}是一个哲学假设，用来讨论时间和现实的概念。它认为我们所经历的一切，包括记忆和感知，都是在过去的五分钟内被创造出来的，而对于更长时间段的记忆只是虚假的。它挑战我们对时间和现实本质的理解，引发思考：我们如何知道过去的经历是真实的，而不是刚刚被创造出来的虚幻体验？它没有科学依据，更像是哲学思考，用来探索我们对世界的理解方式和意识、记忆如何构建现实体验。无论是否成立，它提醒我们审视现实和时间，并怀疑我们对世界的认知方式。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips116:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}（架空）是一款由Btlus开发的动作角色扮演游戏。游戏的故事发生在一个被机械生命体侵略的未来世界，玩家将扮演十四名驾驶着巨型机甲的少年少女，与敌人展开激烈的战斗。游戏的特色是可以随时切换不同的机甲和角色，以及拥有多种结局的分支剧情。游戏的剧情内容十分丰富，玩家赞不绝口，很多人直呼“希望失忆以后再玩一遍”。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips117:
+    use Tips9
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips9')
+    text _("{size=50}是指DNA分子中的一系列核苷酸的排列顺序。DNA（脱氧核糖核酸）是生物体内存储遗传信息的分子，它由四种不同的核苷酸单元组成，分别是腺嘌呤（A）、胞嘧啶（C）、鸟嘌呤（G）和胸腺嘧啶（T）。DNA序列描述了基因组中的基因和其他非编码区域的具体排列。基因是DNA序列的一部分，它们携带了生物体遗传信息的编码，决定了生物体的形态、功能和特征。通过分析DNA序列，科学家可以研究基因的功能、进化关系以及与疾病相关的变异。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips118:
+    use Tips10
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips10')
+    text _("{size=50}即“2012末日预言”或“2012末日事件”，是指一些人相信在2012年12月21日，根据古代玛雅文明的预测，世界将面临灾难性的事件，甚至可能是世界末日的到来。这个预言源自玛雅文明的长周期历法，即玛雅历的长计数周期。根据一种解释，该日历在2012年12月21日结束，导致一些人将其解释为世界将在那一天毁灭。然而，科学界对于这种预言的真实性持怀疑态度。许多科学家和学者认为，这只是对玛雅历法的误解和误解解读，而非真正意味着世界末日的发生。2012年12月21日来临后，并没有发生全球性的灾难或世界末日事件。这一预言被广泛视为一个谣言或误解，并在科学界和大众之间引发了许多讨论和争议。尽管2012年世界末日预言没有实现，但它提醒了人们对于预言和未来事件的怀疑态度，以及对科学证据和合理推理的重要性。同时，它也显示了人类对于末日和未知的永恒关注和好奇心。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips119:
+    use Tips10
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips10')
+    text _("{size=50}是一个哲学上的思想实验，用来探讨身份和意识的本质。它的基本情景是这样的：假设有一个人在沼泽里被闪电击中，同时沼泽里的分子组成了一个和他完全一样的复制品。这个复制品有着和原来的人一样的记忆、性格和行为，但是他不知道自己是一个复制品。那么，这个复制品是否就是原来的人？他是否有着和原来的人一样的意识和权利？这个问题涉及到了人类的本质、自我认同和道德责任等复杂的主题，也引发了不同的哲学观点和争论。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips120:
+    use Tips10
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips10')
+    text _("{size=50}是指将人的意识和思维过程转化为数字化的形式，然后将其上传到计算机或其他数字化系统中的过程。这意味着个体的思维、记忆和个性等信息被转换为计算机可处理的数据，并在计算机内部模拟和存储。将人的意识上传到计算机内，可以理解为将大脑中的信息通过技术手段转移到计算机中，使得个体的意识能够在计算机系统中继续存在和运行。这可能涉及扫描和复制大脑的结构和功能，并将其转化为算法和数据的形式。数字生命的概念涉及到深入理解和模拟人脑的复杂性和神经科学的原理，以及开发出高度先进的计算机系统和算法来处理和模拟这些信息。尽管这个领域仍然在发展中，并面临众多科学和伦理挑战，但数字生命的概念激发了人们对意识和人类认知的深刻思考。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips121:
+    use Tips10
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips10')
+    text _("{size=50}是一个涉及人类精神和技术交叉领域的概念。它描述了将人的内在意识和非物质性特质转化为数字化的形式或表达方式的想法。数字灵魂的概念基于假设，即人类的意识、思维、情感等非物质性属性可以被转化为数字化的信息和数据，并在计算机系统中模拟或复制。这意味着个体的思维过程、记忆、个性等可以被编码成算法和数据的形式，然后在数字系统中进行处理、存储和传输。然而，值得注意的是，数字灵魂是一个有争议的概念，缺乏确切的定义和科学共识。它在哲学、人工智能和认知科学等领域引发了广泛的讨论和思考。目前，实现数字灵魂的概念仍然面临许多科学、技术和伦理挑战，且距离实际可行性还存在很大的差距。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips122:
+    use Tips10
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips10')
+    text _("{size=50}（架空）是一款由CPDD开发的科幻冒险游戏。后被改编成动画。游戏背景设定在1877年的都市夜市——日之城，一个高度技术化的城市。在游戏中，玩家扮演一位名叫“W”的角色，一个雇佣冷血杀手。玩家将探索这个庞大的开放世界，与各种角色互动，并根据自己的选择和决策塑造游戏故事的走向。游戏的世界充满了科技与黑暗的冲突。人类改造自己的身体，融入了各种机械和生物改良，从而获得超能力和增强的能力。然而，科技的进步也带来了贫富分化和社会问题，政府和巨头公司之间的斗争不断升级。在游戏中，玩家可以选择各种任务和剧情线索，参与枪战、潜行、驾驶等各种动作和战斗。玩家还可以通过升级技能和收集装备来提升角色能力，并与其他角色建立关系。该游戏以其独特的世界观、深入的故事情节和惊人的视觉效果而闻名。游戏融合了科幻元素、黑暗主题和道德抉择，让玩家沉浸在一个充满犯罪乌托邦的世界中。{/size}") xpos 0.35 ypos 0.05 xsize 1160
+screen tips123:
+    use Tips10
+    modal True
+    zorder 100
+    tag menu
+    key "game_menu" action ShowMenu('Tips10')
+    text _("{size=50}（架空）游戏《蒸汽朋克1877》中的角色，黄斑集团的创始人。游戏中被自己的儿子杀死，后通过死前的备份“复活”，成了数字人类。{/size}") xpos 0.35 ypos 0.05 xsize 1160

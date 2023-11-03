@@ -4,7 +4,7 @@ label disable_shortcut():
         ##_game_menu_screen = None
  
         ## 禁止快进
-        config.allow_skipping = False
+        #config.allow_skipping = False
  
         ## 禁止隐藏界面
         _windows_hidden = True
@@ -14,7 +14,7 @@ label disable_shortcut():
 ## 快捷键恢复
 label enable_shortcut():
     python:
-        config.allow_skipping = True
+        #config.allow_skipping = True
         _windows_hidden = False
         _game_menu_screen = 'game_menu'
     return
@@ -33,6 +33,14 @@ transform shake:
     linear 0.05 xoffset 5 yoffset 5, easein 0.05
     linear 0.05 xoffset 0 yoffset 0
     repeat
+transform shake2:
+    xalign 0.5 yalign 0.5
+    linear 0.1 xoffset 3 yoffset -3, easein 0.05
+    linear 0.1 xoffset -3 yoffset 3, easein 0.05
+    linear 0.1 xoffset -3 yoffset -3, easein 0.05
+    linear 0.1 xoffset 3 yoffset 3, easein 0.05
+    linear 0.1 xoffset 0 yoffset 0
+    repeat
 transform furu:
     xalign 0.5 yalign 0.5
     linear 0.05 xoffset 1 yoffset -1
@@ -40,6 +48,15 @@ transform furu:
     linear 0.05 xoffset -1 yoffset -1
     linear 0.05 xoffset 1 yoffset 1
     linear 0.05 xoffset 0 yoffset 0
+    repeat
+transform kai_:
+    zoom 1.1
+    xalign 0.5 yalign 0.5
+    linear 0.2 xoffset 0 yoffset -3
+    linear 0.1 xoffset 0 yoffset 3
+    linear 0.2 xoffset 0 yoffset -3
+    linear 0.1 xoffset 0 yoffset 3
+    linear 0.2 xoffset 0 yoffset 0
     repeat
 define _game_menu_screen = 'game_menu'
 define _screenshot_callback = None
@@ -65,6 +82,7 @@ define m = Character(_("覃可汐母亲"),voice_tag="kexihaha",outlines = [(3,"#
 define s = Character(_("老师"),voice_tag="sensei",outlines = [(3,"#A89C3C",0,0)],ctc="hito_kotoba",ctc_position="nestled")
 define w = Character(_("物理老师"),outlines = [(3,"#3CA855",0,0)],ctc="hito_kotoba",ctc_position="nestled")
 define mono = Character((""),ctc="hito_kotoba",ctc_position="nestled")
+define ai = Character(("AI"),ctc="hito_kotoba",outlines = [(3,"#7DE7F1",0,0)],ctc_position="nestled")
 define cbnvl = Character("叶梓澄父亲", kind=nvl, outlines = [(3,"#A8523C",0,0)],ctc="kotoba",ctc_position="nestled")
 define cnvl = Character("叶梓澄", kind=nvl, outlines = [(3,"#A8523C",0,0)],ctc="kotoba",ctc_position="nestled")
 define lnvl = Character("林洛", kind=nvl, outlines = [(3,"#3C67A8",0,0)],ctc="kotoba",ctc_position="nestled")
@@ -75,4 +93,6 @@ image end1=At("chapters/end1.webp")
 image end2=At("chapters/end2.webp")
 image end3=At("chapters/end3.webp")
 image end4=At("chapters/end4.webp")
+image end5=At("chapters/end5.webp")
+image end6=At("chapters/end6.webp")
 image nise_end=At("chapters/nise_end.webp")

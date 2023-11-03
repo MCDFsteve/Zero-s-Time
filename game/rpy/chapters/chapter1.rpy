@@ -1960,6 +1960,7 @@ default come = False
 label nocome:
     play music sora fadeout 1.0 fadein 1.0
     l "我还是......算了吧......"
+    $ config.allow_skipping = True
     "事情已经发生了。现在去也只会徒增悲伤而已。"
     c "你真的......不想再看覃可汐最后一次吗？"
     "叶梓澄带着哭腔说道。"

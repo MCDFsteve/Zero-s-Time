@@ -16,27 +16,13 @@ init python:
     #mr.add("track3.ogg")
 # Step 3. 创建音乐空间界面。
 screen music_room:
-    add  "extra/bg_musicroom.webp"
     tag menu
-    #on "replaced" action Play("music", "music/title.ogg")
     modal True
-    #frame:
-        #has vbox
-
-        # 每条音轨的播放按钮。
-        #textbutton "Track 1" action mr.Play("music/title.ogg")
-        #textbutton "Track 2" action mr.Play("track2.ogg")
-       # textbutton "Track 3" action mr.Play("track3.ogg")
-
-        #null height 20
-
-        # 切换音轨按钮。
-        #textbutton "Next" action mr.Next()
-        #textbutton "Previous" action mr.Previous()
-
-        #null height 20
-
-        # 用户退出音乐空间的按钮。
+    add  "extra/bg_musicroom.webp"
+    add "gui/nvl.webp"
+    on "replace" action mr.Play()
+    key "game_menu" action ShowMenu("Extra")
+    key "pad_b_press" action ShowMenu("Extra")
     vbox:
         xpos 0.07
         ypos 0.07
@@ -66,17 +52,23 @@ screen music_room:
           textbutton _("{size=80}天空-陈次犬{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action mr.Play("music/sora.ogg")
         else:
           textbutton _("{size=80}？？？{/size}")  hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg" action NullAction()
+    if persistent.chapter==1:
+       $ main_menu_music = "music/title.ogg"
+    elif persistent.chapter==2:
+       $ main_menu_music = "music/title.ogg"
+    elif persistent.chapter==5:
+       $ main_menu_music = "music/title2.ogg"
+    elif persistent.chapter==6:
+       $ main_menu_music = "music/title.ogg"
+    else:
+       $ main_menu_music = "music/title.ogg"
     hbox:
         
         xpos 0.638
         ypos 0.9
         spacing 15
         imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
-            action [Hide("music_room"), ShowMenu("Extra"),Play("music", "music/title.ogg")]
-
+            action [Hide("music_room"), ShowMenu("Extra"),Play("music", main_menu_music)]
     # 音乐空间的音乐播放入口。
-    on "replace" action mr.Play()
-    key "game_menu" action ShowMenu("Extra")
-    key "pad_b_press" action ShowMenu("Extra")
     # 离开时恢复主菜单的音乐。
 #音乐盒

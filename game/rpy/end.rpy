@@ -47,7 +47,49 @@ image dialogue2_imag:
 
       time 90.0
       Null()
-
+screen end_title():
+  tag menu
+  modal True
+  add "black"
+  zorder 102
+  vbox:
+    ypos 0.0
+    spacing 5
+    if persistent.chapter==1:
+          add "title/title1.webp":
+            xpos 0.5
+            ycenter 0.6
+    elif persistent.chapter==2:
+          add "title/title2.webp":
+            xpos 0.5
+            ycenter 0.6
+    elif persistent.chapter==5:
+          add "title/title3.webp":
+            xpos 0.5
+            ycenter 0.6
+    elif persistent.chapter==6:
+          add "title/title4.webp":
+            xpos 0.5
+            ycenter 0.6
+    else:
+          add "title/title1.webp":
+            xpos 0.5
+            ycenter 0.6
+    vbox:
+      xpos 0.0
+      spacing 50
+      add "end_img1" at end
+      add "end_img2" at end
+      add "end_img3" at end
+  key "pad_b_press" action ShowMenu("about")
+  key "game_menu" action ShowMenu("about")
+  hbox:
+        
+        xpos 0.638
+        ypos 0.9
+        spacing 15
+        imagebutton idle "ui_return" hover "ui_return_on" hover_sound "audio/button_off.ogg" activate_sound "audio/button.ogg":
+          action ShowMenu("about")
 screen game_end():
   add "black"
   zorder 102
@@ -73,6 +115,16 @@ screen game_end():
       add "title/title3.webp":
         at end
       add "chapters/end4.webp":
+        at end
+    elif end == 5:
+      add "title/title4.webp":
+        at end
+      add "chapters/end5.webp":
+        at end
+    elif end == 6:
+      add "title/title4.webp":
+        at end
+      add "chapters/end6.webp":
         at end
     elif end == 0:
       if nise_end:
@@ -104,36 +156,36 @@ screen game_end():
     add "title3_anime"
 
 image end_img1:
-  Text (_("{size=90}总企划——{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n"))
+  Text (_("{size=90}总企划{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n"))
 
 image end_img2:
-  Text (_("""{size=90}剧本——{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n
+  Text (_("""{size=90}剧本{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n
 
-          {size=90}程序设计——{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n
+          {size=90}程序设计{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n
 
-          {size=90}程序帮助——{/size}\n\n{a=https://space.bilibili.com/438665392/}{size=70}sui_yiii{/size}{/a} \n\n\n\n
+          {size=90}程序帮助{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/438665392/}{size=70}sui_yiii{/size}{/a} \n\n\n\n
 
-          {size=90}美术设计——{/size}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
+          {size=90}美术设计{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
 
-          {size=90}立绘——{/size}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
+          {size=90}立绘{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
 
-          {size=90}角色设计——{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
+          {size=90}角色设计{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
 
-          {size=90}背景拍摄——{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n
+          {size=90}背景拍摄{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a} \n\n\n\n
 
-          {size=90}背景绘制——{/size}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
+          {size=90}背景绘制{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n\n\n
 
-          {size=90}音乐——{/size}\n\n{size=70}陈次犬{/size}\n\n\n\n
+          {size=90}音乐{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{size=70}陈次犬{/size}\n\n\n\n
 
-          {size=90}游戏测试——{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n{size=70}陈次犬{/size}\n\n{size=70}箫蓝{/size}\n\n\n\n
+          {size=90}游戏测试{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://space.bilibili.com/381681555/}{size=70}戴夫邻居史蒂夫DFsteve{/size}{/a}\n\n{a=https://space.bilibili.com/32947315/}{size=70}猫嗝嗝嗝嗝颖{/size}{/a} \n\n{size=70}陈次犬{/size}\n\n{size=70}箫蓝{/size}\n\n\n\n
 
-          {size=90}Tips支持——{/size}\n\n{a=https://chat.openai.com/}{size=70}ChatGPT{/size}{/a} \n\n\n\n
+          {size=90}Tips支持{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://chat.openai.com/}{size=70}ChatGPT{/size}{/a} \n\n\n\n
 
-          {size=90}设定援助——{/size}\n\n{a=https://chat.openai.com/}{size=70}ChatGPT{/size}{/a} \n\n\n\n
+          {size=90}设定援助{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{a=https://chat.openai.com/}{size=70}ChatGPT{/size}{/a} \n\n\n\n
 
-          {size=90}游戏版本——{/size}\n\n{size=70}[config.version]{/size}\n\n\n\n
+          {size=90}游戏版本{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{size=70}[config.version]{/size}\n\n\n\n
 
-          {size=90}游戏引擎——{/size}\n\n{color=#000000}{a=https://www.renpy.org/}{size=70}Ren'Py{/size}{/a}{/color}\n\n\n\n\n\n\n\n\n\n """.replace(" ", "")), color="#ffffff")
+          {size=90}游戏引擎{font=Cubic-11-1.000-R-2.ttf}——{/font}{/size}\n\n{color=#000000}{a=https://www.renpy.org/}{size=70}Ren'Py{/size}{/a}{/color}\n\n\n\n\n\n\n\n\n\n """.replace(" ", "")), color="#ffffff")
 
 image end_img3:
   Text (_("感谢游玩！！！"),size=120, color="#ffffff")

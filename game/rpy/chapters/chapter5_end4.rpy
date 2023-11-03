@@ -7,9 +7,31 @@ label chapter5_end4:
     l "即便这里不是原初时间刻，但也并不代表就必须回到原初时间刻去！"
     l "除了叶梓澄父亲以外的在场的大家，至少所拥有的都是关于现在所处的这个世界！这个-1时间刻的世界的记忆！"
     l "即便脑海里的记忆是由于再构成而形成的....."
-    l "啊......这反而有点像那个“世界是从五分钟前诞生”的假说。我们仿佛自己的记忆都是被灌输的而已。"
+    $ persistent.tips115 = True
+    l "啊......这反而有点像那个“{a=showmenu:tips115}{color=#F18D7D}世界是从五分钟前诞生{/color}{/a}”的假说。我们仿佛自己的记忆都是被灌输的而已。"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     l "我的童年....还有我与覃可汐....我与叶梓澄的回忆......都是被编造出来的记忆...."
-    l "就像十四机兵防卫圈里说的那样........."
+    $ persistent.tips116 = True
+    l "就像{a=showmenu:tips116}{color=#F18D7D}十四机兵防卫圈{/color}{/a}里说的那样........."
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     l "但是这都无所谓！！！"
     l "既然我处在这个圈子内，那为什么要去费力思考圈子外的事情呢？"
     l "既然我扮演了这个角色，这个位于-1时间刻维度的转校高中生这个角色！那我为什么要去思考-1时间刻维度以外的事情呢？"
@@ -114,14 +136,25 @@ label chapter5_end4:
     "这十年的苦难.......总算让未来发生了决定性的扭转......"
     l "那.....我们现在可以去哪呢？"
     "我向着未来的叶梓澄和我，发出了提问。"
-    show zicheng_mirai:
+    show zicheng_mirai_pose1 at jin:
         xcenter 0.3
     with dissolve
     show linluo_mirai:
         xcenter 0.6
     with dissolve
+    $ persistent.tips117 = True
     voice v3
-    c "我们拥有和林洛以及叶梓澄完全相同的DNA序列......在这个社会不会有容身之所吧......"
+    c "我们拥有和林洛以及叶梓澄完全相同的{a=showmenu:tips117}{color=#F18D7D}DNA序列{/color}{/a}......在这个社会不会有容身之所吧......"
+    #词典
+     
+    play sound "audio/tips.ogg"
+    show screen tips_say
+    with dissolve
+    hide screen tips_say
+    with tipsanime
+     
+
+#词典
     l "........."
     play music title2 fadein 1.0 fadeout 1.0
     play sound odoro
@@ -167,14 +200,15 @@ label chapter5_end4:
     "唯一知道的是。一直向前进。"
     "直到寻找到自己真正的归宿。"
     nvl clear
+    stop audio fadeout 1.0
     "直到.......永远.............."
     nvl clear
     $ config.allow_skipping = False
     nvle "............."
-    stop audio
     nvl clear
     stop sound
     $ end = 4
+    $ persistent.end4 = True
     $ nise_end = False
     $ quick_menu = False
     $ quick_menu_full_= False
@@ -197,4 +231,11 @@ label chapter5_end4:
     $ quick_menu_full_= True
     call enable_shortcut from _call_enable_shortcut_11
     $ config.allow_skipping = True
-    return
+    if persistent.hajimari_end:
+        return
+    else:
+        $ persistent.hajimari_end = True
+        play sound tips
+        show screen extraconfirm("[endsay]",MainMenu(confirm=False))
+        pause
+        return

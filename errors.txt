@@ -2,9 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/rpy/end.rpy", line 87: vbox expects a non-empty block.
-    if nise_end:
-                ^
+File "game/rpy/menu/tips.rpy", line 63: Indentation mismatch.
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Sun Jun 11 22:54:40 2023
+Thu Jul 13 11:05:06 2023
